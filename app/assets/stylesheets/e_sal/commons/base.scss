@@ -1,0 +1,43 @@
+body {
+  background: #2A3F54;
+  font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+}
+
+.profile {
+  padding: 20px;
+  &__pic {
+    display: inline-block;
+    img {
+      border-radius: 50%;
+    }
+  }
+  &__info {
+    float: right;
+    margin-top: 27px;
+  }
+}
+
+.sidebar {
+  font-size: 13px;
+  &__menu-wrap {
+    padding: 10px;
+  }
+  &__items {
+    height: 50px;
+  }
+  &__item {
+    padding: 10px;
+  }
+  &__action {
+    margin-left: 10px;
+  }
+  &__down-arrow {
+    float: right;
+  }
+  &__tutorial {
+    li {
+      padding-left: 35px;
+      margin-top: 20px;
+    }
+  }
+}
