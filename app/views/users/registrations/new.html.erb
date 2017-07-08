@@ -1,0 +1,10 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  
+  <div class="ctas">
+    <div class="emailcta">
+      <%= f.email_field :email, autofocus: true, placeholder: "example@aiit.ac.jp", class: "ctas-input" %>
+      <%= f.submit "送信", class: "ctas-button" %>
+    </div>
+  </div>
+<% end -%>

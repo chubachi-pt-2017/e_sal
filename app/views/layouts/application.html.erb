@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Workspace</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>E-sal</title>
+  <meta charSet="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag 'home', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
+</head>
   <body>
+    <header class="header">
+      <div class="container-lrg">
+        <div class="col-12 spread">
+          <div>
+            <a class="logo">
+              E-SAL
+            </a>
+          </div>
+          <div>
+            <%= link_to "sign up", new_user_registration_path, class: "nav-link" %>
+            <%= link_to "sign in", new_user_session_path, class: "nav-link" %>
+          </div>
+        </div>
+      </div>
+    </header>
     <%= yield %>
+    <div class="footer">
+      <div class="container-sml">
+        <div class="col-12 text-center">
+          <div>
+            <span>
+              Copyright © 2017 Enhance Skills with AIIT Life All rights reserved.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
