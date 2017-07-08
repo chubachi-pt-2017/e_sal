@@ -7,7 +7,7 @@
   }
 }
 
-.contents {
+.contents-top {
   float: right;
 	width: 85%;
   background: #2A3F54;
@@ -20,9 +20,10 @@
   }
   &__timeline-wrap {
     background: white;
-    width: 612px;
+    display: inline-block;
+    width: 712px;
     padding: 20px 0 20px 20px;
-    margin-left: 20px;
+    margin-left: 30px;
   }
   &__timeline {
     margin: 20px;
@@ -67,7 +68,7 @@
     justify-content: flex-start;
   }
   &__stats {
-    margin: 0 0px 20px 20px;
+    margin: 0 0px 20px 30px;
     content: "";
     &:not(:first-child) {
       border-left: 2px solid #ADB2B5;
@@ -89,4 +90,20 @@
   &__stats-change {
     font-size: 13px;
   }
+
+  &__own-activity {
+    float: right;
+    width: 30%;
+    margin-right: 30px;
+  }
+
+  &__activity-item {
+    min-height: 50px;
+    background: white;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 10px;
+  } 
+
 }
