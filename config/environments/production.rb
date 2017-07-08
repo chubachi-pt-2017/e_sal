@@ -83,4 +83,20 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # for Heroku or AWS
+  config.action_mailer.default_url_options = { host: "https://#{ENV['E_SAL_MAILER_HOST']}" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :enable_strarttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => ENV['E_SAL_MAILER_DOMAIN'],
+    # the authentication parameter for SMTPAuth
+    # :authentication => :login,
+    :authentication => :plain,
+    :user_name => ENV['E_SAL_MAILER_SENDER'],
+    :password => ENV['E_SAL_MAILER_PASSWORD']
+  }
+
 end

@@ -6,13 +6,14 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '2087d88cf9ab2fedca08eb09281df445cea4cda4e79c474e2f503211361ca920fe3d8a520b7ab24d7f967cd69d7bc266897722b2879df258599d7f5166a4fa36'
+  # config.secret_key = '975e4057ed5bf1110e5c50b15428a5fdba24420b870d7f87775958c499dd25ce3cee399b8a43dc14f746f2c1863110ef8dac26e4c9b0321ce0d322ff544ae759'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  # config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'info@e-sal.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -108,7 +109,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '2dd23646ff0c631da02f73c2d3535190a38970ff13bcfee6ffb61583ed9a3d765b459ec74b04f4fcb169416954268e97b8972c08330c59c7090d9f63b353fb81'
+  # config.pepper = 'f334d646a2c16794557aaa858c82264f13e3281e24584807fcafd4d94dcdf0f49e1e7d8f81037407b199cde91ab4367451ccc4cbbdd2920d43bc31417efd4649'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -223,7 +224,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).

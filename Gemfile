@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Using Ruby Version
-ruby '2.3.0'
+# ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '< 5.0.0.2'
 # Use mysql as the database for Active Record
@@ -52,7 +52,7 @@ end
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Use User Authentication
-gem 'devise', '~> 4.0'
+gem 'devise', '~> 4.0', '< 4.3'
 
 # Use Enum in I18n
 gem 'enum_help'
@@ -62,3 +62,6 @@ gem 'chartkick', '~> 2.0'
 
 # Use Ace-editor in ERB
 gem 'ace-rails-ap', '~> 4.0'
+
+# Use Confirmable for Active-Record Model View without confirmation action
+gem 'activerecord-confirmable'

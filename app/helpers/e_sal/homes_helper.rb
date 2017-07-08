@@ -1,0 +1,2 @@
+module ESal::HomesHelper
+end
