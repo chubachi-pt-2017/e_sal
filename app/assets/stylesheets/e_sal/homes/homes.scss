@@ -11,10 +11,6 @@
   float: right;
 	width: 85%;
   background: #2A3F54;
-  &__header {
-    height: 50px;
-    background: #EDEDED;
-  }
   &__main {
     background: #F7F7F7;
   }
@@ -24,6 +20,11 @@
     width: 712px;
     padding: 20px 0 20px 20px;
     margin-left: 30px;
+    border-radius: 5px;
+  }
+  &__timeline-title {
+    padding-bottom: 10px;
+    border-bottom: 1px #e5e5d1 solid;
   }
   &__timeline {
     margin: 20px;
@@ -95,6 +96,9 @@
     float: right;
     width: 30%;
     margin-right: 30px;
+    h2 {
+      margin-bottom: 10px;
+    }
   }
 
   &__activity-item {
@@ -104,6 +108,152 @@
     border-radius: 5px;
     font-size: 13px;
     padding: 10px;
-  } 
+  }
 
+  &__tutorial {
+    // width: 390px;
+    background: white;
+    margin: 30px 13px 30px 0;
+    // display: inline-block;
+    float: right;
+    border-radius: 5px;
+  }
+  
+  &__tutorial-headline {
+    h2 {
+      margin: 0 0 10px 20px;
+      padding-top: 20px;
+    }
+    border-bottom: 1px #e5e5d1 solid;    
+  }
+  
+  &__tutorial-title {
+    margin: 10px 10px 0 20px;
+  }
+
+  &__tutorial-edit {
+    float: right;
+    margin: 20px 20px 10px 0;
+    font-size: 13px;
+  }
+
+  &__programming {
+    background: white;
+    margin: 0 13px 30px 0;
+    float: right;
+    border-radius: 5px;
+  }
+  
+  &__programming-headline {
+    h2 {
+      margin: 0 0 10px 20px;
+      padding-top: 20px;
+    }
+    border-bottom: 1px #e5e5d1 solid;    
+  }
+  
+  &__programming-question {
+    margin: 10px 10px 0 20px;
+  }
+
+  &__programming-edit {
+    float: right;
+    margin: 20px 20px 10px 0;
+    font-size: 13px;
+  }
+  
+  &__editable-material {
+    display: inline-block;
+    float:right;
+    width: 430px;
+  }
+
+  .pie-chart-wrap {
+    clear: both;
+    width: 300px;
+    height: 350px;
+    background: white;
+    margin: 30px 0 30px 30px;
+    display: inline-block;
+    border-radius: 5px;
+  }
+
+  .pie-headline {
+    h2 {
+      margin: 0 0 10px 20px;
+      padding-top: 20px;
+    }
+    border-bottom: 1px #e5e5d1 solid;
+  }
+
+  .pie-chart {
+    left: 50px;
+    top: 10px;
+  }
+
+  .pie {
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    -webkit-transform-origin: left center;
+    -moz-transform-origin: left center;
+    -ms-transform-origin: left center;
+    transform-origin: left center;
+    overflow: hidden;
+  }
+
+  .pie:before {
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    content: '';
+    -webkit-transform-origin: right center;
+    -moz-transform-origin: right center;
+    -ms-transform-origin: right center;
+    transform-origin: right center;
+  }
+
+  .pie.large {
+    left: 0;
+    width: 100%;
+    -webkit-transform-origin: center center;
+    -moz-transform-origin: center center;
+    -ms-transform-origin: center center;
+    transform-origin: center center;
+  }
+
+  .pie.large:before {
+    left: 0;
+    width: 50%;
+  }
+
+  .pie.large:after {
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    content: '';
+  }
+
+  .pie-info {
+    margin-top: 20px;
+    float: right;
+    margin-right: 30px;
+  }
+
+  .pie-color {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+  }
+
+  .pie-color-title {
+    margin-left: 10px;
+  }
+  
+  .pie-ratio {
+    margin-left: 20px;
+  }
 }
