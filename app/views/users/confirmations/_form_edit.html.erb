@@ -8,12 +8,17 @@
     </td>
   </tr>
   <tr>
-    <th><%= f.label t('.password') %><span class="text-danger", style="color:red;"> * </span><br />
+    <th>
+      <%= f.label t('.password') %><br />
+      <span style="color: red;"><%= f.label t('.password_label_add') %></span>
     </th>
     <td><%= f.password_field :password, autocomplete: "off", class: "form-field" %></td>
   </tr>
   <tr>
-    <th><%= f.label t('.password_confirmation') %><span class="text-danger", style="color:red;"> * </span></th>
+    <th>
+      <%= f.label t('.password_confirmation') %><br />
+      <span style="color: red;"><%= f.label t('.password_label_add') %></span>
+    </th>
     <td><%= f.password_field :password_confirmation, autocomplete: "off", class: "form-field" %></td>
   </tr>
   <tr>
@@ -25,11 +30,11 @@
     </td>
   </tr>
   <tr>
-    <th><%= f.label t('.user_name') %><span class="text-danger", style="color:red;"> * </span></th>
+    <th><%= f.label t('.user_name') %></th>
     <td><%= f.text_field :user_name, class: "form-field" %></td>
   </tr>
   <tr>
-    <th><%= f.label t('.second_email') %><span class="text-danger", style="color:red;"> * </span></th>
+    <th><%= f.label t('.second_email') %></th>
     <td><%= f.text_field :second_email, class: "form-field" %></td>
   </tr>
   <tr>

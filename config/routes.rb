@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get "users/thanks", to: "users/registrations#thanks"
     get "users/confirmation/complete", to: "users/confirmations#complete"
     get "profile/edit", to: "users/confirmations#edit"
-    patch "profile", to: "users/confirmations#update"
+    patch "profile/edit", to: "users/confirmations#update"
   end
   
   namespace :e_sal, :path => "e-sal" do

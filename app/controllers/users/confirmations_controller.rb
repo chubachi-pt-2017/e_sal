@@ -54,7 +54,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   def update
     @user = User.find(current_user.id)
 
-    params[:user][:confirmed] = false if params[:commit] == "back"
+    params[:user][:confirmed] = false if params[:commit] == "戻る"
     @user.attributes = confirmation_params
     if @user.save(context: :profile)
       redirect_to e_sal_path

@@ -1,19 +1,21 @@
 <div class="container-lrg flex">
   <div class="col-7">
-    <h2>Setting Profile</h2>
+    <h2>Edit Profile</h2>
     <%= form_for @user, url: { action: 'update' }, html: { class: "form-table" } do |f| %>
       <%= devise_error_messages! %>
       <%= f.hidden_field :term_flg %>
       
       <% if f.object.confirmation? %>
+        <h4><%= t(".confirm_message") %></h4>
         <%= render 'form_confirm', f: f, user: @user %>
       <% else %>
+        <h4><%= t(".edit_message") %></h4>
         <%= render 'form_edit', f: f, user: @user %>
       <% end -%>
       
       <div class="submit-container">
-        <%= f.submit f.object.confirmation? ? "submit" : "confirm", class: "submit-button" %>
-        <%= f.submit "back", class: "submit-button" if f.object.confirmation? %>
+        <%= f.submit f.object.confirmation? ? "確定する" : "確認する", class: "submit-button" %>
+        <%= f.submit "戻る", class: "submit-button" if f.object.confirmation? %>
       </div>
       <%= f.hidden_field :confirmed %>
     <% end %>

@@ -1,7 +1,7 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  collation: utf8_bin # 文字列の大文字小文字を区別する
+  # collation: utf8_bin # 文字列の大文字小文字を区別する
   pool: 5
   username: <%= ENV['MYSQL_USERNAME'] %>
   password: <%= ENV['MYSQL_PASSWORD'] %>

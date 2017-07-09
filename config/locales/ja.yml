@@ -285,11 +285,13 @@ ja:
         term_flg: 規約同意
       confirm:
         <<: *show
+      edit:
+        edit_message: 情報を編集して「確認する」ボタンを押下してください
+        confirm_message: この内容でよろしければ「確定する」ボタンを押下してください
       form_edit: &form_edit
         email: eメール
-        password: |
-          パスワード
-          ※変更する場合のみ入力
+        password: パスワード
+        password_label_add: ※変更する場合のみ入力する
         password_confirmation: パスワード(確認)
         student_id: 学修番号
         student_id_confirmation: 学修番号(確認)
@@ -303,3 +305,5 @@ ja:
         term_flg: 規約同意
       form_confirm: 
         <<: *form_edit
+        password_change: 変更する
+        password_unchange: 変更しない

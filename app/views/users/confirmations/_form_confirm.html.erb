@@ -8,16 +8,26 @@
     </td>
   </tr>
   <tr>
-    <th><%= f.label t('.password') %><span class="text-danger", style="color:red;"> * </span><br />
+    <th><%= f.label t('.password') %><br />
     </th>
     <td>
       <%= f.hidden_field :password %>
+      <% if user.password != "" %>
+        <%= t('.password_change') %>
+      <% else %>
+        <%= t('.password_unchange') %>
+      <% end %>
     </td>
   </tr>
   <tr>
-    <th><%= f.label t('.password_confirmation') %><span class="text-danger", style="color:red;"> * </span></th>
+    <th><%= f.label t('.password_confirmation') %></th>
     <td>
       <%= f.hidden_field :password_confirmation %>
+      <% if user.password_confirmation != "" %>
+        <%= t('.password_change') %>
+      <% else %>
+        <%= t('.password_unchange') %>
+      <% end %>
     </td>
   </tr>
   <tr>
@@ -29,14 +39,14 @@
     </td>
   </tr>
   <tr>
-    <th><%= f.label t('.user_name') %><span class="text-danger", style="color:red;"> * </span></th>
+    <th><%= f.label t('.user_name') %></th>
     <td>
       <%= f.hidden_field :user_name %>
       <%= user.user_name %>
     </td>
   </tr>
   <tr>
-    <th><%= f.label t('.second_email') %><span class="text-danger", style="color:red;"> * </span></th>
+    <th><%= f.label t('.second_email') %></th>
     <td>
       <%= f.hidden_field :second_email %>
       <%= user.second_email %>
