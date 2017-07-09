@@ -12,14 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20170707172313) do
 
-  create_table "main_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "main_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       limit: 64, null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.index ["name"], name: "index_main_categories_on_name", unique: true, using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  limit: 128, default: "",    null: false
     t.string   "encrypted_password",     limit: 256, default: "",    null: false
     t.string   "reset_password_token",   limit: 64
