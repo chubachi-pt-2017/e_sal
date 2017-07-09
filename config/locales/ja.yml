@@ -270,7 +270,7 @@ ja:
         job: 職種
         job_desc: 職種（その他）
     confirmations:
-      show:
+      show: &show
         password: パスワード
         password_confirmation: パスワード(確認)
         student_id: 学修番号
@@ -284,20 +284,12 @@ ja:
         job_desc: 職種（その他）
         term_flg: 規約同意
       confirm:
-        password: パスワード
-        password_confirmation: パスワード(確認)
-        student_id: 学修番号
-        student_id_confirmation: 学修番号(確認)
-        user_name: 名前
-        second_email: サブメールアドレス
-        course_type: 人材像
-        age: 年齢
-        gender: 性別
-        job: 職種
-        job_desc: 職種（その他）
-      edit:
+        <<: *show
+      form_edit: &form_edit
         email: eメール
-        password: パスワード
+        password: |
+          パスワード
+          ※変更する場合のみ入力
         password_confirmation: パスワード(確認)
         student_id: 学修番号
         student_id_confirmation: 学修番号(確認)
@@ -309,3 +301,5 @@ ja:
         job: 職種
         job_desc: 職種（その他）
         term_flg: 規約同意
+      form_confirm: 
+        <<: *form_edit
