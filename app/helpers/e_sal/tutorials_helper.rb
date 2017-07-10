@@ -1,0 +1,2 @@
+module ESal::TutorialsHelper
+end

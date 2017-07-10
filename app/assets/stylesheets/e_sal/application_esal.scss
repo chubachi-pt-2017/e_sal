@@ -1,4 +1,6 @@
 @import "variables";
-@import "commons/resets";
-@import "e_sal/commons/base";
-@import "e_sal/homes/homes";
+@import "../commons/resets";
+@import "modules/mixin";
+@import "commons/base";
+@import "homes/homes";
+@import "tutorials/tutorials";

@@ -1,0 +1,41 @@
+<!-- left sidebar -->
+<div class="sidebar">
+  <div class="profile clearfix">
+    <div class="profile__pic">
+      <img class="img-circle profile_img" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" width="80" height="80"/>
+    </div>
+    <div class="profile__info">
+      <span>ようこそ</span>
+      <h2>新妻健介さん</h2>
+    </div>
+  </div>
+
+  <br />
+
+  <!-- sidebar menu -->
+  <div class="sidebar__menu-wrap" class="main_menu_side hidden-print main_menu">
+    <div class="sidebar__menu_section">
+      <ul class="sidebar__menu">
+        <li class="sidebar__items">
+          <a href="/"><div class="sidebar__item"><i class="fa ion-ios-home-outline"></i><span class="sidebar__action">Home</span></div></a>
+        </li>
+        <li class="sidebar__items">
+          <a href="/"><div class="sidebar__item"><i class="fa fa-desktop"></i><span class="sidebar__action">Programming</span></div></a>
+        </li>
+        <li class="sidebar__items">
+          <%= link_to e_sal_tutorial_path do %>
+            <div class="sidebar__item"><i class="fa fa-files-o"></i><span class="sidebar__action">tutorial</span></div>
+          <% end %>
+          <span class="fa fa-chevron-down sidebar__down-arrow"></span>
+          <ul class="sidebar__tutorial">
+            <li><a href="/">Ruby</a></li>
+            <li><a href="/">Python</a></li>
+            <li><a href="/">SQL</a></li>                      
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- /sidebar__menu -->
+</div>
+<!-- /sidebar -->

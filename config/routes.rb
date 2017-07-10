@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   
+  namespace :e_sal do
+    get 'tutorials/index'
+  end
+
   root 'home#index'
   
-  get "/agreement" => "home#agreement", as: :agreement
+  get "/agreement", to: "home#agreement", as: :agreement
 
   devise_for :users, controllers: {
     sessions: "users/sessions",
@@ -21,7 +25,8 @@ Rails.application.routes.draw do
   end
   
   namespace :e_sal, :path => "e-sal" do
-     get '/' => 'homes#index'
+     get '/', to: 'homes#index'
+    get 'tutorial', to: 'tutorials#index'
   end
   
 end

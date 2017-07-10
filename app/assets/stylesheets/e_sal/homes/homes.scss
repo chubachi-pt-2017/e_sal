@@ -8,11 +8,7 @@
 }
 
 .contents-top {
-  float: right;
-	width: 85%;
-  &__main {
-    background: #F7F7F7;
-  }
+  @include main-contents;
   &__timeline-wrap {
     background: $component-background;
     display: inline-block;

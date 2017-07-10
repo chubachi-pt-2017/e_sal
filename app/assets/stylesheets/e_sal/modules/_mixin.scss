@@ -1,0 +1,5 @@
+@mixin main-contents {
+  float: right;
+	width: $main-contents-width;
+  background: $main-contents-background;
+}
