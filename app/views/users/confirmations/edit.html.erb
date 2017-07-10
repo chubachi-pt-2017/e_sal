@@ -1,74 +1,21 @@
 <div class="container-lrg flex">
   <div class="col-7">
-    <h2>Setting Profile</h2>
-    <%= form_for@user, url: { action: 'update' }, html: { class: "form-table" } do |f| %>
+    <h2>Edit Profile</h2>
+    <%= form_for @user, url: { action: 'update' }, html: { class: "form-table" } do |f| %>
       <%= devise_error_messages! %>
       <%= f.hidden_field :term_flg %>
-    
-      <table class="table">
-        <tr>
-          <th><%= f.label t('.email') %><br />
-          </th>
-          <td><%= f.email_field :email, readonly: true, class: "form-field" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label t('.password') %><span class="text-danger", style="color:red;"> * </span><br />
-          </th>
-          <td><%= f.password_field :password, autocomplete: "off", class: "form-field" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label t('.password_confirmation') %><span class="text-danger", style="color:red;"> * </span></th>
-          <td><%= f.password_field :password_confirmation, autocomplete: "off", class: "form-field" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label t('.student_id') %></th>
-          <td>
-            <%= f.text_field :student_id, readonly: true, class: "form-field" %>
-            <%= f.hidden_field :student_id_confirmation, value: @user.student_id %>
-          </td>
-        </tr>
-        <tr>
-          <th><%= f.label t('.user_name') %><span class="text-danger", style="color:red;"> * </span></th>
-          <td><%= f.text_field :user_name, class: "form-field" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label t('.second_email') %><span class="text-danger", style="color:red;"> * </span></th>
-          <td><%= f.text_field :second_email, class: "form-field" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label t('.course_type') %></th>
-          <td><%= f.select :course_type, User.course_types_i18n.invert %></td>
-        </tr>
-        <tr>
-          <th><%= f.label t('.age') %></th>
-          <td>
-            <% User.ages_i18n.invert.each do |key, value| %>
-              <%= f.radio_button :age, value, class: "radio-input", id: "user_#{key}" %>
-              <%= f.label key %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <th><%= f.label t('.gender') %></th>
-          <td>
-            <% User.genders_i18n.invert.each do |key, value| %>
-              <%= f.radio_button :gender, value, class: "radio-input", id: "user_#{key}" %>
-              <%= f.label key %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <th><%= f.label t('.job') %></th>
-          <td><%= f.select :job, User.jobs_i18n.invert %></td>
-        </tr>
-        <tr>
-          <th><%= f.label t('.job_desc') %></th>
-          <td><%= f.text_field :job_desc, class: "form-field" %></td>
-        </tr>
-      </table>
+      
+      <% if f.object.confirmation? %>
+        <h4><%= t(".confirm_message") %></h4>
+        <%= render 'form_confirm', f: f, user: @user %>
+      <% else %>
+        <h4><%= t(".edit_message") %></h4>
+        <%= render 'form_edit', f: f, user: @user %>
+      <% end -%>
+      
       <div class="submit-container">
-        <%= f.submit f.object.confirmation? ? "submit" : "confirm", class: "submit-button" %>
-        <%= f.submit "back", class: "submit-button" if f.object.confirmation? %>
+        <%= f.submit f.object.confirmation? ? "確定する" : "確認する", class: "submit-button" %>
+        <%= f.submit "戻る", class: "submit-button" if f.object.confirmation? %>
       </div>
       <%= f.hidden_field :confirmed %>
     <% end %>

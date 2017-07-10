@@ -1,0 +1,90 @@
+<table class="table">
+  <tr>
+    <th><%= f.label t('.email') %><br />
+    </th>
+    <td>
+      <%= f.hidden_field :email %>
+      <%= user.email %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label t('.password') %><br />
+    </th>
+    <td>
+      <%= f.hidden_field :password %>
+      <% if user.password != "" %>
+        <%= t('.password_change') %>
+      <% else %>
+        <%= t('.password_unchange') %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label t('.password_confirmation') %></th>
+    <td>
+      <%= f.hidden_field :password_confirmation %>
+      <% if user.password_confirmation != "" %>
+        <%= t('.password_change') %>
+      <% else %>
+        <%= t('.password_unchange') %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label t('.student_id') %></th>
+    <td>
+      <%= f.hidden_field :student_id %>
+      <%= f.hidden_field :student_id_confirmation, value: user.student_id %>
+      <%= user.student_id %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label t('.user_name') %></th>
+    <td>
+      <%= f.hidden_field :user_name %>
+      <%= user.user_name %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label t('.second_email') %></th>
+    <td>
+      <%= f.hidden_field :second_email %>
+      <%= user.second_email %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label t('.course_type') %></th>
+    <td>
+      <%= f.hidden_field :course_type %>
+      <%= user.course_type_i18n %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label t('.age') %></th>
+    <td>
+      <%= f.hidden_field :age %>
+      <%= user.age_i18n %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label t('.gender') %></th>
+    <td>
+      <%= f.hidden_field :gender %>
+      <%= user.gender_i18n %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label t('.job') %></th>
+    <td>
+      <%= f.hidden_field :job %>
+      <%= user.job_i18n %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label t('.job_desc') %></th>
+    <td>
+      <%= f.hidden_field :job %>
+      <%= user.job_desc %>
+    </td>
+  </tr>
+</table>

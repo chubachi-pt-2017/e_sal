@@ -48,7 +48,7 @@ class User < ApplicationRecord
   end
   
   def password_required?
-    super if confirmed?
+    super if confirmed? && !password_edit_profile
   end
   
   def is_another?
@@ -57,6 +57,12 @@ class User < ApplicationRecord
   
   def term_flg_valid?
     errors.add(:term_flg, "に同意していただかないと登録できません") unless term_flg == true
+  end
+  
+  def password_edit_profile
+    validation_context == :profile &&
+      password == "" &&
+      password_confirmation == ""
   end
 
 end
