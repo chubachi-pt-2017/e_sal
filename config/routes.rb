@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   end
   
   namespace :e_sal, :path => "e-sal" do
-     get '/', to: 'homes#index'
+    get '/', to: 'homes#index'
+    get 'tutorial/:id', to: 'tutorials#show' 
     get 'tutorial', to: 'tutorials#index'
   end
   
