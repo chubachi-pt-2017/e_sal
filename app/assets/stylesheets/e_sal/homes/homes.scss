@@ -8,7 +8,7 @@
 }
 
 .contents-top {
-  @include main-contents;
+  @include main-contents-area;
   &__timeline-wrap {
     background: $component-background;
     display: inline-block;
