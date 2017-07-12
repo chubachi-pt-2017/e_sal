@@ -1,0 +1,2 @@
+class TutorialContent < ApplicationRecord
+end
