@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170707172313) do
+ActiveRecord::Schema.define(version: 20170712110922) do
 
   create_table "main_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       limit: 64, null: false
@@ -19,6 +19,28 @@ ActiveRecord::Schema.define(version: 20170707172313) do
     t.datetime "updated_at",            null: false
     t.index ["name"], name: "index_main_categories_on_name", unique: true, using: :btree
     t.index ["name_url"], name: "index_main_categories_on_name_url", unique: true, using: :btree
+  end
+
+  create_table "tutorial_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "tutorial_id",               null: false
+    t.text     "body",        limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["tutorial_id"], name: "index_tutorial_contents_on_tutorial_id", using: :btree
+  end
+
+  create_table "tutorials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",                limit: 64,             null: false
+    t.integer  "user_id",                                     null: false
+    t.integer  "original_category_id",                        null: false
+    t.integer  "likes_count",                     default: 0, null: false
+    t.integer  "status",               limit: 1,  default: 0, null: false
+    t.integer  "comment_enable_flg",   limit: 1,  default: 0, null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.index ["original_category_id"], name: "index_tutorials_on_original_category_id", using: :btree
+    t.index ["title"], name: "index_tutorials_on_title", using: :btree
+    t.index ["user_id"], name: "index_tutorials_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
