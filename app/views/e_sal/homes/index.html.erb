@@ -7,6 +7,15 @@
       <div class="clearfix"></div>
     </div>
     <ul class="contents-top__timeline">
+      <% @timelines.each do |timeline| %>
+        <li>
+          <p class="contents-top__timeline-date"><%= timeline.created_at.strftime("#{t("date.formats.long")}") %></p>
+          <div class="contents-top__timeline-content">
+            <h3><%= t("activity.#{timeline.key}") %></h3>
+            <p><%= link_to timeline.parameters[:title], "#{timeline.parameters[:link_url]/timeline.trackable_id}" unless timeline.parameters[:link_url].nil? %></p>
+          </div>
+        </li>
+      <% end -%>
       <li>
         <p class="contents-top__timeline-date">2017年6月30日</p>
         <div class="contents-top__timeline-content">
@@ -47,6 +56,18 @@
 
   <div class="contents-top__own-activity">
     <h2>最近のアクティビティ</h2>
+    <ul>
+      <% @activities.each do |activity| %>
+        <li class="contents-top__activity-item">
+          <span><%= activity.created_at.strftime("#{t("date.formats.default")}") %></span>
+            <% if activity.parameters[:link_url].nil? %>
+              <p><%= t("activity.#{activity.key}") %></p>
+            <% else %>
+              <p><%= link_to t("activity.#{activity.key}"), "#{activity.parameters[:link_url]/activity.trackable_id}" %></p>
+            <% end -%>
+        </li>
+      <% end -%>
+    </ul>
     <ul>
       <li class="contents-top__activity-item">
         <span>2017/07/03</span>

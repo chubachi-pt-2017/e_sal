@@ -23,7 +23,10 @@
       <div class="header"></div>
       <!-- main-contents -->
       <div class="contents">
-        <div class="contents__header"><%= link_to 'Profile', profile_edit_path %></div>     
+        <div class="contents__header">
+          <%= link_to 'Profile', profile_edit_path %> / 
+          <%= link_to 'Sing out', destroy_user_session_path, :method => :delete %>
+          </div>     
         <%= yield %>
       </div>
       <!-- /main-contents -->
