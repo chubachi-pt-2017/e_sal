@@ -14,9 +14,11 @@ ActiveRecord::Schema.define(version: 20170707172313) do
 
   create_table "main_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       limit: 64, null: false
+    t.string   "name_url",   limit: 64, null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.index ["name"], name: "index_main_categories_on_name", unique: true, using: :btree
+    t.index ["name_url"], name: "index_main_categories_on_name_url", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
