@@ -1,4 +1,4 @@
-table_names = %w( main_categories )
+table_names = %w( main_categories programmings )
 
 # productionでは以下のseedsファイルは実行しない
 unless Rails.env.production?

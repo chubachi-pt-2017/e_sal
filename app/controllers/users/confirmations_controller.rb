@@ -34,6 +34,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     
     if params[:commit] == "登録する"
       if @user.save
+        @user.create_activity :create, owner: @user   # Add User's activity
         redirect_to users_confirmation_complete_path
       else
         render :show

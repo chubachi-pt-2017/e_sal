@@ -253,7 +253,7 @@ ja:
         PL: プロジェクトリーダー
         PM: プロジェクトマネージャー
         another: その他
-# Views
+  # Views
   users:
     registrations:
       edit:
@@ -307,3 +307,17 @@ ja:
         <<: *form_edit
         password_change: 変更する
         password_unchange: 変更しない
+  # activities
+  activity:
+    user:
+      create: アカウントが作成されました
+      update: プロフィール情報が更新されました
+      destory: アカウントが削除されました
+    programming:
+      create: プログラミングの問題が追加されました
+      update: プログラミングの問題が更新されました
+      destory: プログラミングの問題が削除されました
+    tutorial:
+      create: チュートリアルが追加されました
+      update: チュートリアルが更新されました
+      destory: チュートリアルが削除されました
