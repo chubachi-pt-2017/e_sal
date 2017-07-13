@@ -3,6 +3,9 @@ class ESal::TutorialsController < ESal::Base
   end
   
   def show
+  end
   
+  def list
+    
   end
 end
