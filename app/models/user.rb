@@ -10,7 +10,11 @@ class User < ApplicationRecord
   enum gender: { male: 0, female: 1 }
   enum job: { None: 0, OP: 1, PG: 2, SE: 3, SA: 4, SC: 5, PL: 6, PM: 7, another: 99 }
   
+  # activerecord-confirmable
   include ActiveRecord::Confirmable
+  
+  # public_activity
+  include PublicActivity::Common
 
   VALID_EMAIL_AIIT = /\A[\w+\-.]+@aiit.ac.jp/i
   validates :email,

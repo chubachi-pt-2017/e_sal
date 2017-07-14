@@ -65,3 +65,6 @@ gem 'ace-rails-ap', '~> 4.0'
 
 # Use Confirmable for Active-Record Model View without confirmation action
 gem 'activerecord-confirmable'
+
+# Use Add Activity for some actions
+gem 'public_activity', '~> 1.0'
