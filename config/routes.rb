@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     get '/', to: 'homes#index'
     get 'tutorial/:id', to: 'tutorials#show' 
     get 'tutorial', to: 'tutorials#index'
+    get '/programming/:id', to: 'programmings#show', as: :programming_detail
+    get '/programming', to: 'programmings#index'
   end
   
 end

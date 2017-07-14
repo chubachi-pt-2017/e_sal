@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712110922) do
+ActiveRecord::Schema.define(version: 20170713102317) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "trackable_type"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 20170712110922) do
     t.datetime "updated_at",            null: false
     t.index ["name"], name: "index_main_categories_on_name", unique: true, using: :btree
     t.index ["name_url"], name: "index_main_categories_on_name_url", unique: true, using: :btree
+  end
+
+  create_table "programmings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",          limit: 128,   null: false
+    t.text     "question_desc",  limit: 65535, null: false
+    t.text     "correct_answer", limit: 65535
+    t.integer  "user_id",                      null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["title"], name: "index_programmings_on_title", unique: true, using: :btree
+    t.index ["user_id"], name: "index_programmings_on_user_id", using: :btree
   end
 
   create_table "tutorial_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -12,7 +12,7 @@
           <p class="contents-top__timeline-date"><%= timeline.created_at.strftime("#{t("date.formats.long")}") %></p>
           <div class="contents-top__timeline-content">
             <h3><%= t("activity.#{timeline.key}") %></h3>
-            <p><%= link_to timeline.parameters[:title], "#{timeline.parameters[:link_url]/timeline.trackable_id}" unless timeline.parameters[:link_url].nil? %></p>
+            <p><%= link_to timeline.parameters[:title], "#{timeline.parameters[:link_url]}/#{timeline.trackable_id}" unless timeline.parameters[:link_url].nil? %></p>
           </div>
         </li>
       <% end -%>
@@ -63,7 +63,7 @@
             <% if activity.parameters[:link_url].nil? %>
               <p><%= t("activity.#{activity.key}") %></p>
             <% else %>
-              <p><%= link_to t("activity.#{activity.key}"), "#{activity.parameters[:link_url]/activity.trackable_id}" %></p>
+              <p><%= link_to t("activity.#{activity.key}"), "#{activity.parameters[:link_url]}/#{activity.trackable_id}" %></p>
             <% end -%>
         </li>
       <% end -%>
