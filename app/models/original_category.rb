@@ -1,0 +1,2 @@
+class OriginalCategory < ApplicationRecord
+end

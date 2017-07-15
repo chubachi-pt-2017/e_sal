@@ -8,4 +8,8 @@ class ESal::TutorialsController < ESal::Base
   def list
     
   end
+  
+  def new
+    @tutorial = Tutorial.new
+  end
 end

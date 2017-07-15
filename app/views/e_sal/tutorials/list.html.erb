@@ -1,47 +1,37 @@
 <div class="tutorial-area">
   <%= render partial: 'layouts/common_partials/header_stats' %>
-  <!--<div>-->
-  <!--  <ul>-->
-  <!--    <li>Rubyプログラミング(1)</li>-->
-  <!--    <li>Rubyプログラミング(2)</li>-->
-  <!--    <li>Rubyプログラミング(3)</li>-->
-  <!--    <li>Rubyプログラミング(4)</li>-->
-  <!--    <li>Rubyプログラミング(5)</li>-->
-  <!--    <li>Rubyプログラミング(6)</li>-->
-  <!--    <li>Rubyプログラミング(7)</li>-->
-  <!--  </ul>-->
-  <!--</div>-->
-<%= link_to 'チュートリアル新規作成はこちら', new_e_sal_tutorial_path, class: "new-tutorial-link" %>
-<section class="content-header">
-  <div class="box-body">
-    <div class="col-sm-12">
-      <table class="table">
-        <tbody>
-          <tr>
-            <th>タイトル</th>
-            <th>メインカテゴリ</th>                  
-            <th>ユーザーカテゴリ</th>
-            <th>del</th>
-          </tr>
+
+  <%= link_to 'チュートリアル新規作成はこちら', new_e_sal_tutorial_path, class: "new-tutorial-link" %>
+  <section class="content-header">
+    <div class="box-body">
+      <div class="col-sm-12">
+        <table class="table">
+          <tbody>
             <tr>
-              <td>
-                タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル
-              </td>
-              <td>
-                メインカテゴリ
-              </td>
-              <td>
-                ユーザーカテゴリ
-              </td>
-              <td>
-                削除
-              </td>                    
+              <th>タイトル</th>
+              <th>メインカテゴリ</th>                  
+              <th>ユーザーカテゴリ</th>
+              <th>del</th>
             </tr>
-        </tbody>
-      </table>
+              <tr>
+                <td>
+                  タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル
+                </td>
+                <td>
+                  メインカテゴリ
+                </td>
+                <td>
+                  ユーザーカテゴリ
+                </td>
+                <td>
+                  削除
+                </td>                    
+              </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
 </div>
