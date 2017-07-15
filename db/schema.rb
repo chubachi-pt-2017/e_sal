@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713102317) do
+ActiveRecord::Schema.define(version: 20170715053648) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "trackable_type"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 20170713102317) do
     t.index ["name_url"], name: "index_main_categories_on_name_url", unique: true, using: :btree
   end
 
+  create_table "original_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",             limit: 20, null: false
+    t.string   "name_url",         limit: 20, null: false
+    t.integer  "main_category_id",            null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["main_category_id"], name: "index_original_categories_on_main_category_id", using: :btree
+    t.index ["name"], name: "index_original_categories_on_name", unique: true, using: :btree
+    t.index ["name_url"], name: "index_original_categories_on_name_url", unique: true, using: :btree
+  end
+
   create_table "programmings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",          limit: 128,   null: false
     t.text     "question_desc",  limit: 65535, null: false
@@ -46,15 +57,6 @@ ActiveRecord::Schema.define(version: 20170713102317) do
     t.datetime "updated_at",                   null: false
     t.index ["title"], name: "index_programmings_on_title", unique: true, using: :btree
     t.index ["user_id"], name: "index_programmings_on_user_id", using: :btree
-  end
-
-  create_table "original_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",             limit: 20, null: false
-    t.string   "name_url",         limit: 20, null: false
-    t.integer  "main_category_id",            null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.index ["main_category_id"], name: "index_original_categories_on_main_category_id", using: :btree
   end
 
   create_table "tutorial_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -69,13 +71,12 @@ ActiveRecord::Schema.define(version: 20170713102317) do
     t.string   "title",                limit: 64,             null: false
     t.integer  "user_id",                                     null: false
     t.integer  "original_category_id",                        null: false
-    t.integer  "likes_count",                     default: 0, null: false
     t.integer  "status",               limit: 1,  default: 0, null: false
     t.integer  "comment_enable_flg",   limit: 1,  default: 0, null: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.index ["original_category_id"], name: "index_tutorials_on_original_category_id", using: :btree
-    t.index ["title"], name: "index_tutorials_on_title", using: :btree
+    t.index ["title"], name: "index_tutorials_on_title", unique: true, using: :btree
     t.index ["user_id"], name: "index_tutorials_on_user_id", using: :btree
   end
 

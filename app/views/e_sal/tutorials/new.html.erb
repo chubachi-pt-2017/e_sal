@@ -5,7 +5,7 @@
       <div class="clearfix"></div>
     </div>
     <div class="x_content">
-      <%= bootstrap_form_for([:admin, @tutorial], layout: :horizontal) do |f| %>
+      <%= bootstrap_form_for([:e_sal, @tutorial], layout: :horizontal) do |f| %>
         <%= f.hidden_field :id %>
         <%= f.hidden_field :user_id %>
         <div class="form-group">
@@ -13,18 +13,18 @@
           <%= f.text_field :title, label: "タイトル", class: "js-disabled-enter", id: "post_title" %>
         </div>
         <div class="form-group">
+          <div class="text-right"><span>チュートリアル本文の文字数:</span><span id="post-main-sentence-count">0</span></div>
           <%= f.fields_for :tutorial_content do |tutorial_content_form| %>
-            <div class="text-right"><span>チュートリアル本文の文字数:</span><span id="post-main-sentence-count">0</span></div>
             <%= tutorial_content_form.text_area :body, label: "チュートリアル本文", rows: "15", id: "post-main-sentence" %>
           <% end %>
         </div>
         <hr>
         <div class="form-group">
-          <%= f.select :original_category_id, @tags.map{|t| [t.display_name, t.id]}, { prompt: "選択してください", label: "タグ" }, class: "tag-fields" %>
+          <%= f.select :original_category_id, @original_categories.map{|t| [t.name, t.id]}, { prompt: "選択してください", label: "自分のカテゴリ" }, class: "" %>
         </div>
         <hr>
         <div class="form-group">
-          <%= f.select :status, Post::Status.select_options, { selected: @post.post_status, label: "公開/非公開" }, class: "status-fields" %>
+          <%= f.select :status, Tutorial::Status.select_options, { selected: @tutorial.tutorial_status, label: "公開/非公開" }, class: "" %>
         </div>
         <hr>
         <div class="form-group">

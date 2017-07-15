@@ -1,9 +1,9 @@
-table_names = %w( main_categories programmings )
-
 # productionでは以下のseedsファイルは実行しない
 unless Rails.env.production?
   table_names.push( "users", "original_categories" )
 end
+
+table_names = %w( main_categories programmings )
 
 table_names.each do |table_name|
   path = Rails.root.join('db', 'seeds', "#{table_name}.rb")

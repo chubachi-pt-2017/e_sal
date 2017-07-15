@@ -1,4 +1,5 @@
 class ESal::TutorialsController < ESal::Base
+
   def index
   end
   
@@ -11,5 +12,11 @@ class ESal::TutorialsController < ESal::Base
   
   def new
     @tutorial = Tutorial.new
+    get_original_categories
   end
+  
+  private
+    def get_original_categories
+      @original_categories = OriginalCategory.all
+    end
 end
