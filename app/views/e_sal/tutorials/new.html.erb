@@ -30,11 +30,12 @@
         <div class="form-group">
           <%= f.text_field :photo_id, label: "画像ID", class: "image-fields js-disabled-enter" %>
         </div>
+
         <div class="form-group">
           <label class="control-label col-sm-2 image-label">アイキャッチ画像</label>
           <div class="col-sm-10">
             <label>
-              <%= link_to image_tag(@post.photo.try(:thumb_480), style: "max-width:120px;max-height:80px;"), @post.photo.try(:thumb_480), target: "_blank" %>
+              <%= @tutorial.photo.try(:thumb_100) %>
             </label>
           </div>
         </div>
@@ -47,7 +48,6 @@
               $('#datetimepicker4').datetimepicker();
             });
         </script>
-
         <%= f.submit "更新する", id: "js_update_button" %>
         <%= f.submit "プレビュー", name: "preview", id: "js_preview_button" %>
       <% end %>

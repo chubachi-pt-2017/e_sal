@@ -5,7 +5,7 @@ class CreateTutorials < ActiveRecord::Migration[5.0]
       t.references :user, null: false, index: true
       t.references :original_category, null: false, index: true
       t.column :status, :tinyint, null: false, default: 0
-      t.column :comment_enable_flg, :tinyint, null: false, default: 0
+      t.column :comment_enable_flg, :tinyint, default: 0
       t.timestamps
     end
     add_index :tutorials, :title, unique: true
