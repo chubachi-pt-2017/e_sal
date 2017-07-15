@@ -1,0 +1,56 @@
+<div class="tutorial-area">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>新規ブログ投稿フォーム</h2>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <%= bootstrap_form_for([:admin, @tutorial], layout: :horizontal) do |f| %>
+        <%= f.hidden_field :id %>
+        <%= f.hidden_field :user_id %>
+        <div class="form-group">
+          <div class="text-right"><span>タイトルの文字数:</span><span id="post-title-count">0</span></div>
+          <%= f.text_field :title, label: "タイトル", class: "js-disabled-enter", id: "post_title" %>
+        </div>
+        <div class="form-group">
+          <%= f.fields_for :tutorial_content do |tutorial_content_form| %>
+            <div class="text-right"><span>チュートリアル本文の文字数:</span><span id="post-main-sentence-count">0</span></div>
+            <%= tutorial_content_form.text_area :body, label: "チュートリアル本文", rows: "15", id: "post-main-sentence" %>
+          <% end %>
+        </div>
+        <hr>
+        <div class="form-group">
+          <%= f.select :original_category_id, @tags.map{|t| [t.display_name, t.id]}, { prompt: "選択してください", label: "タグ" }, class: "tag-fields" %>
+        </div>
+        <hr>
+        <div class="form-group">
+          <%= f.select :status, Post::Status.select_options, { selected: @post.post_status, label: "公開/非公開" }, class: "status-fields" %>
+        </div>
+        <hr>
+        <div class="form-group">
+          <%= f.text_field :photo_id, label: "画像ID", class: "image-fields js-disabled-enter" %>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2 image-label">アイキャッチ画像</label>
+          <div class="col-sm-10">
+            <label>
+              <%= link_to image_tag(@post.photo.try(:thumb_480), style: "max-width:120px;max-height:80px;"), @post.photo.try(:thumb_480), target: "_blank" %>
+            </label>
+          </div>
+        </div>
+        <hr>        
+        <div class="form-group">
+          <%= f.text_field :datetime_for_display, data: { :date_format => 'YYYY/MM/DD hh:mm' }, label: "ブログ内表示公開日時", class: 'js-disabled-enter date-fields', id: "datetimepicker4",  placeholder: 'クリックして下さい' %>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+              $('#datetimepicker4').datetimepicker();
+            });
+        </script>
+
+        <%= f.submit "更新する", id: "js_update_button" %>
+        <%= f.submit "プレビュー", name: "preview", id: "js_preview_button" %>
+      <% end %>
+    </div><!-- end of x_content -->
+  </div>
+</div>

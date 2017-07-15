@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 20170713102317) do
     t.index ["user_id"], name: "index_programmings_on_user_id", using: :btree
   end
 
+  create_table "original_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",             limit: 20, null: false
+    t.string   "name_url",         limit: 20, null: false
+    t.integer  "main_category_id",            null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["main_category_id"], name: "index_original_categories_on_main_category_id", using: :btree
+  end
+
   create_table "tutorial_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "tutorial_id",               null: false
     t.text     "body",        limit: 65535
