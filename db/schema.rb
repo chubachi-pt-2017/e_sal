@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170715053648) do
 
   create_table "original_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",             limit: 20, null: false
-    t.string   "url",              limit: 20, null: false
+    t.string   "name_url",         limit: 20, null: false
     t.integer  "main_category_id",            null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
