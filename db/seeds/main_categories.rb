@@ -1,20 +1,21 @@
 category_names = { 
-  "Git": "Git",
-  "Ruby": "Ruby",
-  "Python": "Python",
-  "Java": "Java",
-  "PHP": "PHP",
-  "C言語": "C-Language",
-  "Go": "Go-Language",
-  "Swift": "Swift",
-  "JavaScript": "JavaScript",
-  "HTML／CSS": "HTML-CSS",
-  "Ruby on rails": "Ruby-on-rails",
-  "Django": "Django",
-  "CakePHP": "CakePHP",
-  "Linux": "Linux",
-  "Network": "Network",
-  "Security": "Security"
+  "Git": "git",
+  "Ruby": "ruby",
+  "Python": "python",
+  "Java": "java",
+  "PHP": "php",
+  "C言語": "c-language",
+  "Go": "go",
+  "Swift": "swift",
+  "JavaScript": "javaScript",
+  "HTML／CSS": "html",
+  "CSS": "css",
+  "Ruby on rails": "ruby-on-rails",
+  "Django": "django",
+  "CakePHP": "cake-php",
+  "Linux": "linux",
+  "Network": "network",
+  "Security": "security"
   }
 
 category_names.each do |key, value|

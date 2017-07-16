@@ -14,7 +14,8 @@ class ESal::TutorialsController < ESal::Base
     @tutorial = Tutorial.new
     get_original_categories
   end
-  
+  # alias_method :new, :build
+
   private
     def get_original_categories
       @original_categories = OriginalCategory.all
