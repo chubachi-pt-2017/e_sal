@@ -15,6 +15,7 @@ class Tutorial < ApplicationRecord
   has_one :tutorial_content
   belongs_to :original_category
   belongs_to :photo
+  belongs_to :users
   accepts_nested_attributes_for :tutorial_content, allow_destroy: true
 
   def tutorial_status

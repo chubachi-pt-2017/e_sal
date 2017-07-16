@@ -18,6 +18,6 @@ class ESal::TutorialsController < ESal::Base
 
   private
     def get_original_categories
-      @original_categories = OriginalCategory.all
+      @original_categories = OriginalCategory.get_by_user_id(20)
     end
 end

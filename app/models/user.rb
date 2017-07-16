@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   
   has_many :programmings
+  has_many :tutorials
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
