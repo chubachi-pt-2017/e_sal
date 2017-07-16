@@ -23,6 +23,8 @@
                   <div class="tutorial-edit-left-area__tutorial-body-count"><span>チュートリアル本文の文字数:</span><span id="post-title-count">0</span></div>
                 </div>
                 <%= f.fields_for :tutorial_content, @tutorial.tutorial_content || TutorialContent.new do |t| %>
+                  <%= t.hidden_field :id %>
+                  <%= t.hidden_field :tutorial_id %>
                   <%= t.text_area :body, hide_label: "true", rows: "20", id: "post-main-sentence" %>
                 <% end %>
               </div>

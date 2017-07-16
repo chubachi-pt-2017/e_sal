@@ -28,7 +28,8 @@ class Tutorial < ApplicationRecord
   belongs_to :original_category
   belongs_to :photo
   belongs_to :users
-  accepts_nested_attributes_for :tutorial_content, allow_destroy: true
+
+  accepts_nested_attributes_for :tutorial_content, allow_destroy: true  
 
   def check_status
     return Status::PUBLISHED if published?

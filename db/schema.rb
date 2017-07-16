@@ -78,10 +78,10 @@ ActiveRecord::Schema.define(version: 20170716050643) do
     t.string   "title",                limit: 64,             null: false
     t.integer  "user_id",                                     null: false
     t.integer  "photo_id"
-    t.integer  "original_category_id",                        null: false
+    t.integer  "original_category_id"
     t.integer  "status",               limit: 1,  default: 0, null: false
     t.integer  "comment_enable_flg",   limit: 1,  default: 0
-    t.datetime "datetime_for_display",                        null: false
+    t.datetime "datetime_for_display"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.index ["original_category_id"], name: "index_tutorials_on_original_category_id", using: :btree

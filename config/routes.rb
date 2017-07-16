@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :tutorials do
       collection do
         # get 'list/:id', to: 'tutorials#list'
-        get 'list/:user_name', to: 'tutorials#list'        
+        get 'list/', to: 'tutorials#list'
       end
     end
 
