@@ -8,6 +8,11 @@ class ESal::TutorialsController < ESal::Base
   def show
   end
 
+
+  def list
+    @tutorials = Tutorial.published_tutorials
+  end
+
   def new
     @tutorial = Tutorial.new
     set_current_user_id

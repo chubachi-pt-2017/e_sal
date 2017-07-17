@@ -50,6 +50,11 @@ class Tutorial < ApplicationRecord
   presence: { message: "更新日を設定してください。"},
   if: :published?
 
+  scope :published_tutorials, -> {
+    where(status: Status::PUBLISHED)
+    .order(datetime_for_display: :desc)
+  }
+
   def check_status
     return Status::PUBLISHED if published?
     Status::DRAFT

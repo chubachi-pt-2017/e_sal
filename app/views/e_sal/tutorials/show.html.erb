@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_e_sal_tutorial_path(@e_sal_tutorial) %> |
-<%= link_to 'Back', e_sal_tutorials_path %>
+<div class="tutorial-area">
+  <div class="tutorial-note">
+    <i class="tutorial-note__pin"></i>
+    <h2 class="tutorial-note__title"><%= @tutorial.title %></h2>
+    <div class="tutorial-note__date"><%= l @tutorial.datetime_for_display, format: :date %></div>
+    <div class="tutorial-note__main-sentence"><%= @tutorial.tutorial_content.body %></div>
+  </div>
+</div>

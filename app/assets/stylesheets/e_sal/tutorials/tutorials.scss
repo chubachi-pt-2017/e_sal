@@ -143,6 +143,12 @@
   &__pin:before {
     @include pin-before;
   }
+  &__date {
+    float: right;
+  }
+  &__main-sentence {
+    margin-top: 30px;
+  }
 }
 
 .mark-pink {

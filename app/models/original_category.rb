@@ -13,9 +13,6 @@ class OriginalCategory < ApplicationRecord
 
   validates :main_category_id,
   presence: { message: "メインカテゴリを選択してください。"}
-  # scope :latest_updated_at_order, -> {
-  #   order(updated_at: :desc)
-  # }
 
   class << self
     def get_by_user_id(user_id)
