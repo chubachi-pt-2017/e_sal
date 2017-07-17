@@ -48,4 +48,15 @@ class Tutorial < ApplicationRecord
   def approve_comment?
     comment_enable_flg == CommentPermission::OK
   end
+  
+  class << self
+    def has_tutorials?(original_category_id)
+      published_tutorial_num =
+      where("tutorials.status = ? and tutorials.original_category_id = ?", Status::PUBLISHED, original_category_id)
+      .count
+
+      return true if published_tutorial_num > 0
+      false
+    end
+  end
 end

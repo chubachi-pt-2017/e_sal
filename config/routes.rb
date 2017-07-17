@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
   namespace :e_sal do
+    resources :original_categories
+  end
+  namespace :e_sal do
     get 'tutorials/index'
   end
 
@@ -34,11 +37,16 @@ Rails.application.routes.draw do
     resources :tutorials do
       collection do
         # get 'list/:id', to: 'tutorials#list'
-        get 'list/', to: 'tutorials#list'
+        get '/list', to: 'tutorials#list'
       end
     end
 
-    resources :original_categories
+    # resources :original_categories do
+    #   collection do
+    #     get '/list', to: 'original_categories#list'
+    #   end
+    # end
+    resources :original_categories    
   end
   
 end
