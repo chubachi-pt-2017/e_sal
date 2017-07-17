@@ -1,5 +1,5 @@
 class OriginalCategory < ApplicationRecord
-  has_one :tutorial
+  has_many :tutorials
   belongs_to :main_category
 
   validates :name,

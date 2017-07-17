@@ -25,10 +25,10 @@ class Tutorial < ApplicationRecord
   end
 
   belongs_to :tutorial_content
-  # belongs_to :original_category
+  belongs_to :original_category
+  belongs_to :user  
   # belongs_to :photo
-  # belongs_to :users
-
+  has_one :main_category, through: :original_category
   accepts_nested_attributes_for :tutorial_content, allow_destroy: true  
 
   validates :title,
@@ -37,8 +37,7 @@ class Tutorial < ApplicationRecord
   uniqueness: { message: "入力したタイトルは既に存在します。"}
 
   validates :original_category_id,
-  presence: { message: "自分のカテゴリを選択して下さい。" },
-  if: :published?
+  presence: { message: "カテゴリを選択して下さい。" }
 
   validates :status,
   presence: { message: "公開/非公開を選択してください。"},
@@ -49,10 +48,6 @@ class Tutorial < ApplicationRecord
 
   validates :datetime_for_display,
   presence: { message: "更新日を設定してください。"},
-  if: :published?
-
-  validates :body,
-  presence: { message: "チュートリアル本文を入力してください。"},
   if: :published?
 
   def check_status

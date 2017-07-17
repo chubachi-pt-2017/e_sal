@@ -1,5 +1,6 @@
 class MainCategory < ApplicationRecord
-  has_one :original_category
+  has_many :original_categories
+  has_many :tutorials, through: :original_categories
 
   scope :all_ids_and_name, -> {
     select("id, name")
