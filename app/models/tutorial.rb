@@ -87,5 +87,11 @@ class Tutorial < ApplicationRecord
       return true if published_tutorial_num > 0
       false
     end
+
+    def get_by_user_id(user_id)
+      includes([original_category: :main_category])
+      .where("tutorials.user_id = ?", user_id)
+      .order("tutorials.updated_at desc")
+    end
   end
 end
