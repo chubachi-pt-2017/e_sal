@@ -31,6 +31,30 @@ class Tutorial < ApplicationRecord
 
   accepts_nested_attributes_for :tutorial_content, allow_destroy: true  
 
+  validates :title,
+  presence: { message: "タイトルを入力してください。" },
+  length: { maximum: 30, message: "最大文字数は30文字です。" },
+  uniqueness: { message: "入力したタイトルは既に存在します。"}
+
+  validates :original_category_id,
+  presence: { message: "自分のカテゴリを選択して下さい。" },
+  if: :published?
+
+  validates :status,
+  presence: { message: "公開/非公開を選択してください。"},
+  numericality: { only_integer: true }
+
+  validates :comment_enable_flg,
+  numericality: { only_integer: true }
+
+  validates :datetime_for_display,
+  presence: { message: "更新日を設定してください。"},
+  if: :published?
+
+  # validates :body,
+  # presence: { message: "チュートリアル本文を入力してください。"},
+  # if: :published?    
+
   def check_status
     return Status::PUBLISHED if published?
     Status::DRAFT

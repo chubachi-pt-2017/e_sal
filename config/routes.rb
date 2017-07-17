@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   
-  namespace :e_sal do
-    resources :original_categories
-  end
-  namespace :e_sal do
-    get 'tutorials/index'
-  end
+  # namespace :e_sal do
+  #   resources :tutorials
+  # end
+  # namespace :e_sal do
+  #   resources :original_categories
+  # end
+  # namespace :e_sal do
+  #   get 'tutorials/index'
+  # end
 
   root 'home#index'
   

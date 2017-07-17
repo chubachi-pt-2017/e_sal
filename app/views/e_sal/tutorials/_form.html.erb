@@ -1,0 +1,65 @@
+<div class="tutorial-area">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2 class="tutorial-edit-title">新規チュートリアル投稿フォーム</h2>
+        <div class="clearfix"></div>
+      </div>
+        <div class="x_content">
+          <%= bootstrap_form_for([:e_sal, @tutorial], layout: :horizontal) do |f| %>
+            <div class="tutorial-edit-left-area">
+              <%= f.hidden_field :id %>
+              <%= f.hidden_field :user_id %>
+
+              <div class="form-group">
+                <div class="tutorial-edit-left-area__title-area">
+                  <div class="tutorial-edit-left-area__title"><span>タイトル</span></div>
+                  <div class="tutorial-edit-left-area__title-count"><span>タイトルの文字数:</span><span id="post-title-count">0</span></div>
+                </div>
+                <%= f.text_field :title, hide_label: true, class: "js-disabled-enter", id: "post_title" %>
+              </div>
+              <div class="form-group">
+                <div class="tutorial-edit-left-area__tutorial-body-area">
+                  <div class="tutorial-edit-left-area__tutorial-body"><span>チュートリアル本文</span></div>
+                  <div class="tutorial-edit-left-area__tutorial-body-count"><span>チュートリアル本文の文字数:</span><span id="post-title-count">0</span></div>
+                </div>
+                <%= f.fields_for :tutorial_content, @tutorial.tutorial_content || TutorialContent.new do |t| %>
+                  <%= t.hidden_field :id %>
+                  <%= t.hidden_field :tutorial_id %>
+                  <%= t.text_area :body, hide_label: "true", rows: "20", id: "post-main-sentence" %>
+                <% end %>
+              </div>
+            </div><!-- end of tutorial-edit-left-area -->
+      
+            <div class="tutorial-edit-right-area">
+              <div class="form-group">
+                <span>自分のカテゴリ</span>
+                <%= f.select :original_category_id, @original_categories.map{|t| [t.name, t.id]}, { prompt: "選択してください", hide_label: true }, class: "" %>
+              </div>
+
+              <div class="form-group">
+                <span>公開 / 非公開</span>
+                <%= f.select :status, Tutorial::Status.publish_select_options, { selected: @tutorial.check_status, hide_label: true }, class: "" %>
+              </div>
+
+              <div class="form-group">
+                <span>コメント許可</span>
+                <%= f.select :comment_enable_flg, Tutorial::CommentPermission.comment_select_options, { selected: @tutorial.check_comment_permission, hide_label: true }, class: "" %>
+              </div>
+
+              <div class="form-group">
+                <span>更新日</span>
+                <%= f.text_field :datetime_for_display, data: { :date_format => 'YYYY/MM/DD hh:mm' }, hide_label: true, class: 'js-disabled-enter date-fields', id: "datetimepicker4",  placeholder: 'クリックして下さい' %>
+              </div>
+
+              <%= f.submit "更新する", id: "js_update_button" %>
+              <%= f.submit "プレビュー", name: "preview", id: "js_preview_button" %>
+            </div><!-- end of tutorial-edit-right-area -->
+          <% end %>
+      </div><!-- end of x_content -->
+    </div>
+</div>
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker4').datetimepicker();
+  });
+</script>
