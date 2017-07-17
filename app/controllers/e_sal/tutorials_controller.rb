@@ -42,11 +42,11 @@ class ESal::TutorialsController < ESal::Base
   end
 
   def destroy
-    deleted_tutorial = @tutorial.name
+    deleted_tutorial_title = @tutorial.title
     if @tutorial.destroy
-      message = "チュートリアル「#{deleted_tutorial}」を削除しました。"
+      message = "チュートリアル「#{deleted_tutorial_title}」を削除しました。"
     else
-      message = "チュートリアル「#{deleted_tutorial}」の削除に失敗しました。"
+      message = "チュートリアル「#{deleted_tutorial_title}」の削除に失敗しました。"
     end
     
     respond_to do |format|
