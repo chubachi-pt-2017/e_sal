@@ -3,7 +3,9 @@
 
   <p id="notice"><%= notice %></p>
 
-  <%= link_to 'チュートリアルの新規作成はこちら', new_e_sal_tutorial_path %>
+  <%= link_to new_e_sal_tutorial_path  do %>
+    <button type="button" class="btn btn-primary new-tutorial-button">チュートリアルの新規作成</button>
+  <% end %>
   <section class="content-header">
     <div class="box-body">
       <div class="col-sm-12">

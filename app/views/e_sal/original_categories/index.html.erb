@@ -3,7 +3,9 @@
 
   <p id="notice"><%= notice %></p>
 
-  <%= link_to 'カテゴリの新規作成はこちら', new_e_sal_original_category_path %>
+  <%= link_to new_e_sal_original_category_path do %>
+    <button type="button" class="btn btn-primary new-category-button">自分用のカテゴリを作成する</button>
+  <% end %>
   <section class="content-header">
     <div class="box-body">
       <div class="col-sm-12">
