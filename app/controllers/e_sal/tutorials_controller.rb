@@ -2,7 +2,7 @@ class ESal::TutorialsController < ESal::Base
   before_action :set_e_sal_tutorial, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tutorials = Tutorial.all
+    @tutorials = Tutorial.all.order(updated_at: :desc)
   end
 
   def show
@@ -15,13 +15,14 @@ class ESal::TutorialsController < ESal::Base
   end
 
   def edit
+    get_original_categories
   end
 
   def create
     @tutorial = Tutorial.new(e_sal_tutorial_params)
     respond_to do |format|
       if @tutorial.save
-        format.html { redirect_to e_sal_tutorials_path, notice: 'Tutorial was successfully created.' }
+        format.html { redirect_to e_sal_tutorials_path, notice: "チュートリアル「#{params[:tutorial][:title]}」を作成しました。" }
       else
         get_original_categories
         format.html { render :new }

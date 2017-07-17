@@ -1,7 +1,7 @@
 <div class="tutorial-area">
     <div class="x_panel">
       <div class="x_title">
-        <h2 class="tutorial-edit-title">新規チュートリアル投稿フォーム</h2>
+        <h2 class="tutorial-edit-title">チュートリアル編集フォーム</h2>
         <div class="clearfix"></div>
       </div>
         <div class="x_content">
@@ -24,7 +24,6 @@
                 </div>
                 <%= f.fields_for :tutorial_content, @tutorial.tutorial_content || TutorialContent.new do |t| %>
                   <%= t.hidden_field :id %>
-                  <%= t.hidden_field :tutorial_id %>
                   <%= t.text_area :body, hide_label: "true", rows: "20", id: "post-main-sentence" %>
                 <% end %>
               </div>
@@ -53,6 +52,13 @@
 
               <%= f.submit "更新する", id: "js_update_button" %>
               <%= f.submit "プレビュー", name: "preview", id: "js_preview_button" %>
+
+              <% if @tutorial.published? %>
+                <div class="tutorial-edit-right-area__show-tutorial-link">
+                  <small><%= link_to "現行のチュートリアルを確認する", e_sal_tutorial_path %></small>
+                </div>
+              <% end %>
+
             </div><!-- end of tutorial-edit-right-area -->
           <% end %>
       </div><!-- end of x_content -->

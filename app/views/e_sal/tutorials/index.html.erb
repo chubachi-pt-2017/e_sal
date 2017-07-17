@@ -10,15 +10,30 @@
         <table class="table">
           <thead>
             <tr>
-              <th>ユーザーカテゴリ</th>
-              <th>URL</th>              
-              <th>メインカテゴリ</th>
-              <th>作成日</th>
+              <th>タイトル</th>
+              <th>公開/非公開</th>              
+              <th>コメント</th>
+              <th>更新日(表示用)</th>
               <th>アクション</th>
             </tr>            
           </thead>
           <tbody>
-
+            <% @tutorials.each do |t| %>
+              <tr>
+                <td><%= t.title %></td>
+                <td><%= t.status_for_display %></td>                
+                <td><%= t.comment_permission_for_display %></td>
+                <% if t.datetime_for_display.present? %>
+                  <td><%= l t.datetime_for_display, format: :date %></td>
+                <% else %>
+                  <td><%= "設定されていません" %></td>
+                <% end %>
+                <td>
+                  <%= link_to '編集する', url_for(controller: :tutorials, action: :edit, id: t.id)  %> |
+                  <%= link_to '削除する', url_for(controller: :tutorials, action: :destroy, id: t.id), method: :DELETE, data: {confirm: "チュートリアル「#{t.title}」を本当に削除しますか？"}  %>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div>

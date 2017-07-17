@@ -67,18 +67,17 @@ ActiveRecord::Schema.define(version: 20170716172555) do
   end
 
   create_table "tutorial_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "tutorial_id",               null: false
-    t.text     "body",        limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.index ["tutorial_id"], name: "index_tutorial_contents_on_tutorial_id", using: :btree
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "tutorials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                limit: 64,             null: false
-    t.integer  "user_id",                                     null: false
+    t.integer  "user_id"
     t.integer  "photo_id"
     t.integer  "original_category_id"
+    t.integer  "tutorial_content_id"
     t.integer  "status",               limit: 1,  default: 0, null: false
     t.integer  "comment_enable_flg",   limit: 1,  default: 0
     t.datetime "datetime_for_display"
@@ -87,6 +86,7 @@ ActiveRecord::Schema.define(version: 20170716172555) do
     t.index ["original_category_id"], name: "index_tutorials_on_original_category_id", using: :btree
     t.index ["photo_id"], name: "index_tutorials_on_photo_id", using: :btree
     t.index ["title"], name: "index_tutorials_on_title", unique: true, using: :btree
+    t.index ["tutorial_content_id"], name: "index_tutorials_on_tutorial_content_id", using: :btree
     t.index ["user_id"], name: "index_tutorials_on_user_id", using: :btree
   end
 

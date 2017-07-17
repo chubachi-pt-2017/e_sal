@@ -24,10 +24,10 @@ class Tutorial < ApplicationRecord
     end
   end
 
-  has_one :tutorial_content
-  belongs_to :original_category
-  belongs_to :photo
-  belongs_to :users
+  belongs_to :tutorial_content
+  # belongs_to :original_category
+  # belongs_to :photo
+  # belongs_to :users
 
   accepts_nested_attributes_for :tutorial_content, allow_destroy: true  
 
@@ -51,9 +51,9 @@ class Tutorial < ApplicationRecord
   presence: { message: "更新日を設定してください。"},
   if: :published?
 
-  # validates :body,
-  # presence: { message: "チュートリアル本文を入力してください。"},
-  # if: :published?    
+  validates :body,
+  presence: { message: "チュートリアル本文を入力してください。"},
+  if: :published?
 
   def check_status
     return Status::PUBLISHED if published?
@@ -72,7 +72,17 @@ class Tutorial < ApplicationRecord
   def approve_comment?
     comment_enable_flg == CommentPermission::OK
   end
-  
+
+  def status_for_display
+    return '公開中' if published?
+    '非公開'
+  end
+
+  def comment_permission_for_display
+    return '許可する' if approve_comment?
+    '許可しない'
+  end
+
   class << self
     def has_tutorials?(original_category_id)
       published_tutorial_num =
