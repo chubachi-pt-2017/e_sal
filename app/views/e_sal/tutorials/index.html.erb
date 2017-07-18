@@ -6,6 +6,7 @@
   <%= link_to new_e_sal_tutorial_path  do %>
     <button type="button" class="btn btn-primary new-tutorial-button">チュートリアルの新規作成</button>
   <% end %>
+
   <section class="content-header">
     <div class="box-body">
       <div class="col-sm-12">
@@ -39,5 +40,8 @@
       </div>
     </div>
   </section>
+  <div class="paging"><%= paginate(@tutorials) %></div>
 </div>
+
+
 

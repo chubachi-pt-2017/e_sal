@@ -7,6 +7,7 @@
         <i class="tutorial-material__pin"></i>
         <p class="tutorial-material__note tutorial-material__yellow">
           <span class="tutorial-material__title"><%= t.title %></span>
+          <span><img class="img-circle profile_img" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" width="80" height="80"/></span>
           <span class="tutorial-material__contents"><%= t.tutorial_content.body %></span>
           <%= link_to url_for(controller: :tutorials, action: :show, id: t.id) do %>
             <span class="tutorial-material__read-more">このチュートリアルを読む</span>
@@ -16,6 +17,7 @@
     </div>
   <% end %>
 
+<div class="paging"><%= paginate(@tutorials) %></div>
 <!--左上が折れてるバージョン
   <div class="tutorial-material tutorial-corner-fold">
     <h2>タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</h2>

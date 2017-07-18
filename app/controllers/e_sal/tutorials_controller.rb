@@ -2,7 +2,7 @@ class ESal::TutorialsController < ESal::Base
   before_action :set_e_sal_tutorial, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tutorials = Tutorial.get_by_user_id(current_user.id)
+    @tutorials = Tutorial.get_by_user_id(current_user.id).page(params[:page]).per(LIST_NUM_PER_PAGE)
   end
 
   def show
@@ -10,7 +10,7 @@ class ESal::TutorialsController < ESal::Base
 
 
   def list
-    @tutorials = Tutorial.published_tutorials
+    @tutorials = Tutorial.published_tutorials.page(params[:page]).per(LIST_NUM_PER_PAGE)
   end
 
   def new
