@@ -15,7 +15,11 @@ category_names = {
   "CakePHP": "cake-php",
   "Linux": "linux",
   "Network": "network",
-  "Security": "security"
+  "Security": "security",
+  "Oracle Database": "oracle",
+  "MySQL": "mysql",
+  "SQLite": "sqlite",
+  "PostgreSQL": "postgresql"
   }
 
 category_names.each do |key, value|
