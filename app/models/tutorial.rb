@@ -50,6 +50,16 @@ class Tutorial < ApplicationRecord
   presence: { message: "更新日を設定してください。"},
   if: :published?
 
+  validate :need_body_validation, if: :published?
+
+  def need_body_validation
+    # post_tags.each do |post_tag|
+    #   errors.add(:post_tags, "タグを選択してください。") if post_tag.tag.blank?
+    # end
+    errors.add(:body, "チュートリアル本文を入力してください。") if tutorial_content.body.blank?
+  end
+
+
   scope :published_tutorials, -> {
     where(status: Status::PUBLISHED)
     .order(datetime_for_display: :desc)

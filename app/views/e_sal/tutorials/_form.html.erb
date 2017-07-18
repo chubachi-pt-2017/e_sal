@@ -26,6 +26,7 @@
                   <%= t.hidden_field :id %>
                   <%= t.text_area :body, hide_label: "true", rows: "20", id: "post-main-sentence" %>
                 <% end %>
+                <div class="tutorial-edit-left-area__body-error"><%= f.errors_on :body, hide_attribute_name: true %></div>
               </div>
             </div><!-- end of tutorial-edit-left-area -->
       

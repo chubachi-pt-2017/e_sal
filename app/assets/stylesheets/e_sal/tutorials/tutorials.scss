@@ -203,6 +203,9 @@
     display: inline-block;
     float: right;
   }
+  &__body-error {
+    width: 300px;
+  }
 }
 
 .tutorial-edit-right-area {
