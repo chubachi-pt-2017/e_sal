@@ -80,7 +80,9 @@
     text-align: right;    
   }
   &__title {
-    font-size: 24px;
+    font-size: $basic-title-font-size;
+    text-align: left;
+    font-weight: bold;
   }
   &__contents {
     margin-top: 20px;
@@ -89,13 +91,14 @@
   }
   &__read-more {
     display: block;
-    margin: 40px 0 0 0;
+    margin: 20px 0 20px 0;
     text-align: right;
     font-size: 16px;
+    float: right;
   }
   //メモのbackground
-  &__yellow {
-    background: #eae672;
+  &__background {
+    background: #ebf5b2;
     -webkit-transform: rotate(2deg);
     -moz-transform: rotate(2deg);
     -o-transform: rotate(2deg);
@@ -112,6 +115,20 @@
   // pinの影
   &__pin:before {
     @include pin-before;
+  }
+  &__image-body-area {
+    margin-top: 20px;
+  }
+  &__image {
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
+  }
+  &__body {
+    display: inline-block;
+    width: 200px;
+    font-size: 15px;
+    text-align: left;
   }
 }
 
