@@ -90,11 +90,11 @@
     display: block;
   }
   &__read-more {
-    display: block;
     margin: 20px 0 20px 0;
-    text-align: right;
     font-size: 16px;
-    float: right;
+    position: absolute;
+    top: 240px;
+    left: 182px;
   }
   //メモのbackground
   &__background {
@@ -129,6 +129,7 @@
     width: 200px;
     font-size: 15px;
     text-align: left;
+    word-wrap: break-word;
   }
 }
 
