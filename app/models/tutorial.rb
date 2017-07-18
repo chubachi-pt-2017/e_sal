@@ -96,7 +96,7 @@ class Tutorial < ApplicationRecord
     def get_by_user_id(user_id)
       includes([original_category: :main_category])
       .where("tutorials.user_id = ?", user_id)
-      .order("tutorials.updated_at desc")
+      .order("tutorials.status asc, tutorials.updated_at desc")
     end
   end
 end
