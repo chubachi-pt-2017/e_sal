@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170713102317) do
 
-  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "trackable_type"
     t.integer  "trackable_id"
     t.string   "owner_type"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20170713102317) do
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
   end
 
-  create_table "main_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "main_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "name",       limit: 64, null: false
     t.string   "name_url",   limit: 64, null: false
     t.datetime "created_at",            null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170713102317) do
     t.index ["name_url"], name: "index_main_categories_on_name_url", unique: true, using: :btree
   end
 
-  create_table "programmings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "programmings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "title",          limit: 128,   null: false
     t.text     "question_desc",  limit: 65535, null: false
     t.text     "correct_answer", limit: 65535
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170713102317) do
     t.index ["user_id"], name: "index_programmings_on_user_id", using: :btree
   end
 
-  create_table "tutorial_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "tutorial_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.integer  "tutorial_id",               null: false
     t.text     "body",        limit: 65535
     t.datetime "created_at",                null: false
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170713102317) do
     t.index ["tutorial_id"], name: "index_tutorial_contents_on_tutorial_id", using: :btree
   end
 
-  create_table "tutorials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "tutorials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "title",                limit: 64,             null: false
     t.integer  "user_id",                                     null: false
     t.integer  "original_category_id",                        null: false
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170713102317) do
     t.index ["user_id"], name: "index_tutorials_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "email",                  limit: 128, default: "",    null: false
     t.string   "encrypted_password",     limit: 256, default: "",    null: false
     t.string   "reset_password_token",   limit: 64
