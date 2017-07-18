@@ -19,7 +19,7 @@ class OriginalCategory < ApplicationRecord
   class << self
     def get_by_user_id(user_id)
       includes(:main_category)
-      .where(user_id: user_id).order(id: :asc)
+      .where(user_id: user_id).order(updated_at: :desc)
     end
   end
 end
