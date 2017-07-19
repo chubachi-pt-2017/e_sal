@@ -21,6 +21,7 @@ gem 'ace-rails-ap', '~> 4.0'
 gem 'activerecord-confirmable'
 gem 'public_activity', '~> 1.0'
 gem 'kaminari'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'byebug', platform: :mri
