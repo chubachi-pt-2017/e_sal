@@ -68,7 +68,8 @@
   &__note {
     color: #333;
     position: relative;
-    width: 300px;
+    width: 400px;
+    height: 300px;
     margin: 0 auto;
     padding: 20px;
     font-family: Satisfy;
@@ -79,7 +80,9 @@
     text-align: right;    
   }
   &__title {
-    font-size: 24px;
+    font-size: $basic-title-font-size;
+    text-align: left;
+    font-weight: bold;
   }
   &__contents {
     margin-top: 20px;
@@ -87,14 +90,15 @@
     display: block;
   }
   &__read-more {
-    display: block;
-    margin: 40px 0 0 0;
-    text-align: right;
+    margin: 20px 0 20px 0;
     font-size: 16px;
+    position: absolute;
+    top: 240px;
+    left: 182px;
   }
   //メモのbackground
-  &__yellow {
-    background: #eae672;
+  &__background {
+    background: #ebf5b2;
     -webkit-transform: rotate(2deg);
     -moz-transform: rotate(2deg);
     -o-transform: rotate(2deg);
@@ -111,6 +115,21 @@
   // pinの影
   &__pin:before {
     @include pin-before;
+  }
+  &__image-body-area {
+    margin-top: 20px;
+  }
+  &__image {
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
+  }
+  &__body {
+    display: inline-block;
+    width: 200px;
+    font-size: 15px;
+    text-align: left;
+    word-wrap: break-word;
   }
 }
 
@@ -143,8 +162,76 @@
   &__pin:before {
     @include pin-before;
   }
+  &__date {
+    float: right;
+  }
+  &__main-sentence {
+    margin-top: 30px;
+  }
 }
 
 .mark-pink {
   background: linear-gradient(transparent 55%, #f9c 60%);
+}
+
+/* チュートリアル編集ページ一覧 */
+.new-tutorial-link {
+  margin-left: 30px;
+}
+
+.tutorial-edit-left-area {
+  margin-left: 37px;
+  width: 75%;
+  display: inline-block;
+  &__title-area {
+    width: 82%;
+  }
+  &__title {
+    display: inline-block;
+  }
+  &__title-count {
+    display: inline-block;
+    float: right;
+  }
+  &__tutorial-body-area {
+    width: 82%;
+  }
+  &__tutorial-body {
+    display: inline-block;
+  }
+  &__tutorial-body-count {
+    display: inline-block;
+    float: right;
+  }
+  &__body-error {
+    width: 300px;
+  }
+}
+
+.tutorial-edit-right-area {
+  float: right;
+  width: 20%;
+  margin-right: 20px;
+  &__photo-id {
+    display: inline-block;
+  }
+  
+  &__photo-id-field {
+    width: 50%;
+  }
+  &__photo {
+    display: inline-block;
+    float: right;
+  }
+  &__show-tutorial-link {
+    margin-top: 20px;
+  }
+}
+
+.tutorial-edit-title {
+  margin-left: 23px;
+}
+
+.new-tutorial-button {
+  margin: 0 0 20px 25px;
 }

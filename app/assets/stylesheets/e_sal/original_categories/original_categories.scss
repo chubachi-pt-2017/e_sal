@@ -1,0 +1,15 @@
+.category-area {
+  @include main-contents-area;
+  h2 {
+    margin-left: 30px;
+  }
+}
+
+.category-edit-field {
+  width: 50%;
+  margin-left: 30px;
+}
+
+.new-category-button {
+  margin: 0 0 20px 25px;
+}

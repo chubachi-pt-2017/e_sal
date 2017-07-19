@@ -1,0 +1,42 @@
+<div class="category-area">
+  <%= render partial: 'layouts/common_partials/header_stats' %>
+
+  <p id="notice"><%= notice %></p>
+
+  <%= link_to new_e_sal_original_category_path do %>
+    <button type="button" class="btn btn-primary new-category-button">自分用のカテゴリを作成する</button>
+  <% end %>
+  <section class="content-header">
+    <div class="box-body">
+      <div class="col-sm-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ユーザーカテゴリ</th>
+              <th>URL</th>              
+              <th>メインカテゴリ</th>
+              <th>作成日</th>
+              <th>アクション</th>
+            </tr>            
+          </thead>
+          <tbody>
+            <% @original_categories.each do |o| %>
+              <tr>
+                <td><%= o.name %></td>
+                <td><%= o.name_url %></td>                
+                <td><%= o.main_category.name %></td>
+                <td><%= l o.created_at, format: :date %></td>
+                <td>
+                  <%= link_to '編集する', url_for(controller: :original_categories, action: :edit, id: o.id)  %> |
+                  <%= link_to '削除する', url_for(controller: :original_categories, action: :destroy, id: o.id), method: :DELETE, data: {confirm: "オリジナルカテゴリ「#{o.name}」を本当に削除しますか？"}  %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <div class="paging"><%= paginate(@original_categories) %></div>
+</div>
+

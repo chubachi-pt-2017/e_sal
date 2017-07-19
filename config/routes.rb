@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   
-  namespace :e_sal do
-    get 'tutorials/index'
-  end
+  # namespace :e_sal do
+  #   resources :tutorials
+  # end
+  # namespace :e_sal do
+  #   resources :original_categories
+  # end
+  # namespace :e_sal do
+  #   get 'tutorials/index'
+  # end
 
   root 'home#index'
   
@@ -26,10 +32,18 @@ Rails.application.routes.draw do
   
   namespace :e_sal, :path => "e-sal" do
     get '/', to: 'homes#index'
-    get 'tutorial/:id', to: 'tutorials#show' 
-    get 'tutorial', to: 'tutorials#index'
     get '/programming/:id', to: 'programmings#show', as: :programming_detail
     get '/programming', to: 'programmings#index'
+    # get 'tutorial/:id', to: 'tutorials#show' 
+    # get 'tutorial', to: 'tutorials#index'
+
+    resources :tutorials do
+      collection do
+        get '/list', to: 'tutorials#list'
+      end
+    end
+
+    resources :original_categories
   end
   
 end

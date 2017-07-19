@@ -13,7 +13,11 @@ body {
   }
   &__info {
     float: right;
-    margin-top: 27px;
+    margin-top: 20px;
+    width: 100%;
+  }
+  &__name {
+    font-size: $basic-title-font-size;
   }
 }
 
@@ -47,4 +51,10 @@ body {
   height: 50px;
   background: #EDEDED;
   float: right;
+}
+
+.paging {
+  clear: both;
+  float: right;
+  margin: 20px 30px 20px 0;
 }

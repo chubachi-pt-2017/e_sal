@@ -1,122 +1,47 @@
 <div class="tutorial-area">
   <%= render partial: 'layouts/common_partials/header_stats' %>
 
-  <div class="tutorial-wrap">
-    <div class="tutorial-material">
-      <i class="tutorial-material__pin"></i>
-      <p class="tutorial-material__note tutorial-material__yellow">
-        <span class="tutorial-material__title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</span>
-        <span class="tutorial-material__contents">チュートリアルチュートリチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアチュートリアチュートリア</span>
-        <span class="tutorial-material__read-more">このチュートリアルを読む</span>
-      </p>
-    </div>
-  </div>
+  <p id="notice"><%= notice %></p>
 
-  <div class="tutorial-wrap">
-    <div class="tutorial-material">
-      <i class="tutorial-material__pin"></i>
-      <p class="tutorial-material__note tutorial-material__yellow">
-        <span class="tutorial-material__title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</span>
-        <span class="tutorial-material__contents">チュートリアルチュートリチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアチュートリアチュートリア</span>
-        <span class="tutorial-material__read-more">このチュートリアルを読む</span>
-      </p>
-    </div>
-  </div>
+  <%= link_to new_e_sal_tutorial_path  do %>
+    <button type="button" class="btn btn-primary new-tutorial-button">チュートリアルの新規作成</button>
+  <% end %>
 
-  <div class="tutorial-wrap">
-    <div class="tutorial-material">
-      <i class="tutorial-material__pin"></i>
-      <p class="tutorial-material__note tutorial-material__yellow">
-        <span class="tutorial-material__title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</span>
-        <span class="tutorial-material__contents">チュートリアルチュートリチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアチュートリアチュートリア</span>
-        <span class="tutorial-material__read-more">このチュートリアルを読む</span>
-      </p>
+  <section class="content-header">
+    <div class="box-body">
+      <div class="col-sm-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>タイトル</th>
+              <th>ユーザー/メインカテゴリ</th>
+              <th>公開/非公開</th>              
+              <th>コメント</th>
+            </tr>            
+          </thead>
+          <tbody>
+            <% @tutorials.each do |t| %>
+              <tr>
+                <td><%= link_to t.title, url_for(controller: :tutorials, action: :edit, id: t.id)  %></td>
+                <% if t.original_category.present? && t.original_category.main_category.present? %>
+                  <td><%= "#{t.original_category.name} / #{t.original_category.main_category.name}" %></td>
+                <% else %>
+                  <td>設定されていません</td>
+                <% end %>
+                <td><%= t.status_for_display %></td>                
+                <td><%= t.comment_permission_for_display %></td>
+                <td>
+                  <%= link_to '削除', url_for(controller: :tutorials, action: :destroy, id: t.id), method: :DELETE, data: {confirm: "チュートリアル「#{t.title}」を本当に削除しますか？"}  %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-
-  <div class="tutorial-wrap">
-    <div class="tutorial-material">
-      <i class="tutorial-material__pin"></i>
-      <p class="tutorial-material__note tutorial-material__yellow">
-        <span class="tutorial-material__title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</span>
-        <span class="tutorial-material__contents">チュートリアルチュートリチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアチュートリアチュートリア</span>
-        <span class="tutorial-material__read-more">このチュートリアルを読む</span>
-      </p>
-    </div>
-  </div>
-
-  <div class="tutorial-wrap">
-    <div class="tutorial-material">
-      <i class="tutorial-material__pin"></i>
-      <p class="tutorial-material__note tutorial-material__yellow">
-        <span class="tutorial-material__title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</span>
-        <span class="tutorial-material__contents">チュートリアルチュートリチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアチュートリアチュートリア</span>
-        <span class="tutorial-material__read-more">このチュートリアルを読む</span>
-      </p>
-    </div>
-  </div>
-  
-  <div class="tutorial-wrap">
-    <div class="tutorial-material">
-      <i class="tutorial-material__pin"></i>
-      <p class="tutorial-material__note tutorial-material__yellow">
-        <span class="tutorial-material__title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</span>
-        <span class="tutorial-material__contents">チュートリアルチュートリチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアチュートリアチュートリア</span>
-        <span class="tutorial-material__read-more">このチュートリアルを読む</span>
-      </p>
-    </div>
-  </div>
-
-  <div class="tutorial-wrap">
-    <div class="tutorial-material">
-      <i class="tutorial-material__pin"></i>
-      <p class="tutorial-material__note tutorial-material__yellow">
-        <span class="tutorial-material__title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</span>
-        <span class="tutorial-material__contents">チュートリアルチュートリチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアチュートリアチュートリア</span>
-        <span class="tutorial-material__read-more">このチュートリアルを読む</span>
-      </p>
-    </div>
-  </div>
-
-  <div class="tutorial-wrap">
-    <div class="tutorial-material">
-      <i class="tutorial-material__pin"></i>
-      <p class="tutorial-material__note tutorial-material__yellow">
-        <span class="tutorial-material__title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</span>
-        <span class="tutorial-material__contents">チュートリアルチュートリチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアチュートリアチュートリア</span>
-        <span class="tutorial-material__read-more">このチュートリアルを読む</span>
-      </p>
-    </div>
-  </div>
-
-  <div class="tutorial-wrap">
-    <div class="tutorial-material">
-      <i class="tutorial-material__pin"></i>
-      <p class="tutorial-material__note tutorial-material__yellow">
-        <span class="tutorial-material__title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</span>
-        <span class="tutorial-material__contents">チュートリアルチュートリチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアチュートリアチュートリア</span>
-        <span class="tutorial-material__read-more">このチュートリアルを読む</span>
-      </p>
-    </div>
-  </div>
-
-  <div class="tutorial-wrap">
-    <div class="tutorial-material">
-      <i class="tutorial-material__pin"></i>
-      <p class="tutorial-material__note tutorial-material__yellow">
-        <span class="tutorial-material__title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</span>
-        <span class="tutorial-material__contents">チュートリアルチュートリチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアルチュートリアチュートリアチュートリア</span>
-        <span class="tutorial-material__read-more">このチュートリアルを読む</span>
-      </p>
-    </div>
-  </div>
-
-<!--左上が折れてるバージョン
-  <div class="tutorial-material tutorial-corner-fold">
-    <h2>タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</h2>
-    <p class="tutorial-material__contents">問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題</p>
-    <p class="tutorial-material__detail-link">このチュートリアルを読む</p>
-  </div>
--->
+  </section>
+  <div class="paging"><%= paginate(@tutorials) %></div>
 </div>
+
+
 
