@@ -7,7 +7,7 @@
         <%= bootstrap_form_for([:e_sal, @original_category], layout: :horizontal) do |f| %>
           <%= f.hidden_field :user_id %>
 
-          <div><span>カテゴリ名(表示用)</span></div>
+          <div><span>カテゴリ名(My Category)</span></div>
           <%= f.text_field :name, hide_label: true, class: "js-disabled-enter", disabled: @has_tutorials %>
 
           <div><span>カテゴリ英語名(半角の小文字/数字とハイフンのみ)</span></div>

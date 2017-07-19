@@ -12,9 +12,9 @@
         <table class="table">
           <thead>
             <tr>
-              <th>ユーザーカテゴリ</th>
+              <th>My Category</th>
               <th>URL</th>              
-              <th>メインカテゴリ</th>
+              <th>Main Category</th>
               <th>作成日</th>
               <th>アクション</th>
             </tr>            
@@ -28,7 +28,7 @@
                 <td><%= l o.created_at, format: :date %></td>
                 <td>
                   <%= link_to '編集する', url_for(controller: :original_categories, action: :edit, id: o.id)  %> |
-                  <%= link_to '削除する', url_for(controller: :original_categories, action: :destroy, id: o.id), method: :DELETE, data: {confirm: "オリジナルカテゴリ「#{o.name}」を本当に削除しますか？"}  %>
+                  <%= link_to '削除する', url_for(controller: :original_categories, action: :destroy, id: o.id), method: :DELETE, data: {confirm: "My Category「#{o.name}」を本当に削除しますか？"}  %>
                 </td>
               </tr>
             <% end %>
