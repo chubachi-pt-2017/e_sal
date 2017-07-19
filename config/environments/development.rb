@@ -40,7 +40,7 @@ Rails.application.configure do
     :user_name => ENV['E_SAL_MAILER_SENDER'],
     :password => ENV['E_SAL_MAILER_PASSWORD'],
     :authentication => :plain,
-    :enable_strarttls_auto => true
+    :enable_starttls_auto => true
   }
 
   # Print deprecation notices to the Rails logger.
@@ -64,3 +64,4 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
+
