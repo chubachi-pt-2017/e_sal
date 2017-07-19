@@ -32,7 +32,7 @@
       
             <div class="tutorial-edit-right-area">
               <div class="form-group">
-                <span>自分で作成したカテゴリ</span>
+                <span>My Category</span>
                 <%= f.select :original_category_id, @original_categories.map{|t| [t.name, t.id]}, { prompt: "選択してください", hide_label: true }, class: "" %>
               </div>
 
