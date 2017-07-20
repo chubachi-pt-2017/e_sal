@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718142343) do
+ActiveRecord::Schema.define(version: 20170720165732) do
 
-  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "trackable_type"
     t.integer  "trackable_id"
     t.string   "owner_type"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20170718142343) do
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
   end
 
-
   create_table "main_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
     t.string   "name_url",   null: false
@@ -37,7 +36,6 @@ ActiveRecord::Schema.define(version: 20170718142343) do
     t.index ["name"], name: "index_main_categories_on_name", unique: true, using: :btree
     t.index ["name_url"], name: "index_main_categories_on_name_url", unique: true, using: :btree
   end
-
 
   create_table "original_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",             null: false
@@ -53,8 +51,12 @@ ActiveRecord::Schema.define(version: 20170718142343) do
   end
 
   create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "image_updated_at"
+    t.integer  "image_file_size"
+    t.string   "image_content_type"
+    t.string   "image_file_name"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "programmings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -68,14 +70,13 @@ ActiveRecord::Schema.define(version: 20170718142343) do
     t.index ["user_id"], name: "index_programmings_on_user_id", using: :btree
   end
 
-
   create_table "tutorial_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "body",       limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  create_table "tutorials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "tutorials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                limit: 64,             null: false
     t.integer  "user_id"
     t.integer  "photo_id"
@@ -93,7 +94,7 @@ ActiveRecord::Schema.define(version: 20170718142343) do
     t.index ["user_id"], name: "index_tutorials_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  limit: 128, default: "",    null: false
     t.string   "encrypted_password",     limit: 256, default: "",    null: false
     t.string   "reset_password_token",   limit: 64

@@ -1,18 +1,4 @@
 Rails.application.routes.draw do
-  
-  # namespace :e_sal do
-  #   resources :tutorials
-  # end
-  # namespace :e_sal do
-  #   resources :original_categories
-  # end
-  # namespace :e_sal do
-  #   get 'tutorials/index'
-  # end
-
-  root 'home#index'
-  
-  get "/agreement", to: "home#agreement", as: :agreement
 
   devise_for :users, controllers: {
     sessions: "users/sessions",
@@ -40,10 +26,14 @@ Rails.application.routes.draw do
     resources :tutorials do
       collection do
         get '/list', to: 'tutorials#list'
+        post '/photos', to: 'photos#create'
       end
     end
 
     resources :original_categories
+    resources :photos
   end
-  
+
+  get "/agreement", to: "home#agreement", as: :agreement
+  root 'home#index'
 end
