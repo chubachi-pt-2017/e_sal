@@ -40,12 +40,18 @@ function handleFileSelect(evt) {
   }
 
   formData.append('authenticity_token', document.getElementsByName("csrf-token")[0].content);
+  formData.append('user_id', $("#tutorial_user_id").val());
+
+  // var url = location.protocol + "://" + location.host + "/e_sal/photos"
+  var pageType = $("#js-page-type").text();
+  url = "photos"
+  if (pageType == "edit") url = "/e-sal/photos";
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'photos', true);
+  xhr.open('POST', url, true);
   xhr.onload = function () {
     if (xhr.status === 204) {
-      set_markdown_to_current_cursor_place();
+      // set_markdown_to_current_cursor_place();
       var imageDropZone = document.querySelector('#js-image-drop-zone');
       imageDropZone.textContent = "Please drop files here...";
       imageDropZone.style.backgroundColor = "";

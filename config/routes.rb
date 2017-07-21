@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       collection do
         get '/list', to: 'tutorials#list'
         post '/photos', to: 'photos#create'
+        post '/:id/edit/photos', to: 'photos#create'
       end
     end
 
