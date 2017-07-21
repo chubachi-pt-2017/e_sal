@@ -2,9 +2,11 @@ class ESal::PhotosController < ApplicationController
 
   def create
     if photo_params
-      params[:images].each do |image|
-        Photo.create(image: image, user_id: params[:user_id])
+      photos = []
+      params[:images].each_with_index do |image, i|
+        photos[i] = Photo.create(image: image, user_id: params[:user_id])
       end
+      render json: { photos: photos }, :status => 200
     end
   end
 

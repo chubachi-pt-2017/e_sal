@@ -50,8 +50,9 @@ function handleFileSelect(evt) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', url, true);
   xhr.onload = function () {
-    if (xhr.status === 204) {
-      // set_markdown_to_current_cursor_place();
+    if (xhr.status === 200 && xhr.readyState == 4) {
+      var photoJSON = $.parseJSON(xhr.response)
+      set_markdown_to_current_cursor_place(photoJSON);
       var imageDropZone = document.querySelector('#js-image-drop-zone');
       imageDropZone.textContent = "Please drop files here...";
       imageDropZone.style.backgroundColor = "";
@@ -78,13 +79,18 @@ function showUploadHandling(evt) {
   imageDropZone.style.color = "#FFF";
 }
 
-// function set_markdown_to_current_cursor_place() {
-//     var markdown = "![Altをここへ書く](ここはs3のURL)";
-//     var textarea = $("#js-tutorial-body").focus();
-//     var sentence = textarea.val();
-//     var cursor_location = textarea.get(0).selectionStart;
-//     textarea.val(sentence.substr(0, cursor_location) + shortcode + sentence.substr(cursor_location));
+function set_markdown_to_current_cursor_place(photoJSON) {
+  var markdown = "";
+  for (var i = 0; i < photoJSON.photos.length; i++) {
+    if (i => 1) markdown += "\r\n";
+    markdown += "![Altをここへ書く](https://s3-ap-northeast-1.amazonaws.com/esal-dev/images/" + photoJSON.photos[i].id  + "/thumb_480" + photoJSON.photos[i].image_file_name.substr(photoJSON.photos[i].image_file_name.indexOf('.')) + ")";
+  }
 
-//     var end_of_inserted_location = cursor_location + shortcode.length;
-//     textarea.get(0).setSelectionRange(end_of_inserted_location, end_of_inserted_location);
-// }
+  var textarea = $("#js-tutorial-body").focus();
+  var sentence = textarea.val();
+  var cursor_location = textarea.get(0).selectionStart;
+  textarea.val(sentence.substr(0, cursor_location) + markdown + sentence.substr(cursor_location));
+
+  var end_of_inserted_location = cursor_location + markdown.length;
+  textarea.get(0).setSelectionRange(end_of_inserted_location, end_of_inserted_location);
+}
