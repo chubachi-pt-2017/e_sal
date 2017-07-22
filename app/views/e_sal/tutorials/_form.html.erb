@@ -17,6 +17,14 @@
                 </div>
                 <%= f.text_field :title, hide_label: true, class: "js-disabled-enter", id: "js-tutorial-title" %>
               </div>
+  
+              <div class="form-group">
+                <div class="image-upload-area">
+                  <div class="image-upload-area__drop-zone" id="js-image-drop-zone">Please drop files here... (jpg, png, word, excel, pdf, zip, txt)</div>
+                </div>
+              </div>
+              <!--<output id="list"></output>-->
+  
               <div class="form-group">
                 <div class="tutorial-edit-left-area__tutorial-body-area">
                   <div class="tutorial-edit-left-area__tutorial-body"><span>チュートリアル本文</span></div>
@@ -31,14 +39,6 @@
             </div><!-- end of tutorial-edit-left-area -->
       
             <div class="tutorial-edit-right-area">
-              <div class="form-group">
-                <div class="image-upload-area">
-                  <div>画像アップロード</div>
-                  <div class="image-upload-area__drop-zone" id="js-image-drop-zone">Please drop files here...</div>
-                </div>
-              </div>
-              <output id="list"></output>
-                
               <div class="form-group">
                 <span>My Category</span>
                 <%= f.select :original_category_id, @original_categories.map{|t| [t.name, t.id]}, { prompt: "選択してください", hide_label: true }, class: "" %>
