@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <%= stylesheet_link_tag 'e_sal/application_esal', media: 'all' %>
     <%= javascript_include_tag "e_sal/application" %>
-    <%= javascript_include_tag params[:controller] %>
+    <% if params[:action] == "new" || params[:action] == "edit" %>
+      <%= javascript_include_tag params[:controller] %>
+    <% end %>
 
     <title>E-sal</title>
     <%= csrf_meta_tags %>

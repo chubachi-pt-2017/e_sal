@@ -8,7 +8,6 @@ class ESal::TutorialsController < ESal::Base
   def show
   end
 
-
   def list
     @tutorials = Tutorial.published_tutorials.page(params[:page]).per(LIST_NUM_PER_PAGE)
   end
@@ -59,7 +58,24 @@ class ESal::TutorialsController < ESal::Base
     end
   end
 
+  def preview
+    raise ESalNotFoundError.new if params[:preview].blank?
+    set_preview_data
+  end
+
   private
+    def set_preview_data
+      @tutorial = Tutorial.new
+      @tutorial.title = params[:tutorial][:title]
+      @body = params[:tutorial][:tutorial_content_attributes][:body]
+      if params[:tutorial][:datetime_for_display].present?
+        @tutorial.datetime_for_display = params[:tutorial][:datetime_for_display]
+      else
+        @tutorial.datetime_for_display = Time.now
+      end
+      @preview = "preview"
+    end
+  
     def set_e_sal_tutorial
       @tutorial = Tutorial.find(params[:id])
     end

@@ -23,8 +23,7 @@
                   <div class="image-upload-area__drop-zone" id="js-image-drop-zone">Please drop files here... (jpg, png, word, excel, pdf, zip, txt)</div>
                 </div>
               </div>
-              <!--<output id="list"></output>-->
-  
+
               <div class="form-group">
                 <div class="tutorial-edit-left-area__tutorial-body-area">
                   <div class="tutorial-edit-left-area__tutorial-body"><span>チュートリアル本文</span></div>
@@ -59,8 +58,8 @@
                 <%= f.text_field :datetime_for_display, data: { :date_format => 'YYYY/MM/DD hh:mm' }, hide_label: true, class: 'js-disabled-enter date-fields', id: "datetimepicker4",  placeholder: 'クリックして下さい' %>
               </div>
 
-              <%= f.submit "更新する", id: "js_update_button" %>
-              <%= f.submit "プレビュー", name: "preview", id: "js_preview_button" %>
+              <%= f.submit "更新する", id: "js-update-button" %>
+              <%= f.submit "プレビュー", name: "preview", id: "js-preview-button" %>
             </div><!-- end of tutorial-edit-right-area -->
           <% end %>
       </div><!-- end of x_content -->

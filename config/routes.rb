@@ -28,6 +28,8 @@ Rails.application.routes.draw do
         get '/list', to: 'tutorials#list'
         post '/photos', to: 'photos#create'
         post '/:id/edit/photos', to: 'photos#create'
+        post '/preview/:id' => 'tutorials#preview'
+        patch '/preview/:id' => 'tutorials#preview'
       end
     end
 

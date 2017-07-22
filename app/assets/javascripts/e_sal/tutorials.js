@@ -18,8 +18,46 @@ $(function(){
     tutorialTitleCount.text(tutorialTitle.val().length);
   });  
 
+  // 画像のアップロード処理を設定する
   prepareForUploadImage();
+
+  // プレビューボタン
+  $("#js-preview-button").on("click", function(){
+    var tutorial_id = "";
+    tutorial_id = $("#tutorial_id").val();
+
+    var $selector = ""
+    if (tutorial_id == "") {
+      $selector = $("#new_tutorial");
+    } else {
+      $selector = $("#edit_tutorial_"+tutorial_id);
+    }
+    prepareForPreviewBeforeSend($selector);
+  });
+
+  // 更新ボタン
+  $("#js-update-button").on("click", function(){
+    var tutorial_id = "";
+    tutorial_id = $("#tutorial_id").val();
+
+    if (tutorial_id == "") {
+      $("#new_tutorial").attr('target', "")
+                        .attr('action', "/e-sal/tutorials");
+    } else {
+      $("#edit_tutorial_"+tutorial_id).attr('target', "")
+                                      .attr('action', "/e-sal/tutorials/"+tutorial_id);
+    }
+  });
 });
+
+function prepareForPreviewBeforeSend($selector) {
+  // プレビューのチュートリアルIDは0で統一
+  $selector.attr("target", "preview_tutorial")
+           .attr("action", "/e-sal/tutorials/preview/0");
+
+  $("#js-preview-button").removeAttr('data-disable-with');
+  $("#js-update-button").removeAttr('data-disable-with'); 
+}
 
 function prepareForUploadImage() {
   var imageDropZone = document.getElementById('js-image-drop-zone');
@@ -42,7 +80,6 @@ function handleFileSelect(evt) {
   formData.append('authenticity_token', document.getElementsByName("csrf-token")[0].content);
   formData.append('user_id', $("#tutorial_user_id").val());
 
-  // var url = location.protocol + "://" + location.host + "/e_sal/photos"
   var pageType = $("#js-page-type").text();
   url = "photos"
   if (pageType == "edit") url = "/e-sal/photos";
