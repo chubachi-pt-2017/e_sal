@@ -13,24 +13,32 @@
               <div class="form-group">
                 <div class="tutorial-edit-left-area__title-area">
                   <div class="tutorial-edit-left-area__title"><span>タイトル</span></div>
-                  <div class="tutorial-edit-left-area__title-count"><span>タイトルの文字数:</span><span id="post-title-count">0</span></div>
+                  <div class="tutorial-edit-left-area__title-count"><span>タイトルの文字数:</span><span id="js-tutorial-title-count">0</span></div>
                 </div>
-                <%= f.text_field :title, hide_label: true, class: "js-disabled-enter", id: "post_title" %>
+                <%= f.text_field :title, hide_label: true, class: "js-disabled-enter", id: "js-tutorial-title" %>
               </div>
               <div class="form-group">
                 <div class="tutorial-edit-left-area__tutorial-body-area">
                   <div class="tutorial-edit-left-area__tutorial-body"><span>チュートリアル本文</span></div>
-                  <div class="tutorial-edit-left-area__tutorial-body-count"><span>チュートリアル本文の文字数:</span><span id="post-title-count">0</span></div>
+                  <div class="tutorial-edit-left-area__tutorial-body-count"><span>チュートリアル本文の文字数:</span><span id="js-tutorial-body-count">0</span></div>
                 </div>
                 <%= f.fields_for :tutorial_content, @tutorial.tutorial_content || TutorialContent.new do |t| %>
                   <%= t.hidden_field :id %>
-                  <%= t.text_area :body, hide_label: "true", rows: "20", id: "post-main-sentence" %>
+                  <%= t.text_area :body, hide_label: "true", rows: "20", id: "js-tutorial-body" %>
                 <% end %>
                 <div class="tutorial-edit-left-area__body-error"><%= f.errors_on :body, hide_attribute_name: true %></div>
               </div>
             </div><!-- end of tutorial-edit-left-area -->
       
             <div class="tutorial-edit-right-area">
+              <div class="form-group">
+                <div class="image-upload-area">
+                  <div>画像アップロード</div>
+                  <div class="image-upload-area__drop-zone" id="js-image-drop-zone">Please drop files here...</div>
+                </div>
+              </div>
+              <output id="list"></output>
+                
               <div class="form-group">
                 <span>My Category</span>
                 <%= f.select :original_category_id, @original_categories.map{|t| [t.name, t.id]}, { prompt: "選択してください", hide_label: true }, class: "" %>
@@ -53,11 +61,11 @@
 
               <%= f.submit "更新する", id: "js_update_button" %>
               <%= f.submit "プレビュー", name: "preview", id: "js_preview_button" %>
-
             </div><!-- end of tutorial-edit-right-area -->
           <% end %>
       </div><!-- end of x_content -->
     </div>
+    <div id="js-page-type" style="display:none;"><%= params[:action] %></div>
 </div>
 <script type="text/javascript">
   $(function () {

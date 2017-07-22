@@ -3,9 +3,8 @@ class Photo < ApplicationRecord
   has_attached_file :image,
                     :processors => [:thumbnail, :paperclip_optimizer],
                     :styles => {
-                      :thumb_160 => "160x160#",                        
+                      :thumb_150 => "150x150#",                        
                       :thumb_480 => "480x320>",
-                      :thumb_100 => "100×100>",
                       :thumb_80 => "80×80>"                      
                     },
                     :convert_options => {
@@ -16,14 +15,14 @@ class Photo < ApplicationRecord
                     :storage => :s3,
                     :path => ":attachment/:id/:style.:extension",                    
                     :s3_permissions => :private,
-                    :bucket => ENV['S3_BUCKET'],
-                    :s3_region => ENV['AWS_REGION'],
-                    :s3_host_name   => ENV['S3_HOST_NAME'],
-                    :s3_credentials => {
-                      :access_key_id => ENV['AWS_ACCESS_KEY'],
-                      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-                    },
-                    # :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    # :bucket => ENV['S3_BUCKET'],
+                    # :s3_region => ENV['AWS_REGION'],
+                    # :s3_host_name   => ENV['S3_HOST_NAME'],
+                    # :s3_credentials => {
+                    #   :access_key_id => ENV['AWS_ACCESS_KEY'],
+                    #   :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+                    # },
+                    :s3_credentials => "#{Rails.root}/config/s3.yml",
                     :s3_protocol => :https,
                     :s3_headers => { 'Cache-Control' => 'max-age=2592000' }
 

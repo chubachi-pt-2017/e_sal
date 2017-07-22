@@ -22,6 +22,9 @@ gem 'activerecord-confirmable'
 gem 'public_activity', '~> 1.0'
 gem 'kaminari'
 gem 'redcarpet'
+gem 'paperclip'
+gem 'paperclip-optimizer'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'byebug', platform: :mri
