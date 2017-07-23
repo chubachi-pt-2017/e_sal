@@ -1,4 +1,4 @@
-class ESal::CommentsController < ApplicationController
+class ESal::CommentsController < ESal::Base
   before_action :set_tutorial
 
   def create

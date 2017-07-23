@@ -52,6 +52,35 @@ $(function(){
     });
   }
 
+  // チュートリアル詳細ページ
+  if ($("#js-page-type").text() == "show") {
+    // いいねボタン
+  	$(document).one('click', '#js-like-button', function(e) {
+  	  $.ajax({
+        type: "POST",
+        url: "/e-sal/tutorials/like",
+        data: {
+          tutorial_id: $("#js-tutorial-id").text(),
+          user_id: $("#js-user-id").text()
+        }
+      }).success(function(data) {
+        $("#js-like-numbers").text(parseInt($("#js-like-numbers").text()) + 1);
+      }).error(function(data) {
+        alert("データベースの更新に失敗しました。再度いいねボタンを押してください。")
+      });
+  		$(this).html('<i class="fa fa-heart" aria-hidden="true"></i> You liked this');
+  		$(this).children('.fa-heart').addClass('js-animate-like-dislike-button');
+  		$(this).css('width','180px');
+  	});
+  
+    // よくないねボタン
+  	$(document).one('click', '#js-dislike-button', function(e) {
+  		$(this).html('<i class="fa fa-bolt" aria-hidden="true"></i> You disliked this');
+  		$(this).children('.fa-bolt').addClass('js-animate-like-dislike-button');
+  		$(this).css('width','180px');
+  	});
+  }
+
 });
 
 function prepareForPreviewBeforeSend($selector) {

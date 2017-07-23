@@ -251,3 +251,53 @@
     width: 737px;
   }
 }
+
+
+/* いいね、よくないねボタン */
+.evaluation-button {
+  display: inline-block;
+  width: 100%;
+  margin: 40px 0 0;
+  padding: 40px 0 0;
+  font-size: 18px;
+  border-top: 10px dashed #eee;
+  text-align: center;
+  &__like-button {
+    @extend %evaluation-button;
+    background: #ed2553;
+    box-shadow: 0 10px 20px -8px rgb(240, 75, 113);
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+  &__dislike-button {
+    @extend %evaluation-button;
+    background: #093dbd;
+    box-shadow: 0 10px 20px -8px rgb(0, 102, 153);
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+  span, p {
+  	color: #9d9da4;
+  	font-family: monospace;
+  }
+  &__like-numbers {
+    margin: 0 20px;
+  }
+  &evaluation-button__fa {
+    margin-right: 5px;
+  }
+}
+
+.js-animate-like-dislike-button {
+	animation-name: likeAnimation;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	animation-duration: 0.65s;
+}
+
+@keyframes likeAnimation {
+  0% { transform: scale(30); }
+  100% { transform: scale(1); }
+}
