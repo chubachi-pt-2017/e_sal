@@ -1,5 +1,4 @@
 $(function(){
-
   // チュートリアル新規作成or編集ページだったら
   if ($("#js-page-type").text() == "new" || $("#js-page-type") == "edit") {
     // 本文テキストカウント
