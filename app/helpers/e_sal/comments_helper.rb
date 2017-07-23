@@ -1,0 +1,2 @@
+module ESal::CommentsHelper
+end

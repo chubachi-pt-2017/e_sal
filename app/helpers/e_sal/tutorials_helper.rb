@@ -18,4 +18,8 @@ module ESal::TutorialsHelper
 
     @markdown.render(text).html_safe
   end
+  
+  def persisted_comments(comments)
+    comments.reject{ |comment| comment.new_record? }
+  end
 end
