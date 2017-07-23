@@ -1,11 +1,13 @@
 class ESal::TutorialsController < ESal::Base
-  before_action :set_e_sal_tutorial, only: [:show, :edit, :update, :destroy]
+  before_action :set_tutorial, only: [:show, :edit, :update, :destroy]
 
   def index
     @tutorials = Tutorial.get_by_user_id(current_user.id).page(params[:page]).per(LIST_NUM_PER_PAGE)
   end
 
   def show
+    @comment = @tutorial.comments.build
+    @comments = @tutorial.comments
   end
 
   def list
@@ -76,7 +78,7 @@ class ESal::TutorialsController < ESal::Base
       @preview = "preview"
     end
   
-    def set_e_sal_tutorial
+    def set_tutorial
       @tutorial = Tutorial.find(params[:id])
     end
 

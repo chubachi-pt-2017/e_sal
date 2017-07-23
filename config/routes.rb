@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         post '/preview/:id' => 'tutorials#preview'
         patch '/preview/:id' => 'tutorials#preview'
       end
+      resources :comments
     end
 
     resources :original_categories

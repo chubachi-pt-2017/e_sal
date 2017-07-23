@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720165732) do
+ActiveRecord::Schema.define(version: 20170723083529) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "trackable_type"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20170720165732) do
     t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
     t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+  end
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "body",        limit: 65535
+    t.integer  "tutorial_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["tutorial_id"], name: "index_comments_on_tutorial_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
   create_table "main_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -55,8 +65,10 @@ ActiveRecord::Schema.define(version: 20170720165732) do
     t.integer  "image_file_size"
     t.string   "image_content_type"
     t.string   "image_file_name"
+    t.integer  "user_id",            null: false
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
   end
 
   create_table "programmings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -133,4 +145,6 @@ ActiveRecord::Schema.define(version: 20170720165732) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
+  add_foreign_key "comments", "tutorials"
+  add_foreign_key "comments", "users"
 end

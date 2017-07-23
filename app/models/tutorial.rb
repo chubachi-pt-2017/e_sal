@@ -27,7 +27,8 @@ class Tutorial < ApplicationRecord
   belongs_to :tutorial_content
   belongs_to :original_category
   belongs_to :user  
-  # belongs_to :photo
+  has_many :comments, dependent: :destroy
+
   has_one :main_category, through: :original_category
   accepts_nested_attributes_for :tutorial_content, allow_destroy: true  
 
