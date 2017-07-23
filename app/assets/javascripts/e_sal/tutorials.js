@@ -1,53 +1,57 @@
 $(function(){
 
-  // 本文テキストカウント
-  var bodyTextCount = $("#js-tutorial-body-count");
-  var bodyText = $("#js-tutorial-body");
-  bodyTextCount.text(bodyText.val().length);
-
-  bodyText.on("keyup", function() {
-    bodyTextCount.text(bodyText.val().replace(/[\n\s　]/g, "").length);
-  });
-
-  // タイトルテキストカウント
-  var tutorialTitleCount = $("#js-tutorial-title-count");
-  var tutorialTitle = $("#js-tutorial-title");
-  tutorialTitleCount.text(tutorialTitle.val().length);
-
-  tutorialTitle.on("keyup", function() {
+  // チュートリアル新規作成or編集ページだったら
+  if ($("#js-page-type").text() == "new" || $("#js-page-type") == "edit") {
+    // 本文テキストカウント
+    var bodyTextCount = $("#js-tutorial-body-count");
+    var bodyText = $("#js-tutorial-body");
+    bodyTextCount.text(bodyText.val().length);
+  
+    bodyText.on("keyup", function() {
+      bodyTextCount.text(bodyText.val().replace(/[\n\s　]/g, "").length);
+    });
+  
+    // タイトルテキストカウント
+    var tutorialTitleCount = $("#js-tutorial-title-count");
+    var tutorialTitle = $("#js-tutorial-title");
     tutorialTitleCount.text(tutorialTitle.val().length);
-  });  
+  
+    tutorialTitle.on("keyup", function() {
+      tutorialTitleCount.text(tutorialTitle.val().length);
+    });  
+  
+    // 画像のアップロード処理を設定する
+    prepareForUploadImage();
+  
+    // プレビューボタン
+    $("#js-preview-button").on("click", function(){
+      var tutorial_id = "";
+      tutorial_id = $("#tutorial_id").val();
+  
+      var $selector = ""
+      if (tutorial_id == "") {
+        $selector = $("#new_tutorial");
+      } else {
+        $selector = $("#edit_tutorial_"+tutorial_id);
+      }
+      prepareForPreviewBeforeSend($selector);
+    });
+  
+    // 更新ボタン
+    $("#js-update-button").on("click", function(){
+      var tutorial_id = "";
+      tutorial_id = $("#tutorial_id").val();
+  
+      if (tutorial_id == "") {
+        $("#new_tutorial").attr('target', "")
+                          .attr('action', "/e-sal/tutorials");
+      } else {
+        $("#edit_tutorial_"+tutorial_id).attr('target', "")
+                                        .attr('action', "/e-sal/tutorials/"+tutorial_id);
+      }
+    });
+  }
 
-  // 画像のアップロード処理を設定する
-  prepareForUploadImage();
-
-  // プレビューボタン
-  $("#js-preview-button").on("click", function(){
-    var tutorial_id = "";
-    tutorial_id = $("#tutorial_id").val();
-
-    var $selector = ""
-    if (tutorial_id == "") {
-      $selector = $("#new_tutorial");
-    } else {
-      $selector = $("#edit_tutorial_"+tutorial_id);
-    }
-    prepareForPreviewBeforeSend($selector);
-  });
-
-  // 更新ボタン
-  $("#js-update-button").on("click", function(){
-    var tutorial_id = "";
-    tutorial_id = $("#tutorial_id").val();
-
-    if (tutorial_id == "") {
-      $("#new_tutorial").attr('target', "")
-                        .attr('action', "/e-sal/tutorials");
-    } else {
-      $("#edit_tutorial_"+tutorial_id).attr('target', "")
-                                      .attr('action', "/e-sal/tutorials/"+tutorial_id);
-    }
-  });
 });
 
 function prepareForPreviewBeforeSend($selector) {

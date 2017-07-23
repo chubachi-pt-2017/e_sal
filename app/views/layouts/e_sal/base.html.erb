@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <%= stylesheet_link_tag 'e_sal/application_esal', media: 'all' %>
     <%= javascript_include_tag "e_sal/application" %>
-    <% if params[:action] == "new" || params[:action] == "edit" %>
-      <%= javascript_include_tag params[:controller] %>
-    <% end %>
+    <%= javascript_include_tag params[:controller] %>
 
     <title>E-sal</title>
     <%= csrf_meta_tags %>
@@ -36,5 +34,6 @@
       <%= render partial: 'layouts/common_partials/footer' %>
     </div>
     <!-- /all wrap -->
+    <div id="js-page-type" style="display:none;"><%= params[:action] %></div>
 </body>
 </html>
