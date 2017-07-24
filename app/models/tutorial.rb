@@ -28,6 +28,8 @@ class Tutorial < ApplicationRecord
   belongs_to :original_category
   belongs_to :user  
   has_many :comments, dependent: :destroy
+  has_many :tutorial_likes, dependent: :destroy
+  has_many :tutorial_dislikes, dependent: :destroy
 
   has_one :main_category, through: :original_category
   accepts_nested_attributes_for :tutorial_content, allow_destroy: true  

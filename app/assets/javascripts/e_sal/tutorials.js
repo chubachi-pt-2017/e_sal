@@ -93,14 +93,14 @@ $(function(){
   	});
   
     // よくないねボタン
-  	$(document).one('click', '#js-dislike-button', function(e) {
-  	  var state = $(this).data("data-like");
+  	$(document).on('click', '#js-dislike-button', function(e) {
+  	  var state = $(this).attr("data-like");
   	  var method = "";
 
   	  if ( state == "on" ) {
   	    method = "post"
   	  } else if ( state == "off" ) {
-  	    method = "destroy"
+  	    method = "delete"
   	  }
 
   	  $.ajax({
@@ -111,9 +111,19 @@ $(function(){
           user_id: $("#js-user-id").text()
         }
       }).success(function(data) {
-    		$("#js-dislike-button").html('<i class="fa fa-bolt" aria-hidden="true"></i> You disliked this');
-    		$("#js-dislike-button").children('.fa-bolt').addClass('js-animate-like-dislike-button');
-    		$("#js-dislike-button").css('width','180px');
+        if (state == "on") {
+      	  $("#js-dislike-numbers").text(parseInt($("#js-dislike-numbers").text()) + 1);
+      		$("#js-dislike-button").html('<i class="fa fa-bolt" aria-hidden="true"></i> You disliked this');
+      		$("#js-dislike-button").children('.fa-bolt').addClass('js-animate-like-dislike-button');
+      		$("#js-dislike-button").css('width','180px');
+      		$("#js-dislike-button").attr("data-like", "off");
+      	} else if (state == "off") {
+      	  $("#js-dislike-numbers").text(parseInt($("#js-dislike-numbers").text()) - 1);
+      		$("#js-dislike-button").html('<i class="fa fa-bolt" aria-hidden="true"></i> Dislike');
+      		$("#js-dislike-button").children('.fa-bolt').addClass('js-animate-like-dislike-button');
+      		$("#js-dislike-button").css('width','108px');
+      		$("#js-dislike-button").attr("data-like", "on");
+      	}
       }).error(function(data) {
         alert("データベースの更新に失敗しました。再度dislikeボタンを押してください。");
         return false;

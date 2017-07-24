@@ -2,7 +2,8 @@ class User < ApplicationRecord
   
   has_many :programmings
   has_many :tutorials
-  has_many :tutorial_likes 
+  has_many :tutorial_likes
+  has_many :tutorial_dislike
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
