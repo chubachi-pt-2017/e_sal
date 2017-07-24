@@ -1,6 +1,7 @@
 class ESal::TutorialLikesController < ESal::Base
 
   def create
+    likes_params
     if params[:tutorial_id].blank? || params[:user_id].blank?
       redirect_to e_sal_tutorial_path(id: params[:user_id])
       return

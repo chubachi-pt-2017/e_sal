@@ -1,0 +1,2 @@
+class TutorialDislike < ApplicationRecord
+end

@@ -65,19 +65,32 @@ $(function(){
         }
       }).success(function(data) {
         $("#js-like-numbers").text(parseInt($("#js-like-numbers").text()) + 1);
+    		$("#js-like-button").html('<i class="fa fa-heart" aria-hidden="true"></i> You liked this');
+    		$("#js-like-button").children('.fa-heart').addClass('js-animate-like-dislike-button');
+    		$("#js-like-button").css('width','180px');
       }).error(function(data) {
-        alert("データベースの更新に失敗しました。再度いいねボタンを押してください。")
+        alert("データベースの更新に失敗しました。再度likeボタンを押してください。");
+        return false;
       });
-  		$(this).html('<i class="fa fa-heart" aria-hidden="true"></i> You liked this');
-  		$(this).children('.fa-heart').addClass('js-animate-like-dislike-button');
-  		$(this).css('width','180px');
   	});
   
     // よくないねボタン
   	$(document).one('click', '#js-dislike-button', function(e) {
-  		$(this).html('<i class="fa fa-bolt" aria-hidden="true"></i> You disliked this');
-  		$(this).children('.fa-bolt').addClass('js-animate-like-dislike-button');
-  		$(this).css('width','180px');
+  	  $.ajax({
+        type: "POST",
+        url: "/e-sal/tutorials/tutorial-dislike",
+        data: {
+          tutorial_id: $("#js-tutorial-id").text(),
+          user_id: $("#js-user-id").text()
+        }
+      }).success(function(data) {
+    		$("#js-dislike-button").html('<i class="fa fa-bolt" aria-hidden="true"></i> You disliked this');
+    		$("#js-dislike-button").children('.fa-bolt').addClass('js-animate-like-dislike-button');
+    		$("#js-dislike-button").css('width','180px');
+      }).error(function(data) {
+        alert("データベースの更新に失敗しました。再度dislikeボタンを押してください。");
+        return false;
+      });
   	});
   }
 

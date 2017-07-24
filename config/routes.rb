@@ -32,6 +32,8 @@ Rails.application.routes.draw do
         patch '/preview/:id' => 'tutorials#preview'
         post '/tutorial-like' => 'tutorial_likes#create'
         delete '/tutorial-like' => 'tutorial_likes#destroy'
+        post '/tutorial-dislike' => 'tutorial_dislikes#create'
+        delete '/tutorial-dislike' => 'tutorial_dislikes#destroy'
       end
       resources :comments
     end
