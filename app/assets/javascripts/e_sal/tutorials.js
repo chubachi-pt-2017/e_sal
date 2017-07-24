@@ -79,12 +79,14 @@ $(function(){
       		$("#js-like-button").children('.fa-heart').addClass('js-animate-like-dislike-button');
       		$("#js-like-button").css('width','180px');
       		$("#js-like-button").attr("data-like", "off");
+      		$("#js-dislike-button").prop("disabled", true);
         }else if (state == "off") {
           $("#js-like-numbers").text(parseInt($("#js-like-numbers").text()) - 1);
       		$("#js-like-button").html('<i class="fa fa-heart" aria-hidden="true"></i> Like');
       		$("#js-like-button").children('.fa-heart').addClass('js-animate-like-dislike-button');
       		$("#js-like-button").css('width','108px');
       		$("#js-like-button").attr("data-like", "on");
+      		$("#js-dislike-button").prop("disabled", false);
         }
       }).error(function(data) {
         alert("データベースの更新に失敗しました。再度likeボタンを押してください。");
@@ -117,12 +119,14 @@ $(function(){
       		$("#js-dislike-button").children('.fa-bolt').addClass('js-animate-like-dislike-button');
       		$("#js-dislike-button").css('width','180px');
       		$("#js-dislike-button").attr("data-like", "off");
+      		$("#js-like-button").prop("disabled", true);
       	} else if (state == "off") {
       	  $("#js-dislike-numbers").text(parseInt($("#js-dislike-numbers").text()) - 1);
       		$("#js-dislike-button").html('<i class="fa fa-bolt" aria-hidden="true"></i> Dislike');
       		$("#js-dislike-button").children('.fa-bolt').addClass('js-animate-like-dislike-button');
       		$("#js-dislike-button").css('width','108px');
       		$("#js-dislike-button").attr("data-like", "on");
+      		$("#js-like-button").prop("disabled", false);
       	}
       }).error(function(data) {
         alert("データベースの更新に失敗しました。再度dislikeボタンを押してください。");
