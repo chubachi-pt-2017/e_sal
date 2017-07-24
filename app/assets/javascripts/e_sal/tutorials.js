@@ -55,19 +55,37 @@ $(function(){
   // チュートリアル詳細ページ
   if ($("#js-page-type").text() == "show") {
     // いいねボタン
-  	$(document).one('click', '#js-like-button', function(e) {
+  	$("#js-like-button").on('click', function(e) {
+  	  var state = $(this).attr("data-like");
+  	  var method = "";
+
+  	  if ( state == "on" ) {
+  	    method = "post";
+  	  } else if ( state == "off" ) {
+  	    method = "delete";
+  	  }
+
   	  $.ajax({
-        type: "POST",
+        type: method,
         url: "/e-sal/tutorials/tutorial-like",
         data: {
           tutorial_id: $("#js-tutorial-id").text(),
           user_id: $("#js-user-id").text()
         }
       }).success(function(data) {
-        $("#js-like-numbers").text(parseInt($("#js-like-numbers").text()) + 1);
-    		$("#js-like-button").html('<i class="fa fa-heart" aria-hidden="true"></i> You liked this');
-    		$("#js-like-button").children('.fa-heart').addClass('js-animate-like-dislike-button');
-    		$("#js-like-button").css('width','180px');
+        if (state == "on") {
+          $("#js-like-numbers").text(parseInt($("#js-like-numbers").text()) + 1);
+      		$("#js-like-button").html('<i class="fa fa-heart" aria-hidden="true"></i> You liked this');
+      		$("#js-like-button").children('.fa-heart').addClass('js-animate-like-dislike-button');
+      		$("#js-like-button").css('width','180px');
+      		$("#js-like-button").attr("data-like", "off");
+        }else if (state == "off") {
+          $("#js-like-numbers").text(parseInt($("#js-like-numbers").text()) - 1);
+      		$("#js-like-button").html('<i class="fa fa-heart" aria-hidden="true"></i> Like');
+      		$("#js-like-button").children('.fa-heart').addClass('js-animate-like-dislike-button');
+      		$("#js-like-button").css('width','108px');
+      		$("#js-like-button").attr("data-like", "on");
+        }
       }).error(function(data) {
         alert("データベースの更新に失敗しました。再度likeボタンを押してください。");
         return false;
@@ -76,8 +94,17 @@ $(function(){
   
     // よくないねボタン
   	$(document).one('click', '#js-dislike-button', function(e) {
+  	  var state = $(this).data("data-like");
+  	  var method = "";
+
+  	  if ( state == "on" ) {
+  	    method = "post"
+  	  } else if ( state == "off" ) {
+  	    method = "destroy"
+  	  }
+
   	  $.ajax({
-        type: "POST",
+        type: method,
         url: "/e-sal/tutorials/tutorial-dislike",
         data: {
           tutorial_id: $("#js-tutorial-id").text(),
