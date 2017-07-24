@@ -58,7 +58,7 @@ $(function(){
   	$(document).one('click', '#js-like-button', function(e) {
   	  $.ajax({
         type: "POST",
-        url: "/e-sal/tutorials/like",
+        url: "/e-sal/tutorials/tutorial-like",
         data: {
           tutorial_id: $("#js-tutorial-id").text(),
           user_id: $("#js-user-id").text()
