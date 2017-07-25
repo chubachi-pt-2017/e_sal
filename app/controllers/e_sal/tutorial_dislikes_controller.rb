@@ -3,10 +3,7 @@ class ESal::TutorialDislikesController < ESal::Base
                 :find_dislike, only: [:destroy]
 
   def create
-    if params[:tutorial_id].blank? || params[:user_id].blank?
-      redirect_to e_sal_tutorial_path(id: params[:user_id])
-      return
-    end
+    return if params[:tutorial_id].blank? || params[:user_id].blank?
 
     if TutorialDislike.create(tutorial_id: params[:tutorial_id], user_id: params[:user_id])
       render :text => "success", :status => 200 and return

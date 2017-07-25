@@ -17,11 +17,11 @@
     <button class="evaluation-button__like-button" id="js-like-button" data-like="on">
       <i class="evaluation-button__fa fa fa-thumbs-o-up" aria-hidden="true"></i> Like
     </button>
-    <span class="evaluation-button__like-numbers" id="js-like-numbers">1</span>
-    <button class="evaluation-button__dislike-button" id="js-dislike-button" data-like="on">
+    <span class="evaluation-button__like-numbers" id="js-like-numbers"><%= @number_of_likes %></span>
+    <button class="evaluation-button__dislike-button" id="js-dislike-button" data-dislike="on">
       <i class="fa fa fa-thumbs-o-down" aria-hidden="true"></i> Dislike
     </button>
-    <span class="evaluation-button__like-numbers" id="js-dislike-numbers">2</span>    
+    <span class="evaluation-button__like-numbers" id="js-dislike-numbers"><%= @number_of_dislikes %></span>    
   </div>
 
   <hr>
@@ -85,4 +85,6 @@
   </div>
 </div>
 <div style="display: none;" id="js-tutorial-id"><%= @tutorial.id %></div>
-<div style="display: none;" id="js-user-id"><%= @tutorial.user_id %></div>
+<div style="display: none;" id="js-user-id"><%= @current_login_user_id %></div>
+<div style="display: none;" id="js-like-tutorial"><%= @press_like_button %></div>
+<div style="display: none;" id="js-dislike-tutorial"><%= @press_dislike_button %></div>
