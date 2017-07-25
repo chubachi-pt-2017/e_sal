@@ -1,23 +1,25 @@
 <div class="category-area">
-  <%= render partial: 'layouts/common_partials/header_stats' %>
-  <h2>カテゴリの編集ページ</h2>
-  <div class="category-edit-field">
-    <div class="box">
-      <div class="box-body">
-        <%= bootstrap_form_for([:e_sal, @original_category], layout: :horizontal) do |f| %>
-          <%= f.hidden_field :user_id %>
-
-          <div><span>カテゴリ名(My Category)</span></div>
-          <%= f.text_field :name, hide_label: true, class: "js-disabled-enter", disabled: @has_tutorials %>
-
-          <div><span>カテゴリ英語名(半角の小文字/数字とハイフンのみ)</span></div>
-          <%= f.text_field :name_url, hide_label: true, class: "js-disabled-enter", placeholder: "URLに使用されますので、慎重に入力してください。", disabled: @has_tutorials %>
-
-          <div><span>メインカテゴリ</span></div>
-          <%= f.select :main_category_id, @main_categories.map{|m| [m.name, m.id] }, { prompt: "選択してください", hide_label: true }, { disabled: @has_tutorials } %>
-
-          <%= f.submit "更新する", class: "btn btn-success pull-right" %>
-        <% end %>
+  <div class="contents-wrap">
+    <%= render partial: 'layouts/common_partials/header_stats' %>
+    <h2>カテゴリの編集ページ</h2>
+    <div class="category-edit-field">
+      <div class="box">
+        <div class="box-body">
+          <%= bootstrap_form_for([:e_sal, @original_category], layout: :horizontal) do |f| %>
+            <%= f.hidden_field :user_id %>
+  
+            <div><span>カテゴリ名(My Category)</span></div>
+            <%= f.text_field :name, hide_label: true, class: "js-disabled-enter", disabled: @has_tutorials %>
+  
+            <div><span>カテゴリ英語名(半角の小文字/数字とハイフンのみ)</span></div>
+            <%= f.text_field :name_url, hide_label: true, class: "js-disabled-enter", placeholder: "URLに使用されますので、慎重に入力してください。", disabled: @has_tutorials %>
+  
+            <div><span>メインカテゴリ</span></div>
+            <%= f.select :main_category_id, @main_categories.map{|m| [m.name, m.id] }, { prompt: "選択してください", hide_label: true }, { disabled: @has_tutorials } %>
+  
+            <%= f.submit "更新する", class: "btn btn-success pull-right" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

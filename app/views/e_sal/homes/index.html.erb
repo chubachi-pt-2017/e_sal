@@ -1,142 +1,144 @@
 <div class="contents-top">
-  <%= render partial: 'layouts/common_partials/header_stats' %>
-
-  <div class="contents-top__timeline-wrap">
-    <div class="contents-top__timeline-title">
-      <h2 class="contents-top__title">新着情報・トピック</h2>
-      <div class="clearfix"></div>
-    </div>
-    <ul class="contents-top__timeline">
-      <% @timelines.each do |timeline| %>
+  <div class="contents-wrap">
+    <%= render partial: 'layouts/common_partials/header_stats' %>
+  
+    <div class="contents-top__timeline-wrap">
+      <div class="contents-top__timeline-title">
+        <h2 class="contents-top__title">新着情報・トピック</h2>
+        <div class="clearfix"></div>
+      </div>
+      <ul class="contents-top__timeline">
+        <% @timelines.each do |timeline| %>
+          <li>
+            <p class="contents-top__timeline-date"><%= timeline.created_at.strftime("#{t("date.formats.long")}") %></p>
+            <div class="contents-top__timeline-content">
+              <h3><%= t("activity.#{timeline.key}") %></h3>
+              <p><%= link_to timeline.parameters[:title], "#{timeline.parameters[:link_url]}/#{timeline.trackable_id}" unless timeline.parameters[:link_url].nil? %></p>
+            </div>
+          </li>
+        <% end -%>
         <li>
-          <p class="contents-top__timeline-date"><%= timeline.created_at.strftime("#{t("date.formats.long")}") %></p>
+          <p class="contents-top__timeline-date">2017年6月30日</p>
           <div class="contents-top__timeline-content">
-            <h3><%= t("activity.#{timeline.key}") %></h3>
-            <p><%= link_to timeline.parameters[:title], "#{timeline.parameters[:link_url]}/#{timeline.trackable_id}" unless timeline.parameters[:link_url].nil? %></p>
+            <h3>Javaのプログラミングが追加されました。</h3>
+            <p>問題「回文を探せ」</p>
           </div>
         </li>
-      <% end -%>
-      <li>
-        <p class="contents-top__timeline-date">2017年6月30日</p>
-        <div class="contents-top__timeline-content">
-          <h3>Javaのプログラミングが追加されました。</h3>
-          <p>問題「回文を探せ」</p>
-        </div>
-      </li>
-      <li>
-        <p class="contents-top__timeline-date">2017年6月29日</p>
-        <div class="contents-top__timeline-content">
-          <h3>Rubyのチュートリアルが追加されました。</h3>
-          <p>Rubyでループを実行する。Rubyでループを実行する。Rubyでループを実行する。Rubyでループを実行する。Rubyでループを実行する。</p>
-        </div>
-      </li>
-      <li>
-        <p class="contents-top__timeline-date">2017年6月28日</p>
-        <div class="contents-top__timeline-content">
-          <h3>アカウントが作成されました。</h3>
-          <p>一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。</p>
-        </div>
-      </li>
-      <li>
-        <p class="contents-top__timeline-date">2017年6月28日</p>
-        <div class="contents-top__timeline-content">
-          <h3>アカウントが作成されました。</h3>
-          <p>一緒に頑張りましょう。</p>
-        </div>
-      </li>
-      <li>
-        <p class="contents-top__timeline-date">2017年6月28日</p>
-        <div class="contents-top__timeline-content">
-          <h3>アカウントが作成されました。</h3>
-          <p>一緒に頑張りましょう。</p>
-        </div>
-      </li>      
-    </ul>
-  </div><!--/contents-top__timeline-wrap -->
-
-  <div class="contents-top__own-activity">
-    <h2>最近のアクティビティ</h2>
-    <ul>
-      <% @activities.each do |activity| %>
-        <li class="contents-top__activity-item">
-          <span><%= activity.created_at.strftime("#{t("date.formats.default")}") %></span>
-            <% if activity.parameters[:link_url].nil? %>
-              <p><%= t("activity.#{activity.key}") %></p>
-            <% else %>
-              <p><%= link_to t("activity.#{activity.key}"), "#{activity.parameters[:link_url]}/#{activity.trackable_id}" %></p>
-            <% end -%>
+        <li>
+          <p class="contents-top__timeline-date">2017年6月29日</p>
+          <div class="contents-top__timeline-content">
+            <h3>Rubyのチュートリアルが追加されました。</h3>
+            <p>Rubyでループを実行する。Rubyでループを実行する。Rubyでループを実行する。Rubyでループを実行する。Rubyでループを実行する。</p>
+          </div>
         </li>
-      <% end -%>
-    </ul>
-    <ul>
-      <li class="contents-top__activity-item">
-        <span>2017/07/03</span>
-        <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-      </li>
-      <li class="contents-top__activity-item">
-        <span>2017/07/03</span>
-        <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-      </li>
-      <li class="contents-top__activity-item">
-        <span>2017/07/03</span>
-        <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-      </li>
-      <li class="contents-top__activity-item">
-        <span>2017/07/03</span>
-        <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-      </li>
-      <li class="contents-top__activity-item">
-        <span>2017/07/03</span>
-        <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-      </li>
-      <li class="contents-top__activity-item">
-        <span>2017/07/03</span>
-        <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-      </li>
-    </ul>    
-  </div><!-- /contents-top__own-activity -->
+        <li>
+          <p class="contents-top__timeline-date">2017年6月28日</p>
+          <div class="contents-top__timeline-content">
+            <h3>アカウントが作成されました。</h3>
+            <p>一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。</p>
+          </div>
+        </li>
+        <li>
+          <p class="contents-top__timeline-date">2017年6月28日</p>
+          <div class="contents-top__timeline-content">
+            <h3>アカウントが作成されました。</h3>
+            <p>一緒に頑張りましょう。</p>
+          </div>
+        </li>
+        <li>
+          <p class="contents-top__timeline-date">2017年6月28日</p>
+          <div class="contents-top__timeline-content">
+            <h3>アカウントが作成されました。</h3>
+            <p>一緒に頑張りましょう。</p>
+          </div>
+        </li>      
+      </ul>
+    </div><!--/contents-top__timeline-wrap -->
   
-  <div class="statistics-area">
-    <div class="pie-chart-wrap">
-      <div class="pie-headline">
-        <h2>サービス利用者の割合</h2>
-      </div>
-      <div class="pie-chart" id="js-pie-chart">
-        <div class="pie" data-percentage="5" data-color="#1ABB9C"></div>
-        <div class="pie" data-percentage="50" data-color="#fe8378"></div>
-        <div class="pie" data-percentage="30" data-color="#57b7db"></div>
-        <div class="pie" data-percentage="15" data-color="#6a8cbb"></div>
-      </div>
-      <div class="pie-info">
-        <ul>
-          <li><div class="pie-color" style="background:#1ABB9C"></div><span class="pie-color-title">20代</span><span class="pie-ratio">5%</span></li>
-          <li><div class="pie-color" style="background:#fe8378"></div><span class="pie-color-title">30代</span><span class="pie-ratio">50%</span></li>
-          <li><div class="pie-color" style="background:#57b7db"></div><span class="pie-color-title">40代</span><span class="pie-ratio">30%</span></li>
-          <li><div class="pie-color" style="background:#6a8cbb"></div><span class="pie-color-title">50代</span><span class="pie-ratio">15%</span></li>          
-        </ul>
-      </div>
-    </div>
+    <div class="contents-top__own-activity">
+      <h2>最近のアクティビティ</h2>
+      <ul>
+        <% @activities.each do |activity| %>
+          <li class="contents-top__activity-item">
+            <span><%= activity.created_at.strftime("#{t("date.formats.default")}") %></span>
+              <% if activity.parameters[:link_url].nil? %>
+                <p><%= t("activity.#{activity.key}") %></p>
+              <% else %>
+                <p><%= link_to t("activity.#{activity.key}"), "#{activity.parameters[:link_url]}/#{activity.trackable_id}" %></p>
+              <% end -%>
+          </li>
+        <% end -%>
+      </ul>
+      <ul>
+        <li class="contents-top__activity-item">
+          <span>2017/07/03</span>
+          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
+        </li>
+        <li class="contents-top__activity-item">
+          <span>2017/07/03</span>
+          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
+        </li>
+        <li class="contents-top__activity-item">
+          <span>2017/07/03</span>
+          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
+        </li>
+        <li class="contents-top__activity-item">
+          <span>2017/07/03</span>
+          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
+        </li>
+        <li class="contents-top__activity-item">
+          <span>2017/07/03</span>
+          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
+        </li>
+        <li class="contents-top__activity-item">
+          <span>2017/07/03</span>
+          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
+        </li>
+      </ul>    
+    </div><!-- /contents-top__own-activity -->
     
-    <div class="contents-top__editable-material">
-      <div class="contents-top__tutorial">
-        <div class="contents-top__tutorial-headline">
-          <h2>編集中のチュートリアル</h2>
+    <div class="statistics-area">
+      <div class="pie-chart-wrap">
+        <div class="pie-headline">
+          <h2>サービス利用者の割合</h2>
         </div>
-        <div>
-          <a href="/"><p class="contents-top__tutorial-title">Ruby on Railsを使って簡易ブログサイトを作ってみよう(1)</p></a>
-          <a href="/"><p class="contents-top__tutorial-edit">編集する</p></a>
+        <div class="pie-chart" id="js-pie-chart">
+          <div class="pie" data-percentage="5" data-color="#1ABB9C"></div>
+          <div class="pie" data-percentage="50" data-color="#fe8378"></div>
+          <div class="pie" data-percentage="30" data-color="#57b7db"></div>
+          <div class="pie" data-percentage="15" data-color="#6a8cbb"></div>
+        </div>
+        <div class="pie-info">
+          <ul>
+            <li><div class="pie-color" style="background:#1ABB9C"></div><span class="pie-color-title">20代</span><span class="pie-ratio">5%</span></li>
+            <li><div class="pie-color" style="background:#fe8378"></div><span class="pie-color-title">30代</span><span class="pie-ratio">50%</span></li>
+            <li><div class="pie-color" style="background:#57b7db"></div><span class="pie-color-title">40代</span><span class="pie-ratio">30%</span></li>
+            <li><div class="pie-color" style="background:#6a8cbb"></div><span class="pie-color-title">50代</span><span class="pie-ratio">15%</span></li>          
+          </ul>
         </div>
       </div>
-  
-      <div class="contents-top__programming">
-        <div class="contents-top__programming-headline">
-          <h2>下書き中のプログラミング</h2>
+      
+      <div class="contents-top__editable-material">
+        <div class="contents-top__tutorial">
+          <div class="contents-top__tutorial-headline">
+            <h2>編集中のチュートリアル</h2>
+          </div>
+          <div>
+            <a href="/"><p class="contents-top__tutorial-title">Ruby on Railsを使って簡易ブログサイトを作ってみよう(1)</p></a>
+            <a href="/"><p class="contents-top__tutorial-edit">編集する</p></a>
+          </div>
         </div>
-        <div>
-          <a href="/"><p class="contents-top__programming-question">プログラミング問題プログラミング問題プログラミング問題プログラミング問題</p></a>
-          <a href="/"><p class="contents-top__programming-edit">再開する</p></a>
+    
+        <div class="contents-top__programming">
+          <div class="contents-top__programming-headline">
+            <h2>下書き中のプログラミング</h2>
+          </div>
+          <div>
+            <a href="/"><p class="contents-top__programming-question">プログラミング問題プログラミング問題プログラミング問題プログラミング問題</p></a>
+            <a href="/"><p class="contents-top__programming-edit">再開する</p></a>
+          </div>
         </div>
       </div>
-    </div>
-  </div><!-- /statistics-area -->
+    </div><!-- /statistics-area -->
+  </div>
 </div>
