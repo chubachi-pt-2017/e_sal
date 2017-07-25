@@ -8,6 +8,11 @@ class ESal::TutorialsController < ESal::Base
   def show
     @comment = @tutorial.comments.build
     @comments = @tutorial.comments
+    @number_of_likes = TutorialLike.get_number_of_likes(params[:id])
+    @number_of_dislikes = TutorialDislike.get_number_of_dislikes(params[:id])
+    @press_like_button = TutorialLike.liked?(current_user.id, params[:id])
+    @press_dislike_button = TutorialDislike.disliked?(current_user.id, params[:id])
+    @current_login_user_id = current_user.id
   end
 
   def list

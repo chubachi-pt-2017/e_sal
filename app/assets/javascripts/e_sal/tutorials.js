@@ -54,16 +54,34 @@ $(function(){
 
   // チュートリアル詳細ページ
   if ($("#js-page-type").text() == "show") {
+    
+    // 初期表示のいいね、よくないねボタンの設定
+    if ( $("#js-like-tutorial").text() == "true" ) {
+      $("#js-like-button").html('<i class="fa fa-heart" aria-hidden="true"></i> You liked this');
+      $("#js-like-button").css('width','180px');
+      $("#js-like-button").attr("data-like", "off");
+      $("#js-dislike-button").prop("disabled", true);
+    } else if ( $("#js-dislike-tutorial").text() == "true" ) {
+      $("#js-dislike-button").html('<i class="fa fa-bolt" aria-hidden="true"></i> You disliked this');
+      $("#js-dislike-button").css('width','180px');
+      $("#js-dislike-button").attr("data-dislike", "off");
+      $("#js-like-button").prop("disabled", true);
+    }
+
     // いいねボタン
   	$("#js-like-button").on('click', function(e) {
+  	 $(this).prop("disabled", true); // 2回送信禁止
   	  var state = $(this).attr("data-like");
   	  var method = "";
 
-  	  if ( state == "on" ) {
-  	    method = "post";
-  	  } else if ( state == "off" ) {
-  	    method = "delete";
-  	  }
+      if ( state == "on" ) {
+        method = "post";
+      } else if ( state == "off" ) {
+        method = "delete";
+      } else {
+       $("#js-like-button").prop("disabled", false);
+        return false;
+      }
 
   	  $.ajax({
         type: method,
@@ -74,35 +92,31 @@ $(function(){
         }
       }).success(function(data) {
         if (state == "on") {
-          $("#js-like-numbers").text(parseInt($("#js-like-numbers").text()) + 1);
-      		$("#js-like-button").html('<i class="fa fa-heart" aria-hidden="true"></i> You liked this');
-      		$("#js-like-button").children('.fa-heart').addClass('js-animate-like-dislike-button');
-      		$("#js-like-button").css('width','180px');
-      		$("#js-like-button").attr("data-like", "off");
-      		$("#js-dislike-button").prop("disabled", true);
+          // いいね数増減, ボタンの文言, data属性のvalue, 押していない側をdisableにするかどうか, 2回送信制御(false：解除)
+          setLikeProperty(1, "You liked this", "180px", "off", true)
         }else if (state == "off") {
-          $("#js-like-numbers").text(parseInt($("#js-like-numbers").text()) - 1);
-      		$("#js-like-button").html('<i class="fa fa-heart" aria-hidden="true"></i> Like');
-      		$("#js-like-button").children('.fa-heart').addClass('js-animate-like-dislike-button');
-      		$("#js-like-button").css('width','108px');
-      		$("#js-like-button").attr("data-like", "on");
-      		$("#js-dislike-button").prop("disabled", false);
+          setLikeProperty(-1, "Liked", "108px", "on", false)
         }
       }).error(function(data) {
+        $("#js-like-button").prop("disabled", false); // 2回送信解除
         alert("データベースの更新に失敗しました。再度likeボタンを押してください。");
         return false;
       });
   	});
   
     // よくないねボタン
-  	$(document).on('click', '#js-dislike-button', function(e) {
-  	  var state = $(this).attr("data-like");
+  	$("#js-dislike-button").on('click', function(e) {
+  	 $(this).prop("disabled", true); // 2回送信禁止
+  	  var state = $(this).attr("data-dislike");
   	  var method = "";
 
   	  if ( state == "on" ) {
   	    method = "post"
   	  } else if ( state == "off" ) {
   	    method = "delete"
+  	  } else {
+  	   $(this).prop("disabled", false);
+  	    return false;
   	  }
 
   	  $.ajax({
@@ -114,21 +128,12 @@ $(function(){
         }
       }).success(function(data) {
         if (state == "on") {
-      	  $("#js-dislike-numbers").text(parseInt($("#js-dislike-numbers").text()) + 1);
-      		$("#js-dislike-button").html('<i class="fa fa-bolt" aria-hidden="true"></i> You disliked this');
-      		$("#js-dislike-button").children('.fa-bolt').addClass('js-animate-like-dislike-button');
-      		$("#js-dislike-button").css('width','180px');
-      		$("#js-dislike-button").attr("data-like", "off");
-      		$("#js-like-button").prop("disabled", true);
+          setDisLikeProperty(1, "You disliked this", "180px", "off", true);
       	} else if (state == "off") {
-      	  $("#js-dislike-numbers").text(parseInt($("#js-dislike-numbers").text()) - 1);
-      		$("#js-dislike-button").html('<i class="fa fa-bolt" aria-hidden="true"></i> Dislike');
-      		$("#js-dislike-button").children('.fa-bolt').addClass('js-animate-like-dislike-button');
-      		$("#js-dislike-button").css('width','108px');
-      		$("#js-dislike-button").attr("data-like", "on");
-      		$("#js-like-button").prop("disabled", false);
+          setDisLikeProperty(-1, "DisLike", "108px", "on", false);
       	}
       }).error(function(data) {
+        $("#js-dislike-button").prop("disabled", false); // 2回送信解除
         alert("データベースの更新に失敗しました。再度dislikeボタンを押してください。");
         return false;
       });
@@ -136,6 +141,26 @@ $(function(){
   }
 
 });
+
+function setLikeProperty(num, buttonWord, buttonSize, dataAttributeValue, oppositeButtonDisabled) {
+  $("#js-like-numbers").text(parseInt($("#js-like-numbers").text()) + num); // 数値を1たすor引く
+  $("#js-like-button").html('<i class="fa fa-heart" aria-hidden="true"></i> ' + buttonWord); // ボタンのhtmlを追加
+  $("#js-like-button").children('.fa-heart').addClass('js-animate-like-dislike-button'); // ハートのアニメーション
+  $("#js-like-button").css('width',buttonSize); // ボタンの横幅
+  $("#js-like-button").attr("data-like", dataAttributeValue); // data属性のon/off制御
+  $("#js-dislike-button").prop("disabled", oppositeButtonDisabled); // よくないねボタンdisabled(true)/enabled(false)
+  $("#js-like-button").prop("disabled", false); // 2回送信解除
+}
+
+function setDisLikeProperty(num, buttonWord, buttonSize, dataAttributeValue, oppositeButtonDisabled) {
+  $("#js-dislike-numbers").text(parseInt($("#js-dislike-numbers").text()) + num); // 数値を1たすor引く
+  $("#js-dislike-button").html('<i class="fa fa-bolt" aria-hidden="true"></i> ' + buttonWord); // ボタンのhtmlを追加
+  $("#js-dislike-button").children('.fa-bolt').addClass('js-animate-like-dislike-button'); // 雷のアニメーション
+  $("#js-dislike-button").css('width', buttonSize); // ボタンの横幅
+  $("#js-dislike-button").attr("data-dislike", dataAttributeValue); // data属性のon/off制御
+  $("#js-like-button").prop("disabled", oppositeButtonDisabled); // いいねボタンdisabled(true)/enabled(false)
+  $("#js-dislike-button").prop("disabled", false); // 2回送信解除
+}
 
 function prepareForPreviewBeforeSend($selector) {
   // プレビューのチュートリアルIDは0で統一

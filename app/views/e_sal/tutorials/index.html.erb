@@ -1,46 +1,48 @@
 <div class="tutorial-area">
-  <%= render partial: 'layouts/common_partials/header_stats' %>
-
-  <p id="notice"><%= notice %></p>
-
-  <%= link_to new_e_sal_tutorial_path  do %>
-    <button type="button" class="btn btn-primary new-tutorial-button">チュートリアルの新規作成</button>
-  <% end %>
-
-  <section class="content-header">
-    <div class="box-body">
-      <div class="col-sm-12">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>タイトル</th>
-              <th>My Category / Main Category</th>
-              <th>公開/非公開</th>              
-              <th>コメント</th>
-            </tr>            
-          </thead>
-          <tbody>
-            <% @tutorials.each do |t| %>
+  <div class="contents-wrap">
+    <%= render partial: 'layouts/common_partials/header_stats' %>
+  
+    <p id="notice"><%= notice %></p>
+  
+    <%= link_to new_e_sal_tutorial_path  do %>
+      <button type="button" class="btn btn-primary new-tutorial-button">チュートリアルの新規作成</button>
+    <% end %>
+  
+    <section class="content-header">
+      <div class="box-body">
+        <div class="col-sm-12">
+          <table class="table">
+            <thead>
               <tr>
-                <td><%= link_to t.title, url_for(controller: :tutorials, action: :edit, id: t.id)  %></td>
-                <% if t.original_category.present? && t.original_category.main_category.present? %>
-                  <td><%= "#{t.original_category.name} / #{t.original_category.main_category.name}" %></td>
-                <% else %>
-                  <td>設定されていません</td>
-                <% end %>
-                <td><%= t.status_for_display %></td>                
-                <td><%= t.comment_permission_for_display %></td>
-                <td>
-                  <%= link_to '削除', url_for(controller: :tutorials, action: :destroy, id: t.id), method: :DELETE, data: {confirm: "チュートリアル「#{t.title}」を本当に削除しますか？"}  %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+                <th>タイトル</th>
+                <th>My Category / Main Category</th>
+                <th>公開/非公開</th>              
+                <th>コメント</th>
+              </tr>            
+            </thead>
+            <tbody>
+              <% @tutorials.each do |t| %>
+                <tr>
+                  <td><%= link_to t.title, url_for(controller: :tutorials, action: :edit, id: t.id)  %></td>
+                  <% if t.original_category.present? && t.original_category.main_category.present? %>
+                    <td><%= "#{t.original_category.name} / #{t.original_category.main_category.name}" %></td>
+                  <% else %>
+                    <td>設定されていません</td>
+                  <% end %>
+                  <td><%= t.status_for_display %></td>                
+                  <td><%= t.comment_permission_for_display %></td>
+                  <td>
+                    <%= link_to '削除', url_for(controller: :tutorials, action: :destroy, id: t.id), method: :DELETE, data: {confirm: "チュートリアル「#{t.title}」を本当に削除しますか？"}  %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  </section>
-  <div class="paging"><%= paginate(@tutorials) %></div>
+    </section>
+    <div class="paging"><%= paginate(@tutorials) %></div>
+  </div>
 </div>
 
 

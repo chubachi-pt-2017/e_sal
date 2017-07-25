@@ -21,40 +21,12 @@ body {
   }
 }
 
-.sidebar {
-  font-size: 13px;
-  &__menu-wrap {
-    padding: 10px;
-  }
-  &__items {
-    height: 50px;
-  }
-  &__item {
-    padding: 10px;
-  }
-  &__action {
-    margin-left: 10px;
-  }
-  &__down-arrow {
-    float: right;
-  }
-  &__tutorial {
-    li {
-      padding-left: 35px;
-      margin-top: 20px;
-    }
-  }
-}
-
-.header {
-  width: 85%;
-  height: 50px;
-  background: #EDEDED;
-  float: right;
-}
-
 .paging {
   clear: both;
   float: right;
   margin: 20px 30px 20px 0;
+}
+
+.contents-wrap {
+  width: 1150px;
 }
