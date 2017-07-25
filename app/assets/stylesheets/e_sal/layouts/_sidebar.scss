@@ -1,0 +1,30 @@
+.sidebar {
+  float: left;
+  width: 15%;
+  color: white;
+  a {
+    color: #E7E7E7;
+  }
+  font-size: 13px;
+  &__menu-wrap {
+    padding: 10px;
+  }
+  &__items {
+    height: 50px;
+  }
+  &__item {
+    padding: 10px;
+  }
+  &__action {
+    margin-left: 10px;
+  }
+  &__down-arrow {
+    float: right;
+  }
+  &__tutorial {
+    li {
+      padding-left: 35px;
+      margin-top: 20px;
+    }
+  }
+}
