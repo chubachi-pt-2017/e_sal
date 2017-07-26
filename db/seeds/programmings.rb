@@ -4,12 +4,18 @@ titles = [
 ]
 
 question_descs = [
-  "以下の数値配列の要素順を逆にしなさい\n
-  [1, 2, 3, 4, 5]",
+  "次の数値配列の要素順を逆にしなさい  [1, 2, 3, 4, 5]",
   "2つの3桁のかけ算の積が回文(前から読んでも後ろから読んでも同じになる、例：22022, 123321など)で、かつ最大となる数を計算せよ。"
 ]
 
 correct_answers = [nil, "906609"]
+
+# ページング確認用
+1.upto(20) do |array|
+  titles.push("confirm_paging_#{array}")
+  question_descs.push("#{"テスト"*20}")
+  correct_answers.push(nil)
+end
 
 n = titles.length
 

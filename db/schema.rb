@@ -71,6 +71,21 @@ ActiveRecord::Schema.define(version: 20170724154120) do
     t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
   end
 
+  create_table "programming_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+    t.integer  "programming_language", limit: 1,     default: 1, null: false
+    t.text     "answer_code",          limit: 65535,             null: false
+    t.text     "answer_result",        limit: 65535,             null: false
+    t.integer  "answer_status",        limit: 1,     default: 0, null: false
+    t.integer  "tab_size",             limit: 1,     default: 2, null: false
+    t.integer  "programming_id",                                 null: false
+    t.integer  "user_id",                                        null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.index ["programming_id", "user_id"], name: "index_programming_answers_on_programming_id_and_user_id", unique: true, using: :btree
+    t.index ["programming_id"], name: "index_programming_answers_on_programming_id", using: :btree
+    t.index ["user_id"], name: "index_programming_answers_on_user_id", using: :btree
+  end
+
   create_table "programmings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",          limit: 128,   null: false
     t.text     "question_desc",  limit: 65535, null: false

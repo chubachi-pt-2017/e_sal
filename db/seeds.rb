@@ -2,7 +2,7 @@ table_names = %w( main_categories programmings )
 
 # productionでは以下のseedsファイルは実行しない
 unless Rails.env.production?
-  table_names.push( "users", "original_categories" )
+  table_names.push( "users", "original_categories", "programming_answers" )
 end
 
 table_names.each do |table_name|

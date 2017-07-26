@@ -1,2 +1,30 @@
-<h1>ESal::Programmings#show</h1>
-<p>Find me in app/views/e_sal/programmings/show.html.erb</p>
+<div class="programming-area">
+  <div class="programming-note">
+    <i class="programming-note__pin"></i>
+    <h2 class="programming-note__title">問題「<%= @programming.title%>」</h2>
+    <div class="programming-note__main-sentence"><%= @programming.question_desc %></div>
+  </div>
+  <p style="width: 400px; color: #fff; background: red; font-size: 16px; text-align: center; margin: 30px auto;">
+    <%= notice %>
+  </p>
+  <div class="programming-button-area" style="text-align: center;">
+    <% if @programming_answer.nil? %>
+      <%= link_to new_e_sal_programming_programming_answer_path(@programming.id) do %>
+        <button type="button" class="btn btn-primary">この問題を解く</button>
+      <% end %>
+    <% else %>
+      <% if @programming_answer.draft? %>
+        <%= link_to edit_e_sal_programming_programming_answer_path(@programming_answer.id) do %>
+          <button type="button" class="btn btn-primary">回答を編集する</button>
+        <% end %>
+      <% elsif @programming_answer.answered? %>
+        <%= link_to e_sal_programming_programming_answer_path(@programming_answer.id) do %>
+          <button type="button" class="btn btn-primary">回答を確認する</button>
+        <% end %>
+        <%= link_to list_e_sal_programming_programming_answers_path(@programming.id) do %>
+          <button type="button" class="btn btn-primary" style="margin-left: 20px;">他の人の回答を見る</button>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

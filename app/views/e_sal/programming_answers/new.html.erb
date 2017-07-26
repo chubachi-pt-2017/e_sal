@@ -1,0 +1,29 @@
+<div class="programming-area">
+  <div class="programming-note">
+    <i class="programming-note__pin"></i>
+    <h2 class="programming-note__title">問題「<%= @programming.title%>」</h2>
+    <div class="programming-note__main-sentence"><%= @programming.question_desc %></div>
+  </div>
+<% if @programming_answer.errors.any? %>
+  <div id="programming-errors">
+    <h3><%= @programming_answer.errors.count %>件のエラーがあります。</h3>
+ 
+    <ul>
+    <% @programming_answer.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="programming-answer_container">
+    <%= form_for [:e_sal,@programming_answer], url: {action: 'create'}, html: {name: "programming_answer_form", class: "form-horizontal"} do |f| %>
+      <%= render 'form',f: f, programming: @programming, programming_answer: @programming_answer %>
+    <% end %>
+  </div>
+</div>
+
+<%# Aceエディタ用JS読み込み %>
+<% content_for(:javascript) do %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js", cache: "cached_all" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ext-language_tools.js", cache: "cached_all" %>
+<% end %>
