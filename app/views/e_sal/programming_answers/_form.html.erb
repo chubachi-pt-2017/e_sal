@@ -1,0 +1,26 @@
+<div class="programming-submit-field" style="margin: 0 20px;">
+  <div class="form-group" style="margin-bottom: 0">
+    <div class="col-xs-3">
+      <%= f.label :programming_language %>
+      <%= f.select :programming_language, ProgrammingAnswer.programming_languages_i18n.invert, {}, class: "form-control", id: "js-lang" %>
+    </div>
+    <div class="col-xs-2">
+      <%= f.label :tab_size %>
+      <%= f.select :tab_size, ProgrammingAnswer.tab_sizes, {}, class: "form-control", id: "js-tab-size" %>
+    </div>
+    <button type="button" class="btn btn-primary" id="js-programming-submit" style="margin: 25px">実行する</button>
+  </div>
+</div>
+<div>
+  <div id="ace-editor" style="height: 300px; width: 650px; margin: 20px; display: inline-block;"></div>
+  <%= javascript_include_tag "ace" %>
+  <%= f.text_area :answer_code, name: 'answer_code', id: "js-editor", style: "display: none;" %>
+  <%#= f.text_area :answer_code, name: 'answer_code', id: "js-editor" %>
+  <div id="execution-result" style="height: 300px; width: 450px; margin: 20px; display: inline-block; float: right;">
+    <%= f.text_area :answer_result, placeholder: "実行結果がここに出ます", style: "height: 100%; width: 100%; text-align: left;", class: "ace-editor ace-monokai", id: "js-result-area" %>
+  </div>
+</div>
+<%= f.hidden_field :programming_id, id: "js-programming-id" %>
+<%= f.submit "下書き保存する", name: 'draft', class: "btn btn-default", style: "margin-left: 20px;" %>
+<%= f.submit "投稿する", name: 'answered', class: "btn btn-primary", style: "margin-left: 20px;" %>
+<span style="color: red; text-align: left; margin-left: 20px;">※一度投稿すると取り消せません</span>

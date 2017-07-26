@@ -23,7 +23,9 @@
             <% end %>
           </li>
           <li class="sidebar__items">
-            <a href="/"><div class="sidebar__item"><i class="fa fa-desktop"></i><span class="sidebar__action">Programming</span></div></a>
+            <%= link_to e_sal_programmings_path do %>
+              <div class="sidebar__item"><i class="fa fa-book fa-fw"></i><span class="sidebar__action">Programming</span></div>
+            <% end %>
           </li>
           <li class="sidebar__items">
             <%= link_to e_sal_original_categories_path do %>
@@ -51,5 +53,8 @@
     </div>
     <!-- /sidebar__menu -->
   </div>
+
+  <br />
+
 </div>
 <!-- /sidebar -->

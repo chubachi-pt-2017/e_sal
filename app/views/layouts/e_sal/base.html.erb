@@ -11,6 +11,7 @@
     <%= stylesheet_link_tag 'e_sal/application_esal', media: 'all' %>
     <%= javascript_include_tag "e_sal/application" %>
     <%= javascript_include_tag params[:controller] %>
+    <%= yield :javascript %>
 
     <title>E-sal</title>
     <%= csrf_meta_tags %>

@@ -1,0 +1,185 @@
+.programming-area {
+  @include main-contents-area;
+}
+
+.programming-wrap {
+  width: 349px;
+  float: left;
+  display: inline-block;
+  margin: 0 50px;
+}
+
+.programming-material {
+  margin-left: 100px;
+  position: relative;
+  &__note {
+    color: #333;
+    position: relative;
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Satisfy;
+    font-size: 30px;
+    box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
+    display: block;
+    margin: 40px 0 0 0;
+    text-align: left;    
+  }
+  &__title {
+    font-size: $basic-title-font-size;
+    text-align: left;
+    font-weight: bold;
+  }
+  &__contents {
+    margin-top: 20px;
+    font-size: 16px;
+    display: block;
+  }
+  &__read-more {
+    margin: 20px 0 20px 0;
+    font-size: 16px;
+    position: absolute;
+    top: 240px;
+    left: 182px;
+  }
+  //メモのbackground
+  &__background {
+    background: #ebf5b2;
+    -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+    -o-transform: rotate(2deg);
+    -ms-transform: rotate(2deg);
+    transform: rotate(2deg);
+  }
+  &__pin {
+    @include pin;
+  }
+  // pinの赤い玉
+  &__pin:after {
+    @include pin-after;
+  }
+  // pinの影
+  &__pin:before {
+    @include pin-before;
+  }
+  &__image-body-area {
+    margin-top: 20px;
+  }
+  &__image {
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
+  }
+  &__body {
+    display: inline-block;
+    width: 300px;
+    font-size: 15px;
+    text-align: left;
+    word-wrap: break-word;
+  }
+}
+
+/* チュートリアル詳細ページ*/
+.programming-note {
+  background-color: #ffc;
+  background-image: linear-gradient(#efefef 1px, transparent 1px), linear-gradient(#ffffe6 0, #ffc 100%);
+  background-position: 0 -1px, 0;
+  background-size: 2em 2em, 100%;
+  font-size: 18px;
+  padding: 20px 2em;
+  margin: 20px;
+  // margin: 50px;
+  font-style: italic;
+  &__title {
+    text-align: center;
+    padding: 20px;
+    font-size: 28px;
+  }
+
+  &__pin {
+    @include pin;
+    left: 50%;
+    top: 0;
+  }
+  // pinの赤い玉
+  &__pin:after {
+    @include pin-after;
+  }
+  // pinの影
+  &__pin:before {
+    @include pin-before;
+  }
+  &__date {
+    float: right;
+  }
+  &__main-sentence {
+    margin-top: 30px;
+  }
+}
+
+.mark-pink {
+  background: linear-gradient(transparent 55%, #f9c 60%);
+}
+
+/* チュートリアル編集ページ一覧 */
+.new-programming-link {
+  margin-left: 30px;
+}
+
+.programming-edit-left-area {
+  margin-left: 37px;
+  width: 75%;
+  display: inline-block;
+  &__title-area {
+    width: 82%;
+  }
+  &__title {
+    display: inline-block;
+  }
+  &__title-count {
+    display: inline-block;
+    float: right;
+  }
+  &__programming-body-area {
+    width: 82%;
+  }
+  &__programming-body {
+    display: inline-block;
+  }
+  &__programming-body-count {
+    display: inline-block;
+    float: right;
+  }
+  &__body-error {
+    width: 300px;
+  }
+}
+
+.programming-edit-right-area {
+  float: right;
+  width: 20%;
+  margin-right: 20px;
+  &__photo-id {
+    display: inline-block;
+  }
+  
+  &__photo-id-field {
+    width: 50%;
+  }
+  &__photo {
+    display: inline-block;
+    float: right;
+  }
+  &__show-programming-link {
+    margin-top: 20px;
+  }
+}
+
+.programming-edit-title {
+  margin-left: 23px;
+}
+
+.new-programming-button {
+  margin: 0 0 20px 25px;
+}

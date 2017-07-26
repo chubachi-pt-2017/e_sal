@@ -1,0 +1,27 @@
+<div class="programming-area">
+  <%= render partial: 'layouts/common_partials/header_stats' %>
+
+    <div class="paging"><%= paginate(@programming_answers) %></div>
+    <% unless @programming_answers.any? %>
+      <div class="programming-list__not-found" style="margin: 100px; text-align: center;">
+        <h4>回答はまだありません</h4>
+      </div>
+    <% end %>
+    <% @programming_answers.each do |p_a| %>
+      <div class="programming-wrap">
+        <div class="programming-material">
+          <i class="programming-material__pin"></i>
+          <div class="programming-material__note programming-material__background">
+            <div class="programming-material__title"><%= p_a.programming.title %></div>
+            <div class="programming-material__body">言語：　<%= p_a.programming_language_i18n %></div>
+            <div class="programming-material__body"><%= truncate(p_a.answer_code, length: 80) %></div>
+            <div class="programming-material__body">回答者：　<%= p_a.user.user_name %></div>
+            <%= link_to e_sal_programming_programming_answer_path(p_a.programming_id, p_a.id) do %>
+            <div class="programming-material__read-more">回答を見る</div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+<div class="paging"><%= paginate(@programming_answers) %></div>
+</div>
