@@ -66,7 +66,7 @@ class ESal::TutorialsController < ESal::Base
   end
 
   def preview
-    raise ESalNotFoundError.new if params[:preview].blank?
+    raise ESalNotFound.new if params[:preview].blank?
     set_preview_data
   end
 

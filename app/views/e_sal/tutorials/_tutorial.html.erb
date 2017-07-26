@@ -12,78 +12,80 @@
         <% end %>
       </div>
     </div>
+
+    <% if @preview.blank? %>  
+      <div class="evaluation-button">
+        <p>このチュートリアルはあなたにとってお役に立ちましたか？</p>
+        <button class="evaluation-button__like-button" id="js-like-button" data-like="on">
+          <i class="evaluation-button__fa fa fa-thumbs-o-up" aria-hidden="true"></i> Like
+        </button>
+        <span class="evaluation-button__like-numbers" id="js-like-numbers"><%= @number_of_likes %></span>
+        <button class="evaluation-button__dislike-button" id="js-dislike-button" data-dislike="on">
+          <i class="fa fa fa-thumbs-o-down" aria-hidden="true"></i> Dislike
+        </button>
+        <span class="evaluation-button__like-numbers" id="js-dislike-numbers"><%= @number_of_dislikes %></span>    
+      </div>
   
-    <div class="evaluation-button">
-      <p>このチュートリアルはあなたにとってお役に立ちましたか？</p>
-      <button class="evaluation-button__like-button" id="js-like-button" data-like="on">
-        <i class="evaluation-button__fa fa fa-thumbs-o-up" aria-hidden="true"></i> Like
-      </button>
-      <span class="evaluation-button__like-numbers" id="js-like-numbers"><%= @number_of_likes %></span>
-      <button class="evaluation-button__dislike-button" id="js-dislike-button" data-dislike="on">
-        <i class="fa fa fa-thumbs-o-down" aria-hidden="true"></i> Dislike
-      </button>
-      <span class="evaluation-button__like-numbers" id="js-dislike-numbers"><%= @number_of_dislikes %></span>    
-    </div>
+      <hr>
   
-    <hr>
-  
-    <div class='col-md-12'>
-      <%= form_for [:e_sal, @tutorial, @comment], :html => {class: "form-horizontal", role: "form"} do |f| %>
-        <% if @comment.errors.any? %>
-          <div class="panel panel-danger col-md-offset-1">
-            <div class="panel-heading"> 
-              <h2 class="panel-title">
-                <%= pluralize(@comment.errors.count, "error") %>
-                prohibited this comment from being saved: 
-              </h2>
-  
-              <div class="panel-body"> 
-                <ul>
-                  <% @comment.errors.full_messages.each do |msg| %> 
-                    <li> <%= msg %> </li>
-                  <% end %> 
-                </ul>
+      <div class='col-md-12'>
+        <%= form_for [:e_sal, @tutorial, @comment], :html => {class: "form-horizontal", role: "form"} do |f| %>
+          <% if @comment.errors.any? %>
+            <div class="panel panel-danger col-md-offset-1">
+              <div class="panel-heading"> 
+                <h2 class="panel-title">
+                  <%= pluralize(@comment.errors.count, "error") %>
+                  prohibited this comment from being saved: 
+                </h2>
+    
+                <div class="panel-body"> 
+                  <ul>
+                    <% @comment.errors.full_messages.each do |msg| %> 
+                      <li> <%= msg %> </li>
+                    <% end %> 
+                  </ul>
+                </div>
+              </div><!-- /panel-heading --> 
+            </div><!-- /panel panel-danger col-md-offset-1 -->
+          <% end %>
+    
+            <div class='form-group'>
+              <div class='control-label col-md-2'>
+                <%= f.label :body, 'New Comment' %> 
               </div>
-            </div><!-- /panel-heading --> 
-          </div><!-- /panel panel-danger col-md-offset-1 -->
+              <div class='col-md-10'>
+                <%= f.text_area :body, rows: 10, class: 'form-control', placeholder: 'Your comment' %> 
+              </div>
+            </div>
+      
+            <div class='form-group'>
+              <div class='col-md-offset-2 col-md-10'>
+                <%= f.submit "Add Comment", class: 'btn btn-primary btn-lg pull-right' %> 
+              </div>
+            </div>
         <% end %>
+      </div>
   
-        <div class='form-group'>
-          <div class='control-label col-md-2'>
-            <%= f.label :body, 'New Comment' %> 
-          </div>
-          <div class='col-md-10'>
-            <%= f.text_area :body, rows: 10, class: 'form-control', placeholder: 'Your comment' %> 
-          </div>
-        </div>
-  
-        <div class='form-group'>
-          <div class='col-md-offset-2 col-md-10'>
-            <%= f.submit "Add Comment", class: 'btn btn-primary btn-lg pull-right' %> 
-          </div>
-        </div>
-      <% end %>
-    </div>
-  
-    <div class='col-md-12'> 
-      <header>
-        <h2>Comments</h2> 
-      </header>
-      <div class="col-md-10">
-      <% if @tutorial.comments.any? %>
-        <% persisted_comments(@comments).each do |comment| %> 
-          <div class="comment-body">
-            <%= comment.body %> 
-          </div>
-          <div class="comment-time">
-            <%= time_ago_in_words(comment.created_at) %>前 by <%= comment.user.user_name %>
-          </div>
-          <hr>
-        <% end %>
-      <% else %>
-        <p>表示するコメントはありません。</p>
-      <% end %> 
-    </div>
+      <div class='col-md-12'> 
+        <header>
+          <h2>Comments</h2> 
+        </header>
+        <div class="col-md-10">
+        <% if @tutorial.comments.any? %>
+          <% persisted_comments(@comments).each do |comment| %> 
+            <div class="comment-body">
+              <%= comment.body %> 
+            </div>
+            <div class="comment-time">
+              <%= time_ago_in_words(comment.created_at) %>前 by <%= comment.user.user_name %>
+            </div>
+            <hr>
+          <% end %>
+        <% else %>
+          <p>表示するコメントはありません。</p>
+        <% end %> 
+      </div>
+    <% end %>
   </div>
 </div>
 <div style="display: none;" id="js-tutorial-id"><%= @tutorial.id %></div>

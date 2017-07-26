@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170724154120) do
 
-  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "trackable_type"
     t.integer  "trackable_id"
     t.string   "owner_type"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20170724154120) do
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
   end
 
-  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "body",        limit: 65535
     t.integer  "tutorial_id"
     t.integer  "user_id"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20170724154120) do
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
-  create_table "main_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "main_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
     t.string   "name_url",   null: false
     t.datetime "created_at", null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20170724154120) do
     t.index ["name_url"], name: "index_main_categories_on_name_url", unique: true, using: :btree
   end
 
-  create_table "original_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "original_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",             null: false
     t.string   "name_url",         null: false
     t.integer  "main_category_id", null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20170724154120) do
     t.index ["user_id"], name: "index_original_categories_on_user_id", using: :btree
   end
 
-  create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "image_updated_at"
     t.integer  "image_file_size"
     t.string   "image_content_type"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20170724154120) do
     t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
   end
 
-  create_table "programming_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "programming_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "programming_language", limit: 1,     default: 1, null: false
     t.text     "answer_code",          limit: 65535,             null: false
     t.text     "answer_result",        limit: 65535,             null: false
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20170724154120) do
     t.index ["user_id"], name: "index_programming_answers_on_user_id", using: :btree
   end
 
-  create_table "programmings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "programmings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",          limit: 128,   null: false
     t.text     "question_desc",  limit: 65535, null: false
     t.text     "correct_answer", limit: 65535
@@ -97,13 +97,13 @@ ActiveRecord::Schema.define(version: 20170724154120) do
     t.index ["user_id"], name: "index_programmings_on_user_id", using: :btree
   end
 
-  create_table "tutorial_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "tutorial_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "body",       limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  create_table "tutorial_dislikes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "tutorial_dislikes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",     null: false
     t.integer  "tutorial_id", null: false
     t.datetime "created_at",  null: false
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20170724154120) do
     t.index ["user_id"], name: "index_tutorial_dislikes_on_user_id", using: :btree
   end
 
-  create_table "tutorial_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "tutorial_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",     null: false
     t.integer  "tutorial_id", null: false
     t.datetime "created_at",  null: false
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20170724154120) do
     t.index ["user_id"], name: "index_tutorial_likes_on_user_id", using: :btree
   end
 
-  create_table "tutorials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "tutorials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                limit: 64,             null: false
     t.integer  "user_id"
     t.integer  "photo_id"
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 20170724154120) do
     t.index ["user_id"], name: "index_tutorials_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  limit: 128, default: "",    null: false
     t.string   "encrypted_password",     limit: 256, default: "",    null: false
     t.string   "reset_password_token",   limit: 64

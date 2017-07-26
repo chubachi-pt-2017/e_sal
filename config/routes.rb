@@ -35,6 +35,7 @@ Rails.application.routes.draw do
         post '/:id/edit/photos', to: 'photos#create'
         post '/preview/:id' => 'tutorials#preview'
         patch '/preview/:id' => 'tutorials#preview'
+        get '/preview/:id' => 'tutorials#preview'        
         post '/tutorial-like' => 'tutorial_likes#create'
         delete '/tutorial-like' => 'tutorial_likes#destroy'
         post '/tutorial-dislike' => 'tutorial_dislikes#create'
