@@ -3,9 +3,7 @@ class ProgrammingAnswer < ApplicationRecord
   belongs_to :programming
   belongs_to :user
   
-  enum programming_language: {
-    coffee: 1, c_cpp: 2, csharp: 3, golang: 4, haskell: 5, java: 6, javascript: 7, php: 8, python: 9, ruby: 10,
-    rust: 11, swift: 12}
+  enum programming_language: {perl: 0, php: 1, python: 2, ruby: 3}
   enum answer_status: { draft: 0, answered: 1 }
   enum tab_size: { "2"=> 2, "3"=> 3, "4"=> 4, "8"=> 8 }
   

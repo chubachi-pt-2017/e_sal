@@ -23,11 +23,10 @@ Rails.application.routes.draw do
       resources :programming_answers, path: "answer", except: [:index, :destroy] do
         collection do
           get '/list', to: 'programming_answers#list'
+          get '/submit', to: 'programming_answers#submit'
         end
       end
     end
-    # get 'tutorial/:id', to: 'tutorials#show' 
-    # get 'tutorial', to: 'tutorials#index'
 
     resources :tutorials do
       collection do

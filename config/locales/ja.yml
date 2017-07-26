@@ -263,18 +263,10 @@ ja:
         another: その他
     programming_answer:
       programming_language:
-        coffee: CoffeeScript
-        c_cpp: C++
-        csharp: "C#"
-        golang: GO
-        haskell: Haskell
-        java: Java
-        javascript: JavaScript
+        perl: perl
         php: PHP
         python: Python
         ruby: Ruby
-        rust: Rust
-        swift: Swift
   # Views
   users:
     registrations:

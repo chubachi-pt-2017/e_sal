@@ -67,6 +67,37 @@ class ESal::ProgrammingAnswersController < ESal::Base
     
   end
   
+  def submit
+    lang_map = {"perl": "pl", "php": "php", "python": "py", "ruby": "rb"}
+    
+    chk_dir = Rails.root.join("tmp", "programming", "submit")
+
+    unless chk_dir.exist?
+      system("mkdir submit_dir")
+    end
+
+    submit_dir = chk_dir.to_s
+
+    lang = params[:lang]
+    code = params[:code]
+    f_time = Time.zone.now.strftime("%Y%m%d%H%S%M%L")
+    
+    file_name = "#{submit_dir}/#{f_time}.#{lang_map[lang.to_sym]}"
+    
+    File.open(file_name, "w") do |file|
+      file.puts(code)
+    end
+
+    command = "#{lang} #{file_name}"
+    ret = `#{command}`
+    
+    data = {stdout: ret}
+    
+    respond_to do |format|
+      format.json {render json: data}
+    end
+  end
+  
   private
   
   def chk_current_user
