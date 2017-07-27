@@ -1,7 +1,7 @@
 $(function(){
 
   // チュートリアル新規作成or編集ページだったら
-  if ($("#js-page-type").text() == "new" || $("#js-page-type") == "edit") {
+  if ($("#js-page-type").text() == "new" || $("#js-page-type").text() == "edit") {
     // 本文テキストカウント
     var bodyTextCount = $("#js-tutorial-body-count");
     var bodyText = $("#js-tutorial-body");
@@ -10,7 +10,7 @@ $(function(){
     bodyText.on("keyup", function() {
       bodyTextCount.text(bodyText.val().replace(/[\n\s　]/g, "").length);
     });
-  
+
     // タイトルテキストカウント
     var tutorialTitleCount = $("#js-tutorial-title-count");
     var tutorialTitle = $("#js-tutorial-title");
@@ -19,10 +19,10 @@ $(function(){
     tutorialTitle.on("keyup", function() {
       tutorialTitleCount.text(tutorialTitle.val().length);
     });  
-  
+
     // 画像のアップロード処理を設定する
     prepareForUploadImage();
-  
+
     // プレビューボタン
     $("#js-preview-button").on("click", function(){
       var tutorial_id = "";

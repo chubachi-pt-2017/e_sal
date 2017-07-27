@@ -35,6 +35,7 @@ Rails.application.routes.draw do
         post '/:id/edit/photos', to: 'photos#create'
         post '/preview/:id' => 'tutorials#preview'
         patch '/preview/:id' => 'tutorials#preview'
+        get '/preview/:id' => 'tutorials#preview'        
         post '/tutorial-like' => 'tutorial_likes#create'
         delete '/tutorial-like' => 'tutorial_likes#destroy'
         post '/tutorial-dislike' => 'tutorial_dislikes#create'
@@ -49,4 +50,6 @@ Rails.application.routes.draw do
 
   get "/agreement", to: "home#agreement", as: :agreement
   root 'home#index'
+  # どれにもroutingされなければ、404を表示する(なので下記のroutingより下には何も書いてはいけない)
+  get '*path', controller: 'application', action: 'render_404'
 end

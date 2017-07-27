@@ -56,12 +56,9 @@
 
 <body>
   <!-- This file lives in public/422.html -->
-  <div class="dialog">
-    <div>
-      <h1>The change you wanted was rejected.</h1>
-      <p>Maybe you tried to change something you didn't have access to.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+  <div class="dialog" style="float:right; width: 85%; height: 1000px; background: #F7F7F7;">
+    <h1>422: お探しのページが見つかりませんでした。</h1>
+    <%= link_to "ホームに戻る", e_sal_path %>
   </div>
 </body>
 </html>
