@@ -24,12 +24,7 @@
       <div class="header"></div>
       <!-- main-contents -->
       <div class="contents">
-        <div class="contents__header">
-          <div class="contents__header-menu">
-            <%= link_to 'Profile', profile_edit_path %> / 
-            <%= link_to 'Sing out', destroy_user_session_path, :method => :delete %>
-          </div>
-          </div>     
+        <%= render partial: 'layouts/common_partials/header' %>
         <%= yield %>
       </div>
       <!-- /main-contents -->
