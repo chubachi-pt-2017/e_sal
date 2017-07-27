@@ -25,6 +25,7 @@ gem 'redcarpet'
 gem 'paperclip'
 gem 'paperclip-optimizer'
 gem 'aws-sdk'
+gem 'systemu'
 
 group :development, :test do
   gem 'byebug', platform: :mri

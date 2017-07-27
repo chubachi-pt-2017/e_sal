@@ -263,7 +263,7 @@ ja:
         another: その他
     programming_answer:
       programming_language:
-        perl: perl
+        perl: Perl
         php: PHP
         python: Python
         ruby: Ruby
