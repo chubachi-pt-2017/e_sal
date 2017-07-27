@@ -50,4 +50,6 @@ Rails.application.routes.draw do
 
   get "/agreement", to: "home#agreement", as: :agreement
   root 'home#index'
+  # どれにもroutingされなければ、404を表示する(なので下記のroutingより下には何も書いてはいけない)
+  get '*path', controller: 'application', action: 'render_404'
 end

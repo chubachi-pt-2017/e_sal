@@ -56,11 +56,10 @@
 
 <body>
   <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+  <div class="dialog" style="float:right; width: 85%; height: 1000px; background: #F7F7F7;">
+    <h1>500: サーバーエラーが発生しています。</h1>
+    <p>ご不便おかけしますが、しばらく経ってからアクセスしてください。</p>
+    <%= link_to "ホームに戻る", e_sal_path %>
   </div>
 </body>
 </html>
