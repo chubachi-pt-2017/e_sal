@@ -39,10 +39,12 @@ class User < ApplicationRecord
     
     confirm.validates :user_name,
               presence: true,
-              length: { in: 1..64 }
+              length: { in: 1..64 },
+              format: { with: VALID_NORMAL_HIRA_KATA_KANJI, message: "は全角のみで入力してください。" }
     
     confirm.validates :second_email,
-              allow_blank: true,
+              presence: true,
+              uniqueness: true,
               length: { maximum: 128 },
               format: { with: VALID_EMAIL_DEFAULT, message: "は有効なメールアドレスではありません。" }
     
