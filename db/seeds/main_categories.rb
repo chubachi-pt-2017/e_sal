@@ -32,7 +32,7 @@ category_names = {
   "[Network] Devices": "devices",
   "[Network] TCP/IP": "tcp-ip",
   "[Network] Security": "security",
-  "[Network] (others)": "other_net",
+  "[Network] (others)": "other-net",
   "[Cloud] AWS": "aws",
   "[Cloud] Heroku": "heroku",
   "[Cloud] Salesforce": "sfdc",
