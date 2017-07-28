@@ -6,10 +6,12 @@ class ESal::ProgrammingAnswersController < ESal::Base
   def show
     unless ProgrammingAnswer.has_answered?(current_user.id, @programming.id)
       respond_to do |format|
-        format.html {redirect_to e_sal_programming_path(@programming.id), notice: "回答済みの場合のみ他の人の回答を閲覧できます"}
+        format.html {redirect_to e_sal_programming_path(@programming.id), alert: "回答済みの場合のみ他の人の回答を閲覧できます"}
       end
       return
     end
+    
+    @user = User.find_by(id: @programming_answer.user_id)
   end
 
   def new
@@ -31,7 +33,7 @@ class ESal::ProgrammingAnswersController < ESal::Base
     
     respond_to do |format|
       if @programming_answer.save
-        format.html {redirect_to e_sal_programmings_path, notice: "保存が完了しました"}
+        format.html {redirect_to e_sal_programmings_path({status: status}), notice: "保存が完了しました"}
       else
         format.html {render :new}
       end
@@ -41,7 +43,7 @@ class ESal::ProgrammingAnswersController < ESal::Base
   def edit
     unless chk_current_user
       respond_to do |format|
-        format.html {redirect_to e_sal_programmings_path, notice: "他の人の回答は編集できません"}
+        format.html {redirect_to e_sal_programmings_path, alert: "他の人の回答は編集できません"}
       end
       return
     end
@@ -50,6 +52,13 @@ class ESal::ProgrammingAnswersController < ESal::Base
   def update
 
     @programming_answer.attributes = programming_answer_params
+
+    if params[:draft]
+      status = 'draft'
+    else
+      status = 'answered'
+    end
+    @programming_answer.answer_status = status
 
     respond_to do |format|
       if @programming_answer.save
@@ -65,7 +74,7 @@ class ESal::ProgrammingAnswersController < ESal::Base
     
     unless ProgrammingAnswer.has_answered?(current_user.id, @programming.id)
       respond_to do |format|
-        format.html {redirect_to e_sal_programming_path(@programming.id), notice: "回答済みの場合のみ他の人の回答を閲覧できます"}
+        format.html {redirect_to e_sal_programming_path(@programming.id), alert: "回答済みの場合のみ他の人の回答を閲覧できます"}
       end
       return
     end
