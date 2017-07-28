@@ -29,7 +29,7 @@
           <td><%= f.text_field :user_name, class: "form-field" %></td>
         </tr>
         <tr>
-          <th><%= f.label t('.second_email') %><!-- <span class="text-danger", style="color:red;"> * </span> --></th>
+          <th><%= f.label t('.second_email') %><span class="text-danger", style="color:red;"> * </span></th>
           <td><%= f.text_field :second_email, class: "form-field" %></td>
         </tr>
         <tr>
