@@ -1,6 +1,7 @@
 # Add after page load event
 Init = ->
-  setAceEditor()
+  if $('#js-editor').length
+    setAceEditor()
   return
 
 if document.addEventListener
@@ -26,6 +27,50 @@ else if document.attachEvent
 else
   Init()
 
+$ ->
+  if $('#js-editor').length
+    # Change Language-Mode
+    $ ($) ->
+      $('#js-lang').change ->
+        editor = ace.edit("ace-editor")
+        mode = $(this).val()
+        editor.session.setMode("ace/mode/" + mode)
+        return
+      return
+      
+    # Change Tab-Szie
+    $ ($) ->
+      $('#js-tab-size').change ->
+        editor = ace.edit("ace-editor")
+        tab_size = $(this).val()
+        editor.getSession().setTabSize(tab_size)
+        return
+      return
+      
+    # Change Document
+    $ ($) ->
+      ace.edit("ace-editor").on 'change', ->
+        editor = ace.edit("ace-editor")
+        $('#js-editor').val editor.getSession().getValue()
+        setSubmitButton()
+        return
+      return
+    
+    # Click Submit
+    $ ($) ->
+      $('#js-programming-submit').on 'click', ->
+        putSubmit()
+        return
+      return
+    
+    # Click execution clear
+    $ ($) ->
+      $('#js-execution-clear').on 'click', ->
+        $('#js-result-area').text("")
+        return
+      return
+
+
 
 setAceEditor = ->
   editor = ace.edit("ace-editor")
@@ -33,38 +78,10 @@ setAceEditor = ->
   tab_size = $('#js-tab-size').val()
   editor.getSession().setMode("ace/mode/" + mode)
   editor.getSession().setTabSize(tab_size)
-  textarea = $('#js-editor').val()
-  editor.getSession().setValue textarea
+  textarea = $('#js-editor')
+  editor.getSession().setValue textarea.val()
   setSubmitButton()
   return
-
-# Change Language-Mode
-$ ($) ->
-  $('#js-lang').change ->
-    editor = ace.edit("ace-editor")
-    mode = $(this).val()
-    editor.session.setMode("ace/mode/" + mode)
-    return
-  return
-  
-# Change Tab-Szie
-$ ($) ->
-  $('#js-tab-size').change ->
-    editor = ace.edit("ace-editor")
-    tab_size = $(this).val()
-    editor.getSession().setTabSize(tab_size)
-    return
-  return
-  
-# Change Document
-$ ($) ->
-  ace.edit("ace-editor").on 'change', ->
-    editor = ace.edit("ace-editor")
-    $('#js-editor').val editor.getSession().getValue()
-    setSubmitButton()
-    return
-  return
-
 
 putSubmit = ->
   lang = $('#js-lang').val()
@@ -84,20 +101,6 @@ putSubmit = ->
         return
   ).error (data) ->
     alert 'プログラムの実行に失敗しました'
-    return
-  return
-
-# Click Submit
-$ ($) ->
-  $('#js-programming-submit').on 'click', ->
-    putSubmit()
-    return
-  return
-
-# Click execution clear
-$ ($) ->
-  $('#js-execution-clear').on 'click', ->
-    $('#js-result-area').text("")
     return
   return
 

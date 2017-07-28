@@ -80,7 +80,7 @@
   }
 }
 
-/* チュートリアル詳細ページ*/
+/* 詳細ページ*/
 .programming-note {
   background-color: #ffc;
   background-image: linear-gradient(#efefef 1px, transparent 1px), linear-gradient(#ffffe6 0, #ffc 100%);
@@ -115,6 +115,10 @@
   }
   &__main-sentence {
     margin-top: 30px;
+  }
+  &__sub-sentence {
+    margin-top: 30px;
+    font-size: 15px;
   }
 }
 

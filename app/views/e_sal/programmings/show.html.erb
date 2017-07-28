@@ -14,11 +14,11 @@
       <% end %>
     <% else %>
       <% if @programming_answer.draft? %>
-        <%= link_to edit_e_sal_programming_programming_answer_path(@programming_answer.id) do %>
+        <%= link_to edit_e_sal_programming_programming_answer_path(@programming_answer.programming_id, @programming_answer.id) do %>
           <button type="button" class="btn btn-primary">回答を編集する</button>
         <% end %>
       <% elsif @programming_answer.answered? %>
-        <%= link_to e_sal_programming_programming_answer_path(@programming_answer.id) do %>
+        <%= link_to e_sal_programming_programming_answer_path(@programming_answer.programming_id, @programming_answer.id) do %>
           <button type="button" class="btn btn-primary">回答を確認する</button>
         <% end %>
         <%= link_to list_e_sal_programming_programming_answers_path(@programming.id) do %>
