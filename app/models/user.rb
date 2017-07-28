@@ -41,10 +41,12 @@ class User < ApplicationRecord
               presence: true,
               length: { in: 1..64 }
     
+    VALID_EMAIL_NOAIIT = /\A[\w+\-.]+@(?!aiit.ac.jp)/i
     confirm.validates :second_email,
               allow_blank: true,
               length: { maximum: 128 },
-              format: { with: VALID_EMAIL_DEFAULT, message: "は有効なメールアドレスではありません。" }
+              format: { with: VALID_EMAIL_DEFAULT, message: "は有効なメールアドレスではありません。" },
+              format: { with: VALID_EMAIL_NOAIIT, message: "はAIITメールアドレスではなく、連絡用に他ドメインのメールアドレスを記入下さい。" }
     
     confirm.validates :job_desc,
               presence: true, if: :is_another?,
@@ -73,3 +75,6 @@ class User < ApplicationRecord
   end
 
 end
+
+
+
