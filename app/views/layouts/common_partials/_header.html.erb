@@ -1,0 +1,16 @@
+<div class="contents__header">
+  <div class="contents__header-menu" id="js-header-menu">
+    <i class="fa fa-cog gear" aria-hidden="true"></i>
+  </div>
+
+  <div class="header-menu-list" id="js-header-menu-list">
+    <ul>
+      <%= link_to profile_edit_path do %>
+        <li><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;Profile</li>
+      <% end %>
+      <%= link_to destroy_user_session_path, :method => :delete do %>
+        <li><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;Sign Out</li>
+      <% end %>
+    </ul>
+  </div>
+</div>
