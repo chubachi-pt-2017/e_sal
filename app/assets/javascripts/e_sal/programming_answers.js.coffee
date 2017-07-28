@@ -35,6 +35,7 @@ setAceEditor = ->
   editor.getSession().setTabSize(tab_size)
   textarea = $('#js-editor').val()
   editor.getSession().setValue textarea
+  setSubmitButton()
   return
 
 # Change Language-Mode
@@ -60,6 +61,7 @@ $ ($) ->
   ace.edit("ace-editor").on 'change', ->
     editor = ace.edit("ace-editor")
     $('#js-editor').val editor.getSession().getValue()
+    setSubmitButton()
     return
   return
 
@@ -90,4 +92,18 @@ $ ($) ->
   $('#js-programming-submit').on 'click', ->
     putSubmit()
     return
+  return
+
+# Click execution clear
+$ ($) ->
+  $('#js-execution-clear').on 'click', ->
+    $('#js-result-area').text("")
+    return
+  return
+
+setSubmitButton = ->
+  if $('#js-editor').val() == ""
+    $('#js-programming-submit').prop('disabled', true)
+  else
+    $('#js-programming-submit').prop('disabled', false)
   return

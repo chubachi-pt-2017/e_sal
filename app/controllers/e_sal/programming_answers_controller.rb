@@ -18,13 +18,20 @@ class ESal::ProgrammingAnswersController < ESal::Base
 
   def create
 
-    params[:programming_answer][:user_id] = current_user.id
-    
     @programming_answer = @programming.programming_answers.new(programming_answer_params)
+    
+    @programming_answer.user_id = current_user.id
+    
+    if params[:draft]
+      status = 'draft'
+    else
+      status = 'answered'
+    end
+    @programming_answer.answer_status = status
     
     respond_to do |format|
       if @programming_answer.save
-        format.html {redirect_to e_sal_programming_programming_answer_path, notice: "保存が完了しました"}
+        format.html {redirect_to e_sal_programmings_path, notice: "保存が完了しました"}
       else
         format.html {render :new}
       end
@@ -68,12 +75,15 @@ class ESal::ProgrammingAnswersController < ESal::Base
   end
   
   def submit
+    
+    require 'systemu'
+    
     lang_map = {"perl": "pl", "php": "php", "python": "py", "ruby": "rb"}
     
     chk_dir = Rails.root.join("tmp", "programming", "submit")
 
     unless chk_dir.exist?
-      system("mkdir submit_dir")
+      system("mkdir -p #{chk_dir.to_s}")
     end
 
     submit_dir = chk_dir.to_s
@@ -89,9 +99,20 @@ class ESal::ProgrammingAnswersController < ESal::Base
     end
 
     command = "#{lang} #{file_name}"
-    ret = `#{command}`
     
-    data = {stdout: ret}
+    out = ""
+    err = ""
+
+    systemu command, out: out, err: err
+    
+    unless err == ""
+      out = err
+      out = out.gsub(file_name, "")
+    end
+    
+    data = {stdout: out}
+    
+    system("rm -rf #{file_name}")
     
     respond_to do |format|
       format.json {render json: data}
@@ -110,7 +131,7 @@ class ESal::ProgrammingAnswersController < ESal::Base
   
   def programming_answer_params
     params.require(:programming_answer).permit(:programming_language, :tab_size, :answer_code,
-                  :answer_result, :answer_status, :user_id)
+                  :answer_result, :answer_status, :programming_id)
   end
   
   def set_programming_answer
