@@ -15,7 +15,7 @@
             <%= f.text_field :name_url, hide_label: true, class: "js-disabled-enter", placeholder: "URLに使用されますので、慎重に入力してください。", disabled: @has_tutorials %>
   
             <div><span>メインカテゴリ</span></div>
-            <%= f.select :main_category_id, @main_categories.sort_by(&:id).map{|m| [m.name, m.id] }, { prompt: "選択してください", hide_label: true }, { disabled: @has_tutorials } %>
+            <%= f.select :main_category_id, @main_categories.map{|m| [m.name, m.id] }, { prompt: "選択してください", hide_label: true }, { disabled: @has_tutorials } %>
   
             <%= f.submit "更新する", class: "btn btn-success pull-right" %>
           <% end %>
