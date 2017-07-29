@@ -1,0 +1,33 @@
+<div class="tutorial-area">
+  <div class="contents-wrap">
+    <%= render partial: 'layouts/common_partials/header_stats' %>
+  
+      <h1 class="list-title"><%= @list_title %>のチュートリアル一覧</h1>
+      <div class="paging"><%= paginate(@tutorials) %></div>
+      <% @tutorials.each do |t| %>
+        <div class="tutorial-wrap">
+          <div class="tutorial-material">
+            <i class="tutorial-material__pin"></i>
+            <div class="tutorial-material__note tutorial-material__background">
+              <div class="tutorial-material__title"><%= t.title %></div>
+              <div class="tutorial-material__image-body-area">
+                <div class="tutorial-material__image"><%= image_tag("rails.png") %></div>
+                <div class="tutorial-material__body"><%= truncate(t.tutorial_content.body, length: 80) %></div>
+              </div>
+              <%= link_to url_for(controller: :tutorials, action: :show, id: t.id) do %>
+                <div class="tutorial-material__read-more">このチュートリアルを読む</div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  <!--左上が折れてるバージョン
+    <div class="tutorial-material tutorial-corner-fold">
+      <h2>タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル</h2>
+      <p class="tutorial-material__contents">問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題</p>
+      <p class="tutorial-material__detail-link">このチュートリアルを読む</p>
+    </div>
+  -->
+    <div class="paging"><%= paginate(@tutorials) %></div>
+  </div>
+</div>

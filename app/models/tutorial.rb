@@ -115,5 +115,9 @@ class Tutorial < ApplicationRecord
       .references(:main_categories, :original_categories, :tutorials)
       .order(datetime_for_display: "desc")
     end
+
+    def get_published_id
+      Status::PUBLISHED
+    end
   end
 end

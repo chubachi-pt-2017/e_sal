@@ -17,6 +17,7 @@ class ESal::TutorialsController < ESal::Base
 
   def list
     @tutorials = Tutorial.published_tutorials.page(params[:page]).per(LIST_NUM_PER_PAGE)
+    @list_title = "公開中"
   end
 
   def main_category_list

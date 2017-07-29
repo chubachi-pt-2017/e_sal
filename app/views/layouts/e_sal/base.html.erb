@@ -19,7 +19,7 @@
   <body>
     <!-- all wrap -->
     <div class="all-wrap">
-      <%= render partial: 'layouts/common_partials/sidebar' %>
+      <%= render partial: 'layouts/common_partials/sidebar', locals: { side_tutorial_list: @side_tutorial_list }  %>
 
       <div class="header"></div>
       <!-- main-contents -->
