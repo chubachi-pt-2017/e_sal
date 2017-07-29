@@ -301,3 +301,29 @@
   0% { transform: scale(30); }
   100% { transform: scale(1); }
 }
+
+.comment-area {
+  width: 500px;
+  margin-left: 30px;
+  display: inline-block;
+  p {
+    margin-bottom: 0;
+  }
+  &__character-count {
+    margin-left: 90px;
+    margin-bottom: 0;
+  }
+  &__current-character-num-area {
+    float: right;
+  }
+}
+
+.comment-history {
+  width: 500px;
+  float: right;
+  display: inline-block;
+  h2 {
+    font-size: 17px;
+    margin-top: 0;
+  }
+}

@@ -1,1 +1,6 @@
-<%= render 'tutorial' %>
+<% if flash[:alert] %>
+  <%= render 'e_sal/tutorials/tutorial' %>
+<% else %>
+  <%= render 'tutorial' %>
+<% end %>
+

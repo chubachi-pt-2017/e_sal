@@ -1,4 +1,14 @@
 <div class="tutorial-area">
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <%= h(flash[:notice]) %>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= h(flash[:alert]) %>
+    </div>
+  <% end %>
   <div class="contents-wrap">
     <div class="tutorial-note">
       <i class="tutorial-note__pin"></i>
@@ -27,50 +37,44 @@
       </div>
   
       <hr>
-  
-      <div class='col-md-12'>
+
+      <div class="comment-area">
+        <div class="comment-area__character-count">
+          <p>最大200文字まで<span class="comment-area__current-character-num-area">現在の文字数：<span class="comment-area__current-character-num" id="js-comment-count">0</span></span></p>
+        </div>
         <%= form_for [:e_sal, @tutorial, @comment], :html => {class: "form-horizontal", role: "form"} do |f| %>
+          <div class='form-group'>
+            <div class='control-label col-md-2'>
+              <%= f.label :body, 'Comment' %> 
+            </div>
+            <div class='col-md-10'>
+              <%= f.text_area :body, rows: 10, class: 'form-control', placeholder: 'Your comment', id: "js-comment-body" %> 
+            </div>
+          </div>
+    
+          <div class='form-group'>
+            <div class='col-md-offset-2 col-md-10'>
+              <%= f.submit "Add Comment", class: 'btn btn-primary btn-lg pull-right' %> 
+            </div>
+          </div>
+
           <% if @comment.errors.any? %>
             <div class="panel panel-danger col-md-offset-1">
-              <div class="panel-heading"> 
-                <h2 class="panel-title">
-                  <%= pluralize(@comment.errors.count, "error") %>
-                  prohibited this comment from being saved: 
-                </h2>
-    
+              <div class="panel-heading">
                 <div class="panel-body"> 
                   <ul>
-                    <% @comment.errors.full_messages.each do |msg| %> 
-                      <li> <%= msg %> </li>
-                    <% end %> 
+                    <li> <%= @comment.errors.messages[:body][0] %> </li>
                   </ul>
                 </div>
               </div><!-- /panel-heading --> 
             </div><!-- /panel panel-danger col-md-offset-1 -->
           <% end %>
-    
-            <div class='form-group'>
-              <div class='control-label col-md-2'>
-                <%= f.label :body, 'New Comment' %> 
-              </div>
-              <div class='col-md-10'>
-                <%= f.text_area :body, rows: 10, class: 'form-control', placeholder: 'Your comment' %> 
-              </div>
-            </div>
-      
-            <div class='form-group'>
-              <div class='col-md-offset-2 col-md-10'>
-                <%= f.submit "Add Comment", class: 'btn btn-primary btn-lg pull-right' %> 
-              </div>
-            </div>
         <% end %>
       </div>
   
-      <div class='col-md-12'> 
-        <header>
-          <h2>Comments</h2> 
-        </header>
-        <div class="col-md-10">
+      <div class='comment-history'> 
+        <h2>Comment History</h2>
+        <div class="col-md-12">
         <% if @tutorial.comments.any? %>
           <% persisted_comments(@comments).each do |comment| %> 
             <div class="comment-body">
