@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   namespace :e_sal, :path => "e-sal" do
     get '/', to: 'homes#index'
 
-    resources :programmings, path: "programming", only: [:index, :show] do
+    resources :programmings, path: "programming" do
       resources :programming_answers, path: "answer", except: [:index, :destroy] do
         collection do
           get '/list', to: 'programming_answers#list'
