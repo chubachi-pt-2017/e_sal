@@ -30,3 +30,7 @@ body {
 .contents-wrap {
   width: 1150px;
 }
+
+.list-title {
+  @include list-title;
+}

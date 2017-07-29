@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20170728202500) do
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
   end
 
-  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "body",        limit: 65535
     t.integer  "tutorial_id"
     t.integer  "user_id"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20170728202500) do
     t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
   end
 
-  create_table "programming_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "programming_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "programming_language", limit: 1,     default: 1, null: false
     t.text     "answer_code",          limit: 65535,             null: false
     t.text     "answer_result",        limit: 65535,             null: false
@@ -98,14 +98,12 @@ ActiveRecord::Schema.define(version: 20170728202500) do
   end
 
   create_table "tutorial_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "tutorial_id",               null: false
-    t.text     "body",        limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.index ["tutorial_id"], name: "index_tutorial_contents_on_tutorial_id", using: :btree
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  create_table "tutorial_dislikes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "tutorial_dislikes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",     null: false
     t.integer  "tutorial_id", null: false
     t.datetime "created_at",  null: false
@@ -114,7 +112,7 @@ ActiveRecord::Schema.define(version: 20170728202500) do
     t.index ["user_id"], name: "index_tutorial_dislikes_on_user_id", using: :btree
   end
 
-  create_table "tutorial_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "tutorial_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",     null: false
     t.integer  "tutorial_id", null: false
     t.datetime "created_at",  null: false
@@ -125,18 +123,19 @@ ActiveRecord::Schema.define(version: 20170728202500) do
 
   create_table "tutorials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                limit: 64,             null: false
-    t.integer  "user_id",                                     null: false
+    t.integer  "user_id"
     t.integer  "photo_id"
-    t.integer  "original_category_id",                        null: false
-    t.integer  "likes_count",                     default: 0, null: false
+    t.integer  "original_category_id"
+    t.integer  "tutorial_content_id"
     t.integer  "status",               limit: 1,  default: 0, null: false
-    t.integer  "comment_enable_flg",   limit: 1,  default: 0, null: false
+    t.integer  "comment_enable_flg",   limit: 1,  default: 0
     t.datetime "datetime_for_display"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.index ["original_category_id"], name: "index_tutorials_on_original_category_id", using: :btree
     t.index ["photo_id"], name: "index_tutorials_on_photo_id", using: :btree
-    t.index ["title"], name: "index_tutorials_on_title", using: :btree
+    t.index ["title"], name: "index_tutorials_on_title", unique: true, using: :btree
+    t.index ["tutorial_content_id"], name: "index_tutorials_on_tutorial_content_id", using: :btree
     t.index ["user_id"], name: "index_tutorials_on_user_id", using: :btree
   end
 
