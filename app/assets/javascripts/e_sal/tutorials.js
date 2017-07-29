@@ -138,7 +138,16 @@ $(function(){
         return false;
       });
   	});
-  }
+
+    // コメントの文字数カウント
+    var commentCount = $("#js-comment-count");
+    var commentBody = $("#js-comment-body");
+    commentCount.text(commentBody.val().length);
+
+    commentBody.on("keyup", function() {
+      commentCount.text(commentBody.val().length);
+    });
+  } // end of show
 
 });
 
