@@ -17,6 +17,17 @@ class ESal::TutorialsController < ESal::Base
 
   def list
     @tutorials = Tutorial.published_tutorials.page(params[:page]).per(LIST_NUM_PER_PAGE)
+    @list_title = "公開中"
+  end
+
+  def main_category_list
+    if params[:main_category].blank?
+      redirect_to e_sal_path
+      return
+    end
+
+    @tutorials = Tutorial.get_by_main_category(params[:main_category]).page(params[:page]).per(LIST_NUM_PER_PAGE)
+    @list_title = @tutorials[0].original_category.main_category.name
   end
 
   def new
@@ -92,7 +103,8 @@ class ESal::TutorialsController < ESal::Base
 
     def e_sal_tutorial_params
       params.fetch(:tutorial, {}).permit( 
-                                          :id, :title, :user_id, :photo_id, :original_category_id, :status, :comment_enable_flg, :datetime_for_display,
+                                          :id, :title, :user_id, :photo_id, :original_category_id, :status,
+                                          :comment_enable_flg, :datetime_for_display,
                                           :tutorial_content_attributes => [:id, :tutorial_id, :body, :_destroy]
                                         )
     end

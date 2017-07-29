@@ -24,17 +24,17 @@
           </li>
           <li class="sidebar__items">
             <%= link_to e_sal_programmings_path do %>
-              <div class="sidebar__item"><i class="fa fa-desktop" aria-hidden="true"></i><span class="sidebar__action">Programming</span></div>
+              <div class="sidebar__item"><i class="fa fa-desktop" aria-hidden="true"></i><span class="sidebar__action">Solving Programming</span></div>
             <% end %>
           </li>
           <li class="sidebar__items">
             <%= link_to e_sal_original_categories_path do %>
-              <div class="sidebar__item"><i class="fa fa-list" aria-hidden="true"></i><span class="sidebar__action">Category Management</span></div>
+              <div class="sidebar__item"><i class="fa fa-list" aria-hidden="true"></i><span class="sidebar__action">My Category</span></div>
             <% end %>
           </li>
           <li class="sidebar__items">
             <%= link_to e_sal_tutorials_path do %>
-              <div class="sidebar__item"><i class="fa fa-book fa-fw"></i><span class="sidebar__action">Tutorial Management</span></div>
+              <div class="sidebar__item"><i class="fa fa-book fa-fw"></i><span class="sidebar__action">My Tutorial</span></div>
             <% end %>
           </li>
           <li class="sidebar__items">
@@ -45,9 +45,9 @@
                 <span class="fa fa-chevron-down sidebar__down-arrow" id="js-slider-button"></span>
             </div>
             <ul class="sidebar__tutorial" id="js-slider-menu">
-              <li><i class="fa fa-circle" aria-hidden="true"></i></i>&nbsp;&nbsp;<a href="/">Ruby</a></li>
-              <li><i class="fa fa-circle" aria-hidden="true"></i></i>&nbsp;&nbsp;<a href="/">Python</a></li>
-              <li><i class="fa fa-circle" aria-hidden="true"></i></i>&nbsp;&nbsp;<a href="/">SQL</a></li>
+              <% side_tutorial_list.each do |t| %>
+                <li><i class="fa fa-circle" aria-hidden="true"></i></i>&nbsp;&nbsp;<%= link_to t.name,  {controller:"e_sal/tutorials", action:"main_category_list", main_category: t.name_url} %></li>
+              <% end %>
             </ul>
           </li>
         </ul>

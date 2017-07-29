@@ -108,5 +108,16 @@ class Tutorial < ApplicationRecord
       .where("tutorials.user_id = ?", user_id)
       .order("tutorials.status asc, tutorials.id desc")
     end
+    
+    def get_by_main_category(main_category_name)
+      includes(:tutorial_content, [original_category: :main_category])
+      .where("tutorials.status = ? and main_categories.name_url = ?", Status::PUBLISHED, main_category_name)
+      .references(:main_categories, :original_categories, :tutorials)
+      .order(datetime_for_display: "desc")
+    end
+
+    def get_published_id
+      Status::PUBLISHED
+    end
   end
 end

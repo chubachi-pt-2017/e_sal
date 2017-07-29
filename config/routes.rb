@@ -31,11 +31,12 @@ Rails.application.routes.draw do
     resources :tutorials do
       collection do
         get '/list', to: 'tutorials#list'
+        get '/list/:main_category' => 'tutorials#main_category_list'
         post '/photos', to: 'photos#create'
         post '/:id/edit/photos', to: 'photos#create'
         post '/preview/:id' => 'tutorials#preview'
         patch '/preview/:id' => 'tutorials#preview'
-        get '/preview/:id' => 'tutorials#preview'        
+        get '/preview/:id' => 'tutorials#preview'
         post '/tutorial-like' => 'tutorial_likes#create'
         delete '/tutorial-like' => 'tutorial_likes#destroy'
         post '/tutorial-dislike' => 'tutorial_dislikes#create'
