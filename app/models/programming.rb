@@ -9,6 +9,9 @@ class Programming < ApplicationRecord
   # public_activity
   include PublicActivity::Common
   
+  # activerecord-confirmable
+  include ActiveRecord::Confirmable
+  
   class << self
     def get_list(user_id, status)
       case status
@@ -19,9 +22,16 @@ class Programming < ApplicationRecord
         Programming.where(ProgrammingAnswer
           .where("programming_answers.user_id = ? and programming_answers.programming_id = programmings.id", user_id)
           .exists.not)
+      when "own"
+        Programming.where(user_id: user_id)
       else
         Programming.all
       end
+    end
+    
+    def has_answers(programming_id)
+      return true unless Programming.find(programming_id).programming_answers.blank?
+      false
     end
   end
 

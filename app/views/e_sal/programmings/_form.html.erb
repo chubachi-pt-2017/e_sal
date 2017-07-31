@@ -1,0 +1,70 @@
+<div class="programming-area">
+  <div class="programming-problem-form-wrap">
+    <h3><strong>プログラミングの問題作成フォーム</strong></h3>
+    <%= form_for([:e_sal, @programming], html: { class: "programming-problem-form form-horizontal" }) do |f| %>
+      <% if !f.object.confirmation? %>
+        <div class="programming-problem-form__title-field">
+          <div class="col-xs-12 form-group ">
+            <%= f.label t('.title') %>
+            <span style="color: red;"><%= f.label t('.required') %></span>
+            <%= f.text_field :title, maxlength: 128, class: "form-control" %>
+            <% if @programming.errors.full_messages_for(:title).any? %>
+              <div class="field_with_errors">
+                <% @programming.errors.full_messages_for(:title).each do |msg| %>
+                  <ul>
+                    <li><span style="color: red;"><%= msg %></span></li>
+                  </ul>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="programming-problem-form__question-desc-field">
+          <div class="col-xs-12 form-group">
+            <%= f.label t('.question_desc') %>
+            <span style="color: red;"><%= f.label t('.required') %></span>
+            <%= f.text_area :question_desc, rows: "15", class: "form-control" %>
+            <% if @programming.errors.full_messages_for(:question_desc).any? %>
+              <div class="field_with_errors">
+                <% @programming.errors.full_messages_for(:question_desc).each do |msg| %>
+                  <ul>
+                    <li><span style="color: red;"><%= msg %></span></li>
+                  </ul>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="programming-problem-form__correct-answer-field">
+          <div class="col-xs-12 form-group">
+            <%= f.label t('.correct_answer') %>
+            <span style="color: red;"><%= f.label t('.correct_answer_msg') %></span>
+            <%= f.text_area :correct_answer, rows: "5", class: "form-control" %>
+          </div>
+        </div>
+      <% else %>
+        <div class="programming-note">
+          <i class="programming-note__pin"></i>
+          <h2 class="programming-note__title">問題「<%= @programming.title%>」</h2>
+          <%= f.hidden_field :title %>
+          <div class="programming-note__main-sentence"><%= markdown @programming.question_desc %></div>
+          <div class="programming-note__sub-sentence">出題者：<%= @user.user_name %></div>
+          <%= f.hidden_field :question_desc %>
+          <%= f.hidden_field :correct_answer %>
+        </div>
+      <% end %>
+      <%= f.submit f.object.confirmation? ? "保存する" : "確認する", class: "btn btn-primary programming-problem-form__confirm-button" %>
+      <%= f.submit '戻る', class: "btn btn-default programming-problem-form__confirm-button" if f.object.confirmation? %>
+      <%= f.hidden_field :confirmed %>
+    <% end %>
+    <div class="col-xs-2 programming-problem-note-area">
+      <div class="fusen">
+        <ul>
+          <li><h2 style="color: red;">問題を作る際の注意事項</h2></li>
+          <li>文字列や数値を出力する問題にしてください</li>
+          <li>ファイルやディレクトリ操作を行う問題は避けてください</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

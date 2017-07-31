@@ -1,13 +1,18 @@
 <div class="programming-area">
   <%= render partial: 'layouts/common_partials/header_stats' %>
 
-    <% selection_item = {"すべて": "all", "下書き": "draft", "回答済み": "answered", "未回答": "not_answered"} %>
+    <% selection_item = {"すべて": "all", "下書き": "draft", "回答済み": "answered", "未回答": "not_answered", "自身が出題": "own"} %>
     <%= form_tag e_sal_programmings_path, method: 'get', html: {class: "form-horizontal"} do %>
-      <div class="col-xs-2" style="margin-top: 30px; margin-left: 140px;">
+      <div class="col-xs-3" style="margin-top: 30px; margin-left: 140px;">
         <%= label_tag :status, '抽出条件' %>
         <%= select_tag :status, options_for_select(selection_item, @status), onchange: "this.form.submit();", class: "form-control form-inline" %>
       </div>
     <% end %>
+    <div class="col-xs-2" style="margin-top: 55px; margin-left: 235px;">
+      <%= link_to new_e_sal_programming_path do %>
+        <button type="button" class="btn btn-primary">問題を新規作成する</button>
+      <% end %>
+    </div>
     <div class="paging"><%= paginate(@programmings) %></div>
     <% unless @programmings.any? %>
       <div class="programming-list__not-found" style="margin: 100px; text-align: center;">
@@ -20,10 +25,7 @@
           <i class="programming-material__pin"></i>
           <div class="programming-material__note programming-material__background">
             <div class="programming-material__title"><%= programming.title %></div>
-            <!--<div class="programming-material__image-body-area">-->
-              <!--<div class="programming-material__image"><%#= image_tag("rails.png") %></div>-->
-              <div class="programming-material__body"><%= truncate(programming.question_desc, length: 80) %></div>
-            <!--</div>-->
+              <div class="programming-material__body"><%= truncate(markdown(programming.question_desc), length: 80) %></div>
             <%= link_to e_sal_programming_path(programming.id) do %>
               <div class="programming-material__read-more">この問題を見る</div>
             <% end %>

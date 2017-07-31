@@ -9,7 +9,8 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       user: 利用者情報
-      prohramming_answer: プログラミング回答
+      programming: プログラミング問題
+      proramming_answer: プログラミング回答
     attributes:
       user:
         email: eメール
@@ -25,6 +26,10 @@ ja:
         job: 職種
         job_desc: 職種（その他）
         term_flg: 利用規約
+      programming:
+        title: 問題タイトル
+        question_desc: 問題本文
+        correct_answer: 正解
       programming_answer:
         programming_language: プログラミング言語
         answer_code: 回答コード
@@ -321,6 +326,14 @@ ja:
         <<: *form_edit
         password_change: 変更する
         password_unchange: 変更しない
+  e_sal:
+    programmings:
+      form:
+        title: 問題タイトル
+        question_desc: 問題本文
+        correct_answer: 正解
+        correct_answer_msg: ※出題画面には表示されません
+        required: (必須)
   # activities
   activity:
     user:
