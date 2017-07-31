@@ -2,7 +2,7 @@
   <div class="programming-note">
     <i class="programming-note__pin"></i>
     <h2 class="programming-note__title">問題「<%= @programming.title%>」</h2>
-    <div class="programming-note__main-sentence"><%= @programming.question_desc %></div>
+    <div class="programming-note__main-sentence"><%= markdown @programming.question_desc %></div>
     <div class="programming-note__sub-sentence">プログラミング言語：<%= @programming_answer.programming_language_i18n %></div>
     <div class="programming-note__sub-sentence">回答者：<%= @user.user_name %></div>
   </div>

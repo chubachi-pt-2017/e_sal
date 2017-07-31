@@ -2,7 +2,7 @@
   <div class="programming-note">
     <i class="programming-note__pin"></i>
     <h2 class="programming-note__title">問題「<%= @programming.title%>」</h2>
-    <div class="programming-note__main-sentence"><%= @programming.question_desc %></div>
+    <div class="programming-note__main-sentence"><%= markdown @programming.question_desc %></div>
   </div>
 <% if @programming_answer.errors.any? %>
   <div id="programming-errors">

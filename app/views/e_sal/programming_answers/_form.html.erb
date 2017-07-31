@@ -13,11 +13,11 @@
   </div>
 </div>
 <div>
-  <div id="ace-editor" style="height: 300px; width: 650px; margin: 20px; display: inline-block;"></div>
+  <div id="ace-editor" style="height: 300px; width: 60%; margin: 20px 0 20px 20px; display: inline-block;"></div>
   <%= javascript_include_tag "ace" %>
   <%= f.text_area :answer_code, id: "js-editor", style: "display: none;" %>
   <%#= f.text_area :answer_code, name: 'answer_code', id: "js-editor" %>
-  <div id="execution-result" style="height: 300px; width: 450px; margin: 20px; display: inline-block; float: right;">
+  <div id="execution-result" style="height: 300px; width: 32%; margin: 20px; display: inline-block; float: right;">
     <%= f.text_area :answer_result, placeholder: "実行結果がここに出ます", style: "height: 100%; width: 100%; text-align: left;", class: "ace-editor ace-monokai", id: "js-result-area", readonly: true %>
   </div>
 </div>

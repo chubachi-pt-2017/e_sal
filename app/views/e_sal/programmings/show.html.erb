@@ -2,15 +2,20 @@
   <div class="programming-note">
     <i class="programming-note__pin"></i>
     <h2 class="programming-note__title">問題「<%= @programming.title%>」</h2>
-    <div class="programming-note__main-sentence"><%= @programming.question_desc %></div>
+    <div class="programming-note__main-sentence"><%= markdown @programming.question_desc %></div>
   </div>
-  <p style="width: 400px; color: #fff; background: red; font-size: 16px; text-align: center; margin: 30px auto;">
-    <%= notice %>
-  </p>
   <div class="programming-button-area" style="text-align: center;">
     <% if @programming_answer.nil? %>
       <%= link_to new_e_sal_programming_programming_answer_path(@programming.id) do %>
         <button type="button" class="btn btn-primary">この問題を解く</button>
+      <% end %>
+      <% if @programming_own %>
+        <%= link_to edit_e_sal_programming_path(@programming.id) do %>
+          <button type="button" class="btn btn-primary" style="margin-left: 20px;">この問題を編集する</button>
+        <% end %>
+        <%= link_to e_sal_programming_path(@programming.id), method: :delete, data: {confirm: "削除してよろしいですか？"} do %>
+          <button type="button" class="btn btn-primary" style="margin-left: 20px;">この問題を削除する</button>
+        <% end %>
       <% end %>
     <% else %>
       <% if @programming_answer.draft? %>

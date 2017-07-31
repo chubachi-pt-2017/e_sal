@@ -16,6 +16,12 @@ class ESal::ProgrammingsController < ESal::Base
 
   def show
     @programming_answer = @programming.programming_answers.find_by(user_id: current_user.id)
+    
+    if @programming.user_id == current_user.id && !Programming.has_answers(@programming.id)
+      @programming_own = true
+    else
+      @programming_own = false
+    end
   end
   
   def new
@@ -24,16 +30,16 @@ class ESal::ProgrammingsController < ESal::Base
   
   def create
     @programming = @user.programmings.build(programming_params)
-    
-    params[:programming][:confirmed] = false if params[:back]
-    
-    if @programming.save?
+
+    @programming.confirmed = false if params[:commit] == "戻る"
+
+    if @programming.save
       respond_to do |format|
         format.html {redirect_to e_sal_programming_path(@programming.id), notice: "登録が完了しました"}
       end
     else
       respond_to do |format|
-        format.html {render 'new'}
+        format.html {render action: 'new'}
       end
     end
   end
@@ -49,10 +55,11 @@ class ESal::ProgrammingsController < ESal::Base
   
   def update
 
-    params[:programming][:confirmed] = false if params[:back]
-
+    @user = User.find(@programming.user_id)
     @programming.attributes = programming_params
     
+    @programming.confirmed = false if params[:commit] == "戻る"
+
     if @programming.save
       respond_to do |format|
         format.html {redirect_to e_sal_programming_path(@programming.id), notice: "更新が完了しました"}
@@ -85,12 +92,12 @@ class ESal::ProgrammingsController < ESal::Base
   
   private
   
-  def get_programming_answer
-    @programming_answer = @programming.programming_answers.find_by(programming_id: @programming.id)
+  def find_user
+    @user = User.find(current_user.id)
   end
   
-  def find_user
-    @user = User.find_by(id: current_user.id)
+  def get_programming_answer
+    @programming_answer = @programming.programming_answers.find_by(programming_id: @programming.id)
   end
   
   def set_programming

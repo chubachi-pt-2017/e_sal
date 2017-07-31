@@ -25,7 +25,7 @@
           <i class="programming-material__pin"></i>
           <div class="programming-material__note programming-material__background">
             <div class="programming-material__title"><%= programming.title %></div>
-              <div class="programming-material__body"><%= truncate(programming.question_desc, length: 80) %></div>
+              <div class="programming-material__body"><%= truncate(markdown(programming.question_desc), length: 80) %></div>
             <%= link_to e_sal_programming_path(programming.id) do %>
               <div class="programming-material__read-more">この問題を見る</div>
             <% end %>

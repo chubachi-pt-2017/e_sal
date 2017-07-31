@@ -126,7 +126,7 @@
   background: linear-gradient(transparent 55%, #f9c 60%);
 }
 
-/* チュートリアル編集ページ一覧 */
+/* 編集ページ一覧 */
 .new-programming-link {
   margin-left: 30px;
 }
@@ -186,4 +186,82 @@
 
 .new-programming-button {
   margin: 0 0 20px 25px;
+}
+
+.programming-problem-form-wrap {
+  width: 100%;
+}
+.programming-problem-form-wrap h3 {
+  margin: 20px 20px 0 20px;
+}
+
+.programming-problem-form {
+  width: 60%;
+  font-size: 15px;
+  float: left;
+  &__title-field {
+    margin: 20px;
+    padding: 0;
+  }
+  &__question-desc-field {
+    margin: 20px;
+    padding: 0;
+  }
+  &__correct-answer-field {
+    margin: 20px;
+    padding: 0;
+  }
+  &__confirm-button {
+    margin: 20px;
+  }
+  &__submit-button {
+    margin: 20px;
+  }
+}
+
+.programming-problem-form .field_with_errors {
+  @extend .has-error;
+}
+
+.programming-problem-note-area {
+  width: 35%;
+  margin: 108px 10px 10px 0;
+  padding: 0;
+  font-size: 14px;
+  // ul {
+  // color: #668ad8;
+  // border: dashed 2px red;
+  // padding: 0.5em 0.5em 0.5em 2em;
+  // }
+  // ul li {
+  //   list-style-type: square;
+  //   line-height: 1.5;
+  //   padding: 0.5em 0;
+  // }
+}
+
+.fusen {
+  width: 100%;
+  position: relative;
+  z-index: 0;
+}
+.fusen ul li {
+  font-size: 0.9em;
+  margin: 1.0em 0;
+  padding: 1em;
+  position: relative;
+  background: linear-gradient(to right, #ffffcc 0%, #f1f1c1 0.5%, #f1f1c1 13%, #ffffcc 16%);
+}
+.fusen ul li::after{
+    content:"";
+    display:block;
+    position: absolute;
+    z-index: -1;
+    bottom: 5px;
+    right: 0;
+    height: 15px;
+    width: 99%;
+    background: rgba(0,0,0,0.5);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    transform: rotate(2deg);
 }

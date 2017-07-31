@@ -28,6 +28,11 @@ class Programming < ApplicationRecord
         Programming.all
       end
     end
+    
+    def has_answers(programming_id)
+      return true unless Programming.find(programming_id).programming_answers.blank?
+      false
+    end
   end
 
 end
