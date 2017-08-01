@@ -121,7 +121,7 @@ class ESal::ProgrammingAnswersController < ESal::Base
     
     data = {stdout: out}
     
-    system("rm -rf #{file_name}")
+    File.delete(file_name)
     
     respond_to do |format|
       format.json {render json: data}
