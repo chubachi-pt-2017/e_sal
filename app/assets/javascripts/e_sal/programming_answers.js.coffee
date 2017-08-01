@@ -59,6 +59,9 @@ $ ->
     # Click Submit
     $ ($) ->
       $('#js-programming-submit').on 'click', ->
+        if checkSubmit() != true
+          alert("システムやファイル、ディレクトリの操作は実行できません")
+          return
         putSubmit()
         return
       return
@@ -82,6 +85,31 @@ setAceEditor = ->
   editor.getSession().setValue textarea.val()
   setSubmitButton()
   return
+
+checkSubmit = ->
+  lang = $('#js-lang').val()
+  code = $('#js-editor').val()
+  switch lang
+    when "perl"
+      arr = [/\bsystem\(.*\)/, /`(?:\\[\s\S]|[^`\\])*`/g, /\bqx\/.*\//, /\bopen\b/, /\bclose\b/, 
+            /\bopen\(.*\)/, /\bFile/, /\bunlink\b/, /\brename\b/]
+    when "php"
+      arr = [/\bsystem\s*\(.*\)/, /\bsystem\(.*\)/, /\bexec\s*\(.*\)/, /\bexec\(.*\)/,
+            /\bshell_exec\s*\(.*\)/, /\bshell_exec\(.*\)/, /`(?:\\[\s\S]|[^`\\])*`/g,
+            /\bpassthru\s*\(.*\)/, /\bpassthru\(.*\)/, /\bpcntl_exec\s*\(.*\)/, /\bpcntl_exec\(.*\)/,
+            /\bpopen\s*\(.*\)/, /\bpopen\(.*\)/, /\bproc_open\s*\(.*\)/, /\bproc_open\(.*\)/]
+    when "python"
+      arr = [/\bsys\b/, /\bos\..*/, /\bcommands\b/, /\bsubprocess\b/, /\bshutil\b/, /\.dir_util\b/, 
+            /\bopen\(.*\)/, /\bPath\b/, /\bglob\b/]
+    when "ruby"
+      arr = [/\bsystem\(.*\)/, /`(?:\\[\s\S]|[^`\\])*`/g, /\bsystemu\b/, /\bopen\..*/i, /\bFile\..*/, /\bDir\..*/]
+  for val, i in arr
+    if val.test code
+      return false
+      break
+    else
+      continue
+  return true
 
 putSubmit = ->
   lang = $('#js-lang').val()
