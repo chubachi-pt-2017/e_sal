@@ -12,46 +12,11 @@
           <li>
             <p class="contents-top__timeline-date"><%= timeline.created_at.strftime("#{t("date.formats.long")}") %></p>
             <div class="contents-top__timeline-content">
-              <h3><%= t("activity.#{timeline.key}") %></h3>
-              <p><%= link_to timeline.parameters[:title], "#{timeline.parameters[:link_url]}/#{timeline.trackable_id}" unless timeline.parameters[:link_url].nil? %></p>
+              <h3><%= t("activity.#{timeline.key}.timeline") %></h3>
+              <p>タイトル「<%= link_to timeline.parameters[:title], "#{timeline.parameters[:link_url]}" unless timeline.parameters[:link_url].nil? %>」</p>
             </div>
           </li>
         <% end -%>
-        <li>
-          <p class="contents-top__timeline-date">2017年6月30日</p>
-          <div class="contents-top__timeline-content">
-            <h3>Javaのプログラミングが追加されました。</h3>
-            <p>問題「回文を探せ」</p>
-          </div>
-        </li>
-        <li>
-          <p class="contents-top__timeline-date">2017年6月29日</p>
-          <div class="contents-top__timeline-content">
-            <h3>Rubyのチュートリアルが追加されました。</h3>
-            <p>Rubyでループを実行する。Rubyでループを実行する。Rubyでループを実行する。Rubyでループを実行する。Rubyでループを実行する。</p>
-          </div>
-        </li>
-        <li>
-          <p class="contents-top__timeline-date">2017年6月28日</p>
-          <div class="contents-top__timeline-content">
-            <h3>アカウントが作成されました。</h3>
-            <p>一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。一緒に頑張りましょう。</p>
-          </div>
-        </li>
-        <li>
-          <p class="contents-top__timeline-date">2017年6月28日</p>
-          <div class="contents-top__timeline-content">
-            <h3>アカウントが作成されました。</h3>
-            <p>一緒に頑張りましょう。</p>
-          </div>
-        </li>
-        <li>
-          <p class="contents-top__timeline-date">2017年6月28日</p>
-          <div class="contents-top__timeline-content">
-            <h3>アカウントが作成されました。</h3>
-            <p>一緒に頑張りましょう。</p>
-          </div>
-        </li>      
       </ul>
     </div><!--/contents-top__timeline-wrap -->
   
@@ -62,39 +27,14 @@
           <li class="contents-top__activity-item">
             <span><%= activity.created_at.strftime("#{t("date.formats.default")}") %></span>
               <% if activity.parameters[:link_url].nil? %>
-                <p><%= t("activity.#{activity.key}") %></p>
+                <p><%= t("activity.#{activity.key}.activity") %></p>
               <% else %>
-                <p><%= link_to t("activity.#{activity.key}"), "#{activity.parameters[:link_url]}/#{activity.trackable_id}" %></p>
+                <p><%= t("activity.#{activity.key}.activity") %></p>
+                <p><%= link_to t("#{activity.parameters[:title]}"), "#{activity.parameters[:link_url]}" %></p>
               <% end -%>
           </li>
         <% end -%>
       </ul>
-      <ul>
-        <li class="contents-top__activity-item">
-          <span>2017/07/03</span>
-          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-        </li>
-        <li class="contents-top__activity-item">
-          <span>2017/07/03</span>
-          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-        </li>
-        <li class="contents-top__activity-item">
-          <span>2017/07/03</span>
-          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-        </li>
-        <li class="contents-top__activity-item">
-          <span>2017/07/03</span>
-          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-        </li>
-        <li class="contents-top__activity-item">
-          <span>2017/07/03</span>
-          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-        </li>
-        <li class="contents-top__activity-item">
-          <span>2017/07/03</span>
-          <p>プログラミングの問題を解きました。プログラミングの問題を解きました。プログラミングの問題を解きました。</p>
-        </li>
-      </ul>    
     </div><!-- /contents-top__own-activity -->
     
     <div class="statistics-area">

@@ -34,6 +34,9 @@ class ESal::ProgrammingsController < ESal::Base
     @programming.confirmed = false if params[:commit] == "戻る"
 
     if @programming.save
+      @programming.create_activity :create, owner: current_user, params: {
+        link_url: e_sal_programming_path(@programming.id),
+        title: @programming.title}
       respond_to do |format|
         format.html {redirect_to e_sal_programming_path(@programming.id), notice: "登録が完了しました"}
       end

@@ -24,6 +24,11 @@ class Tutorial < ApplicationRecord
     end
   end
 
+
+  # public_activity
+  include PublicActivity::Common
+  
+
   belongs_to :tutorial_content
   belongs_to :original_category
   belongs_to :user  

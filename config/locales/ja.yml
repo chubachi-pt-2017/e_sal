@@ -337,14 +337,16 @@ ja:
   # activities
   activity:
     user:
-      create: アカウントが作成されました
-      update: プロフィール情報が更新されました
-      destory: アカウントが削除されました
+      create:
+        activity: アカウントが作成されました
     programming:
-      create: プログラミングの問題が追加されました
-      update: プログラミングの問題が更新されました
-      destory: プログラミングの問題が削除されました
+      create:
+        timeline: プログラミングの問題が追加されました
+        activity: プログラミングの問題を作成しました
+    programming_answer:
+      create:
+        activity: プログラミングの問題を解きました。
     tutorial:
-      create: チュートリアルが追加されました
-      update: チュートリアルが更新されました
-      destory: チュートリアルが削除されました
+      create:
+        timeline: チュートリアルが公開されました
+        activity: チュートリアルを公開しました。

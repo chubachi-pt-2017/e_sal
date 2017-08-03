@@ -33,7 +33,7 @@ n = titles.length
     owner_id: 1,
     key: "programming.create",
     parameters: {
-      link_url: "/e-sal/programming",
+      link_url: "/e-sal/programming/#{num + 1}",
       title: titles[num]
     }
   )
