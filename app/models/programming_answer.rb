@@ -7,6 +7,9 @@ class ProgrammingAnswer < ApplicationRecord
   enum answer_status: { draft: 0, answered: 1 }
   enum tab_size: { "2"=> 2, "3"=> 3, "4"=> 4, "8"=> 8 }
   
+  # public_activity
+  include PublicActivity::Common
+  
   validates :answer_code, presence: { message: "を入力してください"}
   validates :answer_result, presence: { message: "は必須です"}
   

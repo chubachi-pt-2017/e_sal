@@ -44,6 +44,9 @@ class ESal::TutorialsController < ESal::Base
     @tutorial = Tutorial.new(e_sal_tutorial_params)
     respond_to do |format|
       if @tutorial.save
+        @tutorial.create_activity :create, owner: current_user, params: {
+          link_url: e_sal_tutorial_path(@tutorial.id),
+          title: @tutorial.title} if @tutorial.status == Tutorial::Status::PUBLISHED
         format.html { redirect_to e_sal_tutorials_path, notice: "チュートリアル「#{params[:tutorial][:title]}」を作成しました。" }
       else
         get_original_categories
@@ -55,6 +58,9 @@ class ESal::TutorialsController < ESal::Base
   def update
     respond_to do |format|
       if @tutorial.update(e_sal_tutorial_params)
+        @tutorial.create_activity :create, owner: current_user, params: {
+          link_url: e_sal_tutorial_path(@tutorial.id),
+          title: @tutorial.title} if @tutorial.status == Tutorial::Status::PUBLISHED
         format.html { redirect_to e_sal_tutorials_path, notice: "「#{@tutorial.title}」のチュートリアルが更新されました。" }
       else
         get_original_categories

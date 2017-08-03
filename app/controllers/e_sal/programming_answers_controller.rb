@@ -33,6 +33,9 @@ class ESal::ProgrammingAnswersController < ESal::Base
     
     respond_to do |format|
       if @programming_answer.save
+        @programming_answer.create_activity :create, owner: current_user, params: {
+          link_url: e_sal_programming_programming_answer_path(@programming_answer.programming_id, @programming_answer.id),
+          title: @programming.title} if params[:answered]
         format.html {redirect_to e_sal_programmings_path({status: status}), notice: "保存が完了しました"}
       else
         format.html {render :new}
@@ -62,6 +65,9 @@ class ESal::ProgrammingAnswersController < ESal::Base
 
     respond_to do |format|
       if @programming_answer.save
+        @programming_answer.create_activity :create, owner: current_user, params: {
+          link_url: e_sal_programming_programming_answer_path(@programming_answer.programming_id, @programming_answer.id),
+          title: @programming.title} if params[:answered]
         format.html {redirect_to e_sal_programming_programming_answer_path, notice: "保存が完了しました"}
       else
         format.html {render :edit}
