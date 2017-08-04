@@ -73,6 +73,13 @@ class User < ApplicationRecord
       password == "" &&
       password_confirmation == ""
   end
+  
+  class << self
+    def get_pie_course_types
+      count_all = User.where.not(confirmed_at: nil).count
+      User.where.not(confirmed_at: nil).group(:course_type).order(:course_type).count.map { |k, v| {course: User.course_types_i18n.values[User.course_types[k]], count: ((v.to_f / count_all) * 100).to_i} }
+    end
+  end
 
 end
 
