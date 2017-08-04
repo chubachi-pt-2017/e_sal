@@ -42,20 +42,23 @@
         <div class="pie-headline">
           <h2>サービス利用者の割合</h2>
         </div>
+        <% pie_colors = ["#1ABB9C", "#fe8378", "#57b7db", "#6a8cbb", "#74ef07", "#f55656"] %>
         <div class="pie-chart" id="js-pie-chart">
-          <div class="pie" data-percentage="5" data-color="#1ABB9C"></div>
-          <div class="pie" data-percentage="50" data-color="#fe8378"></div>
-          <div class="pie" data-percentage="30" data-color="#57b7db"></div>
-          <div class="pie" data-percentage="15" data-color="#6a8cbb"></div>
+          <% i = 0 %>
+          <% @pie_course_types.each do |p| %>
+            <div class="pie" data-percentage=<%= "#{p[:count]}" %> data-color=<%= "#{pie_colors[i]}" %>></div>
+            <% i = i + 1 %>
+          <% end %>
         </div>
-        <div class="pie-info">
-          <ul>
-            <li><div class="pie-color" style="background:#1ABB9C"></div><span class="pie-color-title">20代</span><span class="pie-ratio">5%</span></li>
-            <li><div class="pie-color" style="background:#fe8378"></div><span class="pie-color-title">30代</span><span class="pie-ratio">50%</span></li>
-            <li><div class="pie-color" style="background:#57b7db"></div><span class="pie-color-title">40代</span><span class="pie-ratio">30%</span></li>
-            <li><div class="pie-color" style="background:#6a8cbb"></div><span class="pie-color-title">50代</span><span class="pie-ratio">15%</span></li>          
-          </ul>
-        </div>
+          <div class="pie-info">
+            <ul>
+              <% j = 0 %>
+              <% @pie_course_types.each do |p| %>
+                <li><div class="pie-color" style=<%= "background:#{pie_colors[j]}" %>></div><span class="pie-color-title"><%= p[:course] %></span><span class="pie-ratio"><%= p[:count] %>%</span></li>
+                <% j = j + 1 %>
+              <% end %>
+            </ul>
+          </div>
       </div>
       
       <div class="contents-top__editable-material">
