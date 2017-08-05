@@ -110,6 +110,7 @@ class ESal::ProgrammingAnswersController < ESal::Base
     file_name = "#{submit_dir}/#{f_time}.#{lang_map[lang.to_sym]}"
     
     File.open(file_name, "w") do |file|
+      file.puts("# -*- coding: utf-8 -*-") if lang == "python"
       file.puts(code)
     end
 
