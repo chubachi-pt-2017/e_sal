@@ -21,5 +21,11 @@ class OriginalCategory < ApplicationRecord
       includes(:main_category)
       .where(user_id: user_id).order(updated_at: :desc)
     end
+    
+    def get_has_tutorial(user_id)
+      joins("LEFT JOIN tutorials ON tutorials.original_category_id = original_categories.id 
+            AND original_categories.user_id = #{user_id}
+            AND tutorials.user_id = #{user_id}")
+    end
   end
 end
