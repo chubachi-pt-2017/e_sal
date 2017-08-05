@@ -120,6 +120,11 @@ class Tutorial < ApplicationRecord
       .references(:main_categories, :original_categories, :tutorials)
       .order(datetime_for_display: "desc")
     end
+    
+    def has_draft(user_id)
+      where({user_id: user_id, status: Status::DRAFT})
+      .order(updated_at: :desc).limit(1)
+    end
 
     def get_published_id
       Status::PUBLISHED
