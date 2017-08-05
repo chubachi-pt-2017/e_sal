@@ -2,7 +2,8 @@ class ESal::OriginalCategoriesController < ESal::Base
   before_action :set_original_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @original_categories = OriginalCategory.get_by_user_id(current_user.id).page(params[:page]).per(LIST_NUM_PER_PAGE)
+    # @original_categories = OriginalCategory.get_by_user_id(current_user.id).page(params[:page]).per(LIST_NUM_PER_PAGE)
+    @original_categories = OriginalCategory.get_has_tutorial(current_user.id).page(params[:page]).per(LIST_NUM_PER_PAGE)
   end
 
   def new
