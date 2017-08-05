@@ -23,5 +23,10 @@ class ProgrammingAnswer < ApplicationRecord
       return true if answer > 0
       false
     end
+    
+    def has_draft(user_id)
+      ProgrammingAnswer.draft.includes(:programming)
+        .where(programming_answers: {user_id: user_id}).order(updated_at: :desc).limit(1)
+    end
   end
 end
