@@ -26,6 +26,7 @@ gem 'paperclip'
 gem 'paperclip-optimizer'
 gem 'aws-sdk'
 gem 'systemu'
+gem 'unicorn'
 
 group :development, :test do
   gem 'byebug', platform: :mri

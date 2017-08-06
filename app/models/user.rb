@@ -45,7 +45,7 @@ class User < ApplicationRecord
     confirm.validates :second_email,
               allow_blank: true,
               length: { maximum: 128 },
-              format: { with: VALID_EMAIL_DEFAULT, message: "は有効なメールアドレスではありません。" },
+#              format: { with: VALID_EMAIL_DEFAULT, message: "は有効なメールアドレスではありません。" },
               format: { with: VALID_EMAIL_NOAIIT, message: "はAIITメールアドレスではなく、連絡用に他ドメインのメールアドレスを記入下さい。" }
     
     confirm.validates :job_desc,
