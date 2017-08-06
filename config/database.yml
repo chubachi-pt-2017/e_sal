@@ -21,7 +21,7 @@ test:
 
 production:
   <<: *default
-  database: e_sal_production
-  username: e_sal
+  database: <%= ENV['PRODUCTION_DATABASE_NAME'] %>
+  username: <%= ENV['PRODUCTION_DATABASE_USER'] %>
   password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>
-  url: <%= ENV['DATABASE_URL'] %>
+  host: <%= ENV['PRODUCTION_DATABASE_HOST'] %>
