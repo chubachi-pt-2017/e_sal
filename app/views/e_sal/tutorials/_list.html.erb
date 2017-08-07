@@ -11,7 +11,7 @@
             <div class="tutorial-material__note tutorial-material__background">
               <div class="tutorial-material__title"><%= t.title %></div>
               <div class="tutorial-material__image-body-area">
-                <div class="tutorial-material__image"><%= image_tag("rails.png") %></div>
+                <div class="tutorial-material__image"><%= image_tag("main_categories/#{t.main_category.name_url}.png") %></div>
                 <div class="tutorial-material__body"><%= truncate(t.tutorial_content.body, length: 80) %></div>
               </div>
               <%= link_to url_for(controller: :tutorials, action: :show, id: t.id) do %>
