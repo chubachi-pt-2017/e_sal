@@ -30,7 +30,7 @@
                 <p><%= t("activity.#{activity.key}.activity") %></p>
               <% else %>
                 <p><%= t("activity.#{activity.key}.activity") %></p>
-                <p><%= link_to t("#{activity.parameters[:title]}"), "#{activity.parameters[:link_url]}" %></p>
+                <p><%= link_to activity.parameters[:title], "#{activity.parameters[:link_url]}" %></p>
               <% end -%>
           </li>
         <% end -%>
