@@ -240,7 +240,7 @@ function showUploadHandling(evt) {
 function set_markdown_to_current_cursor_place(photoJSON) {
   var markdown = "";
   for (var i = 0; i < photoJSON.photos.length; i++) {
-    if (i => 1) markdown += "\r\n";
+    if (i > 0) markdown += "\r\n";
     markdown += "![Altをここへ書く](https://s3-ap-northeast-1.amazonaws.com/esal-dev/images/" + photoJSON.photos[i].id  + "/thumb_480" + photoJSON.photos[i].image_file_name.substr(photoJSON.photos[i].image_file_name.indexOf('.')) + ")";
   }
 
