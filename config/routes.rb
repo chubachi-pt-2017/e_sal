@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       collection do
         get '/list', to: 'tutorials#list'
         get '/list/:main_category' => 'tutorials#main_category_list'
+        get '/list/:main_category/:original_category' => 'tutorials#original_category_list'
         post '/photos', to: 'photos#create'
         post '/:id/edit/photos', to: 'photos#create'
         post '/preview/:id' => 'tutorials#preview'

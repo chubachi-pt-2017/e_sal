@@ -23,6 +23,8 @@
       </div>
     </div>
 
+　　<%= link_to "#{@tutorial_list_title}のチュートリアル一覧はこちら", controller: "e_sal/tutorials", action: "original_category_list", main_category: @main_category, original_category: @original_category %>
+
     <% if @preview.blank? %>  
       <div class="evaluation-button">
         <p>このチュートリアルはあなたにとってお役に立ちましたか？</p>

@@ -126,6 +126,13 @@ class Tutorial < ApplicationRecord
       .order(updated_at: :desc).limit(1)
     end
 
+    def get_by_original_category(original_category_name)
+      includes(:tutorial_content, :original_category)
+      .where("tutorials.status = ? and original_categories.name_url = ?", Status::PUBLISHED, original_category_name)
+      .references(:original_categories, :tutorials)
+      .order(datetime_for_display: "desc")
+    end
+
     def get_published_id
       Status::PUBLISHED
     end

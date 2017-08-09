@@ -13,6 +13,10 @@ class ESal::TutorialsController < ESal::Base
     @press_like_button = TutorialLike.liked?(current_user.id, params[:id])
     @press_dislike_button = TutorialDislike.disliked?(current_user.id, params[:id])
     @current_login_user_id = current_user.id
+  
+    @original_category = @tutorial.original_category.name_url
+    @main_category = @tutorial.original_category.main_category.name_url
+    @tutorial_list_title = @tutorial.original_category.name
   end
 
   def list
@@ -29,7 +33,24 @@ class ESal::TutorialsController < ESal::Base
     @tutorials = Tutorial.get_by_main_category(params[:main_category]).page(params[:page]).per(LIST_NUM_PER_PAGE)
     @list_title = @tutorials[0].original_category.main_category.name
   end
+  
+  def original_category_list
+    if params[:original_category].blank?
+      redirect_to e_sal_path
+      return
+    end
 
+    @tutorials = Tutorial.get_by_original_category(params[:original_category]).page(params[:page]).per(LIST_NUM_PER_PAGE)
+
+    if @tutorials.present?
+      @list_title = @tutorials[0].original_category.name
+    else
+      render_404
+      return
+    end
+
+  end
+  
   def new
     @tutorial = Tutorial.new
     set_current_user_id
