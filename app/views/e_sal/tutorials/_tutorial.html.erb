@@ -39,7 +39,7 @@
       </div>
   
       <hr>
-
+<% if @tutorial.comment_enable_flg == 2 %>
       <div class="comment-area">
         <div class="comment-area__character-count">
           <p>最大200文字まで<span class="comment-area__current-character-num-area">現在の文字数：<span class="comment-area__current-character-num" id="js-comment-count">0</span></span></p>
@@ -92,6 +92,7 @@
         <% end %> 
       </div>
     <% end %>
+  <% end %>
   </div>
 </div>
 <div style="display: none;" id="js-tutorial-id"><%= @tutorial.id %></div>
